@@ -2,1163 +2,1141 @@
 
 /* =========================================================
    ANA ESSENCI — SCRIPT.JS
-   Catálogo, pesquisa, filtros, WhatsApp, menu e carrossel
+   Catálogo, filtros, pesquisa, menu mobile e WhatsApp
 ========================================================= */
 
-/* =========================================================
-   CONFIGURAÇÕES
-========================================================= */
+const CONFIG = Object.freeze({
+  whatsappNumber: "5562998390546",
+  whatsappGeneralUrl: "https://wa.me/message/RFPQVIOKJU7AJ1",
+  email: "loja.anaessenci@gmail.com",
+  initialProductLimit: 12,
+  productLimitStep: 12,
+  imageFallback: "logo/logo.jpg"
+});
 
-const CONFIGURACOES = {
-  whatsappNumero: "5562998390546",
+const CATEGORY_LABELS = Object.freeze({
+  masculino: "Perfumaria masculina",
+  feminino: "Perfumaria feminina",
+  hidratantes: "Cuidados corporais",
+  sabonetes: "Banho e perfumação"
+});
 
-  whatsappGeral:
-    "https://wa.me/message/RFPQVIOKJU7AJ1",
-
-  email:
-    "loja.anaessenci@gmail.com",
-
-  quantidadeInicial: 15,
-
-  quantidadePorClique: 15
-};
-
-/* =========================================================
-   CATEGORIAS
-========================================================= */
-
-const NOMES_CATEGORIAS = {
-  masculino: "Perfume masculino",
-  feminino: "Perfume feminino",
-  hidratantes: "Hidratante corporal",
-  sabonetes: "Sabonete"
-};
-
-/* =========================================================
-   CRIAÇÃO DOS PRODUTOS
-========================================================= */
-
-function produto(
+function createProduct({
   id,
-  nome,
-  codigo,
-  preco,
-  categoria,
-  destaque = 0
-) {
-  return {
+  name,
+  code,
+  price,
+  category,
+  featured = 0,
+  brand = "O Boticário"
+}) {
+  return Object.freeze({
     id,
-    nome,
-    codigo: String(codigo),
-    preco,
-    categoria,
-    categoriaNome: NOMES_CATEGORIAS[categoria],
-    marca: "O Boticário",
-    imagem: `produtos/${categoria}/${id}.webp`,
-    destaque
-  };
+    name,
+    code: String(code),
+    price: Number(price),
+    category,
+    categoryLabel: CATEGORY_LABELS[category],
+    brand,
+    image: `produtos/${category}/${id}.webp`,
+    featured
+  });
 }
 
-/* =========================================================
-   PRODUTOS
-
-   Zaad Venture não foi incluído porque a imagem não existe.
-========================================================= */
-
-const PRODUTOS_BASE = [
-
+const PRODUCTS = [
   /* =======================================================
-     PERFUMES MASCULINOS
+     PERFUMARIA MASCULINA
   ======================================================= */
 
-  produto(
-    "malbec",
-    "Malbec Desodorante Colônia 100 ml",
-    "84387",
-    209.90,
-    "masculino",
-    1
-  ),
+  createProduct({
+    id: "malbec",
+    name: "Malbec Desodorante Colônia 100 ml",
+    code: "84387",
+    price: 209.90,
+    category: "masculino",
+    featured: 1
+  }),
 
-  produto(
-    "malbec-gold",
-    "Malbec Gold Desodorante Colônia 100 ml",
-    "73849",
-    249.90,
-    "masculino",
-    2
-  ),
+  createProduct({
+    id: "malbec-gold",
+    name: "Malbec Gold Desodorante Colônia 100 ml",
+    code: "73849",
+    price: 249.90,
+    category: "masculino",
+    featured: 2
+  }),
 
-  produto(
-    "malbec-x",
-    "Malbec X Desodorante Colônia 100 ml",
-    "30192",
-    224.91,
-    "masculino"
-  ),
+  createProduct({
+    id: "malbec-x",
+    name: "Malbec X Desodorante Colônia 100 ml",
+    code: "30192",
+    price: 224.91,
+    category: "masculino"
+  }),
 
-  produto(
-    "malbec-black",
-    "Malbec Black Desodorante Colônia 100 ml",
-    "74723",
-    259.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "malbec-black",
+    name: "Malbec Black Desodorante Colônia 100 ml",
+    code: "74723",
+    price: 259.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "malbec-ultra-bleu",
-    "Malbec Ultra Bleu Desodorante Colônia 100 ml",
-    "50119",
-    229.90,
-    "masculino",
-    3
-  ),
+  createProduct({
+    id: "malbec-ultra-bleu",
+    name: "Malbec Ultra Bleu Desodorante Colônia 100 ml",
+    code: "50119",
+    price: 229.90,
+    category: "masculino",
+    featured: 3
+  }),
 
-  produto(
-    "malbec-pure-gold",
-    "Malbec Pure Gold Desodorante Colônia 100 ml",
-    "58506",
-    249.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "malbec-pure-gold",
+    name: "Malbec Pure Gold Desodorante Colônia 100 ml",
+    code: "58506",
+    price: 249.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "malbec-signature",
-    "Malbec Signature Eau de Parfum 90 ml",
-    "48134",
-    359.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "malbec-signature",
+    name: "Malbec Signature Eau de Parfum 90 ml",
+    code: "48134",
+    price: 359.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "malbec-magnetic",
-    "Malbec Magnetic Desodorante Colônia 100 ml",
-    "73743",
-    249.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "malbec-magnetic",
+    name: "Malbec Magnetic Desodorante Colônia 100 ml",
+    code: "73743",
+    price: 249.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "malbec-noir",
-    "Malbec Noir Desodorante Colônia 100 ml",
-    "84388",
-    259.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "malbec-noir",
+    name: "Malbec Noir Desodorante Colônia 100 ml",
+    code: "84388",
+    price: 259.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "zaad",
-    "Zaad Eau de Parfum 95 ml",
-    "47950",
-    314.91,
-    "masculino",
-    4
-  ),
+  createProduct({
+    id: "zaad",
+    name: "Zaad Eau de Parfum 95 ml",
+    code: "47950",
+    price: 314.91,
+    category: "masculino",
+    featured: 4
+  }),
 
-  produto(
-    "zaad-expedition",
-    "Zaad Expedition Eau de Parfum 95 ml",
-    "46898",
-    349.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "zaad-expedition",
+    name: "Zaad Expedition Eau de Parfum 95 ml",
+    code: "46898",
+    price: 349.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "zaad-santal",
-    "Zaad Santal Eau de Parfum 95 ml",
-    "81382",
-    349.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "zaad-santal",
+    name: "Zaad Santal Eau de Parfum 95 ml",
+    code: "81382",
+    price: 349.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "zaad-intense",
-    "Zaad Intense Eau de Parfum 95 ml",
-    "58644",
-    300.88,
-    "masculino"
-  ),
+  createProduct({
+    id: "zaad-intense",
+    name: "Zaad Intense Eau de Parfum 95 ml",
+    code: "58644",
+    price: 300.88,
+    category: "masculino"
+  }),
 
-  produto(
-    "quasar-blue",
-    "Quasar Blue Desodorante Colônia 100 ml",
-    "51244",
-    189.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "quasar-blue",
+    name: "Quasar Blue Desodorante Colônia 100 ml",
+    code: "51244",
+    price: 189.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "quasar-brave",
-    "Quasar Brave Desodorante Colônia 100 ml",
-    "51242",
-    189.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "quasar-brave",
+    name: "Quasar Brave Desodorante Colônia 100 ml",
+    code: "51242",
+    price: 189.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "quasar-vision",
-    "Quasar Vision Desodorante Colônia 100 ml",
-    "50662",
-    189.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "quasar-vision",
+    name: "Quasar Vision Desodorante Colônia 100 ml",
+    code: "50662",
+    price: 189.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "quasar-deep-blue",
-    "Quasar Deep Blue Desodorante Colônia 100 ml",
-    "58526",
-    141.89,
-    "masculino"
-  ),
+  createProduct({
+    id: "quasar-deep-blue",
+    name: "Quasar Deep Blue Desodorante Colônia 100 ml",
+    code: "58526",
+    price: 141.89,
+    category: "masculino"
+  }),
 
-  produto(
-    "quasar-rush",
-    "Quasar Rush Desodorante Colônia 100 ml",
-    "50820",
-    113.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "quasar-rush",
+    name: "Quasar Rush Desodorante Colônia 100 ml",
+    code: "50820",
+    price: 113.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "arbo",
-    "Arbo Desodorante Colônia 100 ml",
-    "74438",
-    189.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "arbo",
+    name: "Arbo Desodorante Colônia 100 ml",
+    code: "74438",
+    price: 189.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "arbo-reserva",
-    "Arbo Reserva Desodorante Colônia 100 ml",
-    "81138",
-    189.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "arbo-reserva",
+    name: "Arbo Reserva Desodorante Colônia 100 ml",
+    code: "81138",
+    price: 189.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "arbo-liberte",
-    "Arbo Liberté Desodorante Colônia 100 ml",
-    "74440",
-    189.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "arbo-liberte",
+    name: "Arbo Liberté Desodorante Colônia 100 ml",
+    code: "74440",
+    price: 189.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "arbo-atlantica",
-    "Arbo Atlântica Desodorante Colônia 100 ml",
-    "55366",
-    189.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "arbo-atlantica",
+    name: "Arbo Atlântica Desodorante Colônia 100 ml",
+    code: "55366",
+    price: 189.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "uomini",
-    "Uomini Desodorante Colônia 100 ml",
-    "49765",
-    209.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "uomini",
+    name: "Uomini Desodorante Colônia 100 ml",
+    code: "49765",
+    price: 209.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "uomini-black",
-    "Uomini Black Desodorante Colônia 100 ml",
-    "49766",
-    209.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "uomini-black",
+    name: "Uomini Black Desodorante Colônia 100 ml",
+    code: "49766",
+    price: 209.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "uomini-infinite",
-    "Uomini Infinite Desodorante Colônia 100 ml",
-    "50418",
-    209.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "uomini-infinite",
+    name: "Uomini Infinite Desodorante Colônia 100 ml",
+    code: "50418",
+    price: 209.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "egeo-bomb-black",
-    "Egeo Bomb Black Desodorante Colônia 90 ml",
-    "82685",
-    164.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "egeo-bomb-black",
+    name: "Egeo Bomb Black Desodorante Colônia 90 ml",
+    code: "82685",
+    price: 164.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "coffee-man-sense",
-    "Coffee Man Sense Desodorante Colônia 100 ml",
-    "80972",
-    229.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "coffee-man-sense",
+    name: "Coffee Man Sense Desodorante Colônia 100 ml",
+    code: "80972",
+    price: 229.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "coffee-man-duo",
-    "Coffee Man Duo Desodorante Colônia 100 ml",
-    "73614",
-    159.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "coffee-man-duo",
+    name: "Coffee Man Duo Desodorante Colônia 100 ml",
+    code: "73614",
+    price: 159.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "coffee-man-seduction",
-    "Coffee Man Seduction Desodorante Colônia 100 ml",
-    "48365",
-    229.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "coffee-man-seduction",
+    name: "Coffee Man Seduction Desodorante Colônia 100 ml",
+    code: "48365",
+    price: 229.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "the-blend-bourbon",
-    "The Blend Bourbon Eau de Parfum 100 ml",
-    "77489",
-    379.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "the-blend-bourbon",
+    name: "The Blend Bourbon Eau de Parfum 100 ml",
+    code: "77489",
+    price: 379.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "the-blend-cardamom",
-    "The Blend Cardamom Eau de Parfum 100 ml",
-    "83529",
-    379.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "the-blend-cardamom",
+    name: "The Blend Cardamom Eau de Parfum 100 ml",
+    code: "83529",
+    price: 379.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "clash",
-    "Clash Desodorante Colônia 100 ml",
-    "50677",
-    179.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "clash",
+    name: "Clash Desodorante Colônia 100 ml",
+    code: "50677",
+    price: 179.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "egeo-blue",
-    "Egeo Blue Desodorante Colônia 90 ml",
-    "82686",
-    164.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "egeo-blue",
+    name: "Egeo Blue Desodorante Colônia 90 ml",
+    code: "82686",
+    price: 164.90,
+    category: "masculino"
+  }),
 
-  produto(
-    "botica-214-verano-en-firenze",
-    "Botica 214 Verano en Firenze Eau de Parfum 75 ml",
-    "47553",
-    249.90,
-    "masculino"
-  ),
+  createProduct({
+    id: "botica-214-verano-en-firenze",
+    name: "Botica 214 Verano en Firenze Eau de Parfum 75 ml",
+    code: "47553",
+    price: 249.90,
+    category: "masculino"
+  }),
 
   /* =======================================================
-     PERFUMES FEMININOS
+     PERFUMARIA FEMININA
   ======================================================= */
 
-  produto(
-    "lily-eau-de-parfum",
-    "Lily Eau de Parfum 75 ml",
-    "77524",
-    329.90,
-    "feminino",
-    5
-  ),
+  createProduct({
+    id: "lily-eau-de-parfum",
+    name: "Lily Eau de Parfum 75 ml",
+    code: "77524",
+    price: 329.90,
+    category: "feminino",
+    featured: 5
+  }),
 
-  produto(
-    "lily-lumiere",
-    "Lily Lumière Eau de Parfum 75 ml",
-    "77989",
-    279.89,
-    "feminino"
-  ),
+  createProduct({
+    id: "lily-lumiere",
+    name: "Lily Lumière Eau de Parfum 75 ml",
+    code: "77989",
+    price: 279.89,
+    category: "feminino"
+  }),
 
-  produto(
-    "lily-absolu",
-    "Lily Absolu Eau de Parfum 75 ml",
-    "77988",
-    329.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "lily-absolu",
+    name: "Lily Absolu Eau de Parfum 75 ml",
+    code: "77988",
+    price: 329.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "lily-gardenia",
-    "Lily Gardénia Eau de Parfum 75 ml",
-    "55363",
-    280.42,
-    "feminino",
-    6
-  ),
+  createProduct({
+    id: "lily-gardenia",
+    name: "Lily Gardénia Eau de Parfum 75 ml",
+    code: "55363",
+    price: 280.42,
+    category: "feminino",
+    featured: 6
+  }),
 
-  produto(
-    "lily-le-parfum",
-    "Lily Le Parfum 30 ml",
-    "48734",
-    339.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "lily-le-parfum",
+    name: "Lily Le Parfum 30 ml",
+    code: "48734",
+    price: 339.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "floratta-red",
-    "Floratta Red Desodorante Colônia 75 ml",
-    "75792",
-    147.90,
-    "feminino",
-    7
-  ),
+  createProduct({
+    id: "floratta-red",
+    name: "Floratta Red Desodorante Colônia 75 ml",
+    code: "75792",
+    price: 147.90,
+    category: "feminino",
+    featured: 7
+  }),
 
-  produto(
-    "floratta-blue",
-    "Floratta Blue Desodorante Colônia 75 ml",
-    "25458",
-    174.90,
-    "feminino",
-    8
-  ),
+  createProduct({
+    id: "floratta-blue",
+    name: "Floratta Blue Desodorante Colônia 75 ml",
+    code: "25458",
+    price: 174.90,
+    category: "feminino",
+    featured: 8
+  }),
 
-  produto(
-    "floratta-my-blue",
-    "Floratta My Blue Desodorante Colônia 75 ml",
-    "01004",
-    79.89,
-    "feminino"
-  ),
+  createProduct({
+    id: "floratta-my-blue",
+    name: "Floratta My Blue Desodorante Colônia 75 ml",
+    code: "01004",
+    price: 79.89,
+    category: "feminino"
+  }),
 
-  produto(
-    "floratta-flores-secretas",
-    "Floratta Flores Secretas Desodorante Colônia 75 ml",
-    "48136",
-    104.91,
-    "feminino"
-  ),
+  createProduct({
+    id: "floratta-flores-secretas",
+    name: "Floratta Flores Secretas Desodorante Colônia 75 ml",
+    code: "48136",
+    price: 104.91,
+    category: "feminino"
+  }),
 
-  produto(
-    "floratta-fleur-supreme",
-    "Floratta Fleur Suprême Eau de Parfum 75 ml",
-    "75877",
-    229.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "floratta-fleur-supreme",
+    name: "Floratta Fleur Suprême Eau de Parfum 75 ml",
+    code: "75877",
+    price: 229.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "floratta-romance-de-verao",
-    "Floratta Romance de Verão Desodorante Colônia 75 ml",
-    "55659",
-    121.91,
-    "feminino"
-  ),
+  createProduct({
+    id: "floratta-romance-de-verao",
+    name: "Floratta Romance de Verão Desodorante Colônia 75 ml",
+    code: "55659",
+    price: 121.91,
+    category: "feminino"
+  }),
 
-  produto(
-    "floratta-rose",
-    "Floratta Rose Desodorante Colônia 75 ml",
-    "48635",
-    174.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "floratta-rose",
+    name: "Floratta Rose Desodorante Colônia 75 ml",
+    code: "48635",
+    price: 174.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "floratta-red-blossom",
-    "Floratta Red Blossom Desodorante Colônia 75 ml",
-    "49973",
-    174.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "floratta-red-blossom",
+    name: "Floratta Red Blossom Desodorante Colônia 75 ml",
+    code: "49973",
+    price: 174.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "elysee",
-    "Elysée Eau de Parfum 50 ml",
-    "53518",
-    329.90,
-    "feminino",
-    9
-  ),
+  createProduct({
+    id: "elysee",
+    name: "Elysée Eau de Parfum 50 ml",
+    code: "53518",
+    price: 329.90,
+    category: "feminino",
+    featured: 9
+  }),
 
-  produto(
-    "elysee-blanc",
-    "Elysée Blanc Eau de Parfum 50 ml",
-    "48143",
-    329.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "elysee-blanc",
+    name: "Elysée Blanc Eau de Parfum 50 ml",
+    code: "48143",
+    price: 329.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "elysee-nuit",
-    "Elysée Nuit Eau de Parfum 50 ml",
-    "48146",
-    329.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "elysee-nuit",
+    name: "Elysée Nuit Eau de Parfum 50 ml",
+    code: "48146",
+    price: 329.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "elysee-succes",
-    "Elysée Succès Eau de Parfum 50 ml",
-    "81331",
-    279.89,
-    "feminino"
-  ),
+  createProduct({
+    id: "elysee-succes",
+    name: "Elysée Succès Eau de Parfum 50 ml",
+    code: "81331",
+    price: 279.89,
+    category: "feminino"
+  }),
 
-  produto(
-    "leau-de-lily-blanche",
-    "L’Eau de Lily Blanche Desodorante Colônia 75 ml",
-    "86895",
-    229.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "leau-de-lily-blanche",
+    name: "L’Eau de Lily Blanche Desodorante Colônia 75 ml",
+    code: "86895",
+    price: 229.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "liz",
-    "Liz Desodorante Colônia 100 ml",
-    "76700",
-    179.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "liz",
+    name: "Liz Desodorante Colônia 100 ml",
+    code: "76700",
+    price: 179.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "liz-intenso",
-    "Liz Intenso Desodorante Colônia 100 ml",
-    "53415",
-    179.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "liz-intenso",
+    name: "Liz Intenso Desodorante Colônia 100 ml",
+    code: "53415",
+    price: 179.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "liz-sublime",
-    "Liz Sublime Desodorante Colônia 100 ml",
-    "47339",
-    149.89,
-    "feminino"
-  ),
+  createProduct({
+    id: "liz-sublime",
+    name: "Liz Sublime Desodorante Colônia 100 ml",
+    code: "47339",
+    price: 149.89,
+    category: "feminino"
+  }),
 
-  produto(
-    "liz-flora",
-    "Liz Flora Desodorante Colônia 100 ml",
-    "59466",
-    124.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "liz-flora",
+    name: "Liz Flora Desodorante Colônia 100 ml",
+    code: "59466",
+    price: 124.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "coffee-woman-seduction",
-    "Coffee Woman Seduction Desodorante Colônia 100 ml",
-    "48139",
-    229.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "coffee-woman-seduction",
+    name: "Coffee Woman Seduction Desodorante Colônia 100 ml",
+    code: "48139",
+    price: 229.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "coffee-woman-duo",
-    "Coffee Woman Duo Desodorante Colônia 100 ml",
-    "73613",
-    189.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "coffee-woman-duo",
+    name: "Coffee Woman Duo Desodorante Colônia 100 ml",
+    code: "73613",
+    price: 189.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "coffee-addictive",
-    "Coffee Addictive Desodorante Colônia 100 ml",
-    "56385",
-    229.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "coffee-addictive",
+    name: "Coffee Addictive Desodorante Colônia 100 ml",
+    code: "56385",
+    price: 229.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "coffee-woman-sense",
-    "Coffee Woman Sense Desodorante Colônia 100 ml",
-    "80971",
-    229.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "coffee-woman-sense",
+    name: "Coffee Woman Sense Desodorante Colônia 100 ml",
+    code: "80971",
+    price: 229.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "glamour-secrets-black",
-    "Glamour Secrets Black Desodorante Colônia 75 ml",
-    "74103",
-    164.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "glamour-secrets-black",
+    name: "Glamour Secrets Black Desodorante Colônia 75 ml",
+    code: "74103",
+    price: 164.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "glamour-fever",
-    "Glamour Fever Desodorante Colônia 75 ml",
-    "84224",
-    164.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "glamour-fever",
+    name: "Glamour Fever Desodorante Colônia 75 ml",
+    code: "84224",
+    price: 164.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "glamour-just-shine",
-    "Glamour Just Shine Desodorante Colônia 75 ml",
-    "84223",
-    199.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "glamour-just-shine",
+    name: "Glamour Just Shine Desodorante Colônia 75 ml",
+    code: "84223",
+    price: 199.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "her-code",
-    "Her Code Eau de Parfum 50 ml",
-    "50022",
-    254.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "her-code",
+    name: "Her Code Eau de Parfum 50 ml",
+    code: "50022",
+    price: 254.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "her-code-touch",
-    "Her Code Touch Eau de Parfum 50 ml",
-    "59555",
-    213.91,
-    "feminino"
-  ),
+  createProduct({
+    id: "her-code-touch",
+    name: "Her Code Touch Eau de Parfum 50 ml",
+    code: "59555",
+    price: 213.91,
+    category: "feminino"
+  }),
 
-  produto(
-    "egeo-dolce",
-    "Egeo Dolce Desodorante Colônia 90 ml",
-    "82688",
-    122.90,
-    "feminino",
-    10
-  ),
+  createProduct({
+    id: "egeo-dolce",
+    name: "Egeo Dolce Desodorante Colônia 90 ml",
+    code: "82688",
+    price: 122.90,
+    category: "feminino",
+    featured: 10
+  }),
 
-  produto(
-    "egeo-choc",
-    "Egeo Choc Desodorante Colônia 90 ml",
-    "82689",
-    131.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "egeo-choc",
+    name: "Egeo Choc Desodorante Colônia 90 ml",
+    code: "82689",
+    price: 131.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "botica-214-golden-gardenia",
-    "Botica 214 Golden Gardênia Eau de Parfum 75 ml",
-    "89261",
-    199.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "botica-214-golden-gardenia",
+    name: "Botica 214 Golden Gardênia Eau de Parfum 75 ml",
+    code: "89261",
+    price: 199.90,
+    category: "feminino"
+  }),
 
-  produto(
-    "boticollection-acqua-fresca",
-    "Boticollection Acqua Fresca Desodorante Colônia 100 ml",
-    "47905",
-    106.90,
-    "feminino"
-  ),
+  createProduct({
+    id: "boticollection-acqua-fresca",
+    name: "Boticollection Acqua Fresca Desodorante Colônia 100 ml",
+    code: "47905",
+    price: 106.90,
+    category: "feminino"
+  }),
 
   /* =======================================================
      HIDRATANTES
   ======================================================= */
 
-  produto(
-    "nativa-spa-ameixa",
-    "Loção Hidratante Nativa Spa Ameixa 400 ml",
-    "48282",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-ameixa",
+    name: "Loção Hidratante Nativa Spa Ameixa 400 ml",
+    code: "48282",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "nativa-spa-ameixa-negra",
-    "Loção Hidratante Nativa Spa Ameixa Negra 400 ml",
-    "48281",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-ameixa-negra",
+    name: "Loção Hidratante Nativa Spa Ameixa Negra 400 ml",
+    code: "48281",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "nativa-spa-rose",
-    "Loção Revitalizante Nativa Spa Rosé 400 ml",
-    "75971",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-rose",
+    name: "Loção Revitalizante Nativa Spa Rosé 400 ml",
+    code: "75971",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "nativa-spa-orquidea-noire",
-    "Loção Noturna Nativa Spa Orquídea Noire 400 ml",
-    "49958",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-orquidea-noire",
+    name: "Loção Noturna Nativa Spa Orquídea Noire 400 ml",
+    code: "49958",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "nativa-spa-quinoa",
-    "Loção Firmadora Nativa Spa Quinoa 400 ml",
-    "49954",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-quinoa",
+    name: "Loção Firmadora Nativa Spa Quinoa 400 ml",
+    code: "49954",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "nativa-spa-uva-merlot",
-    "Loção Nutritiva Nativa Spa Uva Merlot 400 ml",
-    "58978",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-uva-merlot",
+    name: "Loção Nutritiva Nativa Spa Uva Merlot 400 ml",
+    code: "58978",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "cuide-se-bem-deleite",
-    "Loção Hidratante Cuide-se Bem Deleite 400 ml",
-    "75151",
-    78.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "cuide-se-bem-deleite",
+    name: "Loção Hidratante Cuide-se Bem Deleite 400 ml",
+    code: "75151",
+    price: 78.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "cuide-se-bem-beijinho",
-    "Loção Hidratante Cuide-se Bem Beijinho 400 ml",
-    "49825",
-    78.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "cuide-se-bem-beijinho",
+    name: "Loção Hidratante Cuide-se Bem Beijinho 400 ml",
+    code: "49825",
+    price: 78.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "nativa-spa-orquidea-lumiere",
-    "Creme Perfumado Nativa Spa Orquídea Lumière 400 ml",
-    "59823",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-orquidea-lumiere",
+    name: "Creme Perfumado Nativa Spa Orquídea Lumière 400 ml",
+    code: "59823",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
-  produto(
-    "nativa-spa-lilac",
-    "Loção Renovadora Nativa Spa Lilac 400 ml",
-    "53346",
-    89.90,
-    "hidratantes"
-  ),
+  createProduct({
+    id: "nativa-spa-lilac",
+    name: "Loção Renovadora Nativa Spa Lilac 400 ml",
+    code: "53346",
+    price: 89.90,
+    category: "hidratantes"
+  }),
 
   /* =======================================================
      SABONETES
   ======================================================= */
 
-  produto(
-    "sabonete-nativa-spa-ameixa",
-    "Sabonete em Barra Nativa Spa Ameixa 3 unidades",
-    "51423",
-    42.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "sabonete-nativa-spa-ameixa",
+    name: "Sabonete em Barra Nativa Spa Ameixa 3 unidades",
+    code: "51423",
+    price: 42.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "kit-sabonete-morango-e-leite",
-    "Kit de Sabonetes Cuide-se Bem Morango e Leite",
-    "88311",
-    38.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "kit-sabonete-morango-e-leite",
+    name: "Kit de Sabonetes Cuide-se Bem Morango e Leite",
+    code: "88311",
+    price: 38.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "sabonete-pessegura",
-    "Sabonete em Barra Cuide-se Bem Pessegura",
-    "94499",
-    38.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "sabonete-pessegura",
+    name: "Sabonete em Barra Cuide-se Bem Pessegura",
+    code: "94499",
+    price: 38.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "sabonete-rosa-e-algodao",
-    "Sabonetes Cuide-se Bem Rosa e Algodão",
-    "51165",
-    38.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "sabonete-rosa-e-algodao",
+    name: "Sabonetes Cuide-se Bem Rosa e Algodão",
+    code: "51165",
+    price: 38.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "sabonete-deleite",
-    "Sabonete em Barra Cuide-se Bem Deleite",
-    "85564",
-    38.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "sabonete-deleite",
+    name: "Sabonete em Barra Cuide-se Bem Deleite",
+    code: "85564",
+    price: 38.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "kit-sabonete-beijinho",
-    "Kit de Sabonetes Cuide-se Bem Beijinho",
-    "87373",
-    24.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "kit-sabonete-beijinho",
+    name: "Kit de Sabonetes Cuide-se Bem Beijinho",
+    code: "87373",
+    price: 24.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "sabonete-malbec",
-    "Sabonete em Barra Malbec 4 unidades",
-    "84654",
-    53.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "sabonete-malbec",
+    name: "Sabonete em Barra Malbec 4 unidades",
+    code: "84654",
+    price: 53.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "sabonete-clash",
-    "Sabonete em Barra Clash 2 unidades",
-    "86870",
-    29.90,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "sabonete-clash",
+    name: "Sabonete em Barra Clash 2 unidades",
+    code: "86870",
+    price: 29.90,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "instance-karite",
-    "Sabonete Líquido Perfumado Instance Karité 400 ml",
-    "52373",
-    49.99,
-    "sabonetes"
-  ),
+  createProduct({
+    id: "instance-karite",
+    name: "Sabonete Líquido Perfumado Instance Karité 400 ml",
+    code: "52373",
+    price: 49.99,
+    category: "sabonetes"
+  }),
 
-  produto(
-    "sabonete-liquido-deleite-caramelizado",
-    "Sabonete Líquido Deleite Caramelizado 150 ml",
-    "90998",
-    52.90,
-    "sabonetes"
-  )
-];
-
-/* =========================================================
-   DESCRIÇÕES COMERCIAIS
-========================================================= */
-
-function normalizarTexto(texto) {
-  return String(texto)
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim();
-}
-
-function criarDescricao(produtoAtual) {
-  const nome = normalizarTexto(produtoAtual.nome);
-
-  if (nome.includes("malbec")) {
-    return {
-      chamada:
-        "Presença e personalidade em uma escolha marcante.",
-      descricao:
-        "Uma opção especial de perfumaria masculina para uso pessoal ou para presentear."
-    };
-  }
-
-  if (nome.includes("zaad")) {
-    return {
-      chamada:
-        "Sofisticação para quem valoriza escolhas elegantes.",
-      descricao:
-        "Uma fragrância masculina para completar uma coleção especial e cheia de personalidade."
-    };
-  }
-
-  if (nome.includes("quasar")) {
-    return {
-      chamada:
-        "Uma escolha moderna para acompanhar sua rotina.",
-      descricao:
-        "Perfume masculino versátil para diferentes momentos e ocasiões."
-    };
-  }
-
-  if (nome.includes("arbo")) {
-    return {
-      chamada:
-        "Leveza e personalidade para todos os momentos.",
-      descricao:
-        "Uma opção masculina prática para uso diário ou para presentear."
-    };
-  }
-
-  if (nome.includes("uomini")) {
-    return {
-      chamada:
-        "Estilo e presença para uma rotina mais especial.",
-      descricao:
-        "Uma escolha de perfumaria masculina para quem gosta de cuidar da imagem."
-    };
-  }
-
-  if (nome.includes("the blend")) {
-    return {
-      chamada:
-        "Uma escolha sofisticada para elevar sua coleção.",
-      descricao:
-        "Uma opção especial para quem procura elegância e personalidade."
-    };
-  }
-
-  if (nome.includes("coffee")) {
-    return {
-      chamada:
-        "Uma escolha envolvente para fugir do comum.",
-      descricao:
-        "Perfume com personalidade para uso pessoal ou para surpreender em um presente."
-    };
-  }
-
-  if (nome.includes("lily")) {
-    return {
-      chamada:
-        "Elegância e delicadeza em uma escolha especial.",
-      descricao:
-        "Uma opção feminina sofisticada para sua coleção ou para presentear."
-    };
-  }
-
-  if (nome.includes("floratta")) {
-    return {
-      chamada:
-        "Delicadeza para deixar cada momento mais especial.",
-      descricao:
-        "Uma escolha feminina versátil para completar sua rotina de perfumaria."
-    };
-  }
-
-  if (nome.includes("elysee")) {
-    return {
-      chamada:
-        "Sofisticação e presença em uma escolha feminina.",
-      descricao:
-        "Uma opção elegante para ocasiões especiais ou para transformar um presente."
-    };
-  }
-
-  if (nome.includes("liz")) {
-    return {
-      chamada:
-        "Personalidade e confiança em uma escolha especial.",
-      descricao:
-        "Uma fragrância feminina para acompanhar diferentes momentos da sua vida."
-    };
-  }
-
-  if (nome.includes("glamour")) {
-    return {
-      chamada:
-        "Brilho e personalidade para quem gosta de se destacar.",
-      descricao:
-        "Uma opção feminina para ocasiões especiais ou para presentear."
-    };
-  }
-
-  if (nome.includes("her code")) {
-    return {
-      chamada:
-        "Uma escolha moderna, elegante e cheia de personalidade.",
-      descricao:
-        "Uma opção especial de perfumaria feminina para você ou para presentear."
-    };
-  }
-
-  if (nome.includes("egeo")) {
-    return {
-      chamada:
-        "Uma escolha divertida e cheia de personalidade.",
-      descricao:
-        "Uma opção versátil para quem gosta de experimentar fragrâncias diferentes."
-    };
-  }
-
-  if (nome.includes("botica 214")) {
-    return {
-      chamada:
-        "Uma opção elegante para tornar sua coleção especial.",
-      descricao:
-        "Uma escolha de perfumaria para quem valoriza beleza e personalidade."
-    };
-  }
-
-  if (nome.includes("acqua fresca")) {
-    return {
-      chamada:
-        "Um clássico versátil para diferentes momentos.",
-      descricao:
-        "Uma opção feminina para uso pessoal ou para presentear."
-    };
-  }
-
-  if (
-    produtoAtual.categoria === "hidratantes"
-  ) {
-    return {
-      chamada:
-        "Autocuidado para deixar sua rotina ainda mais especial.",
-      descricao:
-        "Uma opção prática para completar seus momentos de cuidado corporal."
-    };
-  }
-
-  if (
-    produtoAtual.categoria === "sabonetes"
-  ) {
-    return {
-      chamada:
-        "Cuidado e perfumação para sua rotina diária.",
-      descricao:
-        "Uma ótima escolha para uso pessoal, presentes ou montagem de kits."
-    };
-  }
-
-  if (
-    produtoAtual.categoria === "feminino"
-  ) {
-    return {
-      chamada:
-        "Uma fragrância feminina para completar sua coleção.",
-      descricao:
-        "Uma escolha especial para uso pessoal ou para presentear alguém importante."
-    };
-  }
-
-  return {
-    chamada:
-      "Uma escolha masculina cheia de personalidade.",
-    descricao:
-      "Uma opção especial para completar sua rotina ou para presentear."
-  };
-}
-
-/* =========================================================
-   PRODUTOS COMPLETOS
-========================================================= */
-
-const PRODUTOS = PRODUTOS_BASE.map(
-  (produtoAtual, indice) => {
-    const textos = criarDescricao(produtoAtual);
-
-    return {
-      ...produtoAtual,
-      ...textos,
-      ordemOriginal: indice
-    };
-  }
+  createProduct({
+    id: "sabonete-liquido-deleite-caramelizado",
+    name: "Sabonete Líquido Deleite Caramelizado 150 ml",
+    code: "90998",
+    price: 52.90,
+    category: "sabonetes"
+  })
+].map((product, index) =>
+  Object.freeze({
+    ...product,
+    originalOrder: index
+  })
 );
 
 /* =========================================================
    ESTADO DO CATÁLOGO
 ========================================================= */
 
-const estadoCatalogo = {
-  categoria: "todos",
-  pesquisa: "",
-  ordem: "padrao",
-  quantidadeVisivel:
-    CONFIGURACOES.quantidadeInicial
+const state = {
+  category: "todos",
+  query: "",
+  sort: "padrao",
+  visibleLimit: CONFIG.initialProductLimit
 };
+
+const elements = {};
+
+let lastFocusedElement = null;
 
 /* =========================================================
    ELEMENTOS DA PÁGINA
 ========================================================= */
 
-const elementos = {
-  header:
-    document.getElementById("header"),
+function cacheElements() {
+  elements.siteHeader =
+    document.getElementById("siteHeader");
 
-  mobileMenuButton:
-    document.getElementById("mobileMenuButton"),
+  elements.mobileMenuToggle =
+    document.getElementById("mobileMenuToggle");
 
-  mobileMenu:
-    document.getElementById("mobileMenu"),
+  elements.mobileMenu =
+    document.getElementById("mobileMenu");
 
-  mobileMenuOverlay:
-    document.getElementById("mobileMenuOverlay"),
+  elements.mobileMenuBackdrop =
+    document.getElementById("mobileMenuBackdrop");
 
-  mobileMenuClose:
-    document.getElementById("mobileMenuClose"),
+  elements.mobileMenuClose =
+    document.getElementById("mobileMenuClose");
 
-  headerSearchForm:
-    document.getElementById("headerSearchForm"),
+  elements.siteSearchForm =
+    document.getElementById("siteSearchForm");
 
-  headerSearchInput:
-    document.getElementById("headerSearchInput"),
+  elements.siteSearchInput =
+    document.getElementById("siteSearchInput");
 
-  featuredProducts:
-    document.getElementById("featuredProducts"),
+  elements.featuredPrev =
+    document.getElementById("featuredPrev");
 
-  featuredPrevious:
-    document.getElementById("featuredPrevious"),
+  elements.featuredNext =
+    document.getElementById("featuredNext");
 
-  featuredNext:
-    document.getElementById("featuredNext"),
+  elements.featuredTrack =
+    document.getElementById("featuredTrack");
 
-  catalogFilters:
-    document.getElementById("catalogFilters"),
+  elements.catalogFilters =
+    document.getElementById("catalogFilters");
 
-  catalogOrder:
-    document.getElementById("catalogOrder"),
+  elements.catalogSearch =
+    document.getElementById("catalogSearch");
 
-  catalogCount:
-    document.getElementById("catalogCount"),
+  elements.catalogSort =
+    document.getElementById("catalogSort");
 
-  catalogSearch:
-    document.getElementById("catalogSearch"),
+  elements.catalogCount =
+    document.getElementById("catalogCount");
 
-  productsGrid:
-    document.getElementById("productsGrid"),
+  elements.productsGrid =
+    document.getElementById("productsGrid");
 
-  catalogEmpty:
-    document.getElementById("catalogEmpty"),
+  elements.catalogEmpty =
+    document.getElementById("catalogEmpty");
 
-  clearCatalogFilters:
-    document.getElementById("clearCatalogFilters"),
+  elements.clearFilters =
+    document.getElementById("clearFilters");
 
-  loadMoreProducts:
-    document.getElementById("loadMoreProducts"),
+  elements.loadMoreProducts =
+    document.getElementById("loadMoreProducts");
 
-  siteToast:
-    document.getElementById("siteToast")
-};
-
-/* =========================================================
-   ÍCONE DO WHATSAPP EM SVG
-========================================================= */
-
-const ICONE_WHATSAPP = `
-  <svg
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-    <path
-      d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
-    />
-  </svg>
-`;
+  elements.catalogLoadMoreWrap =
+    document.getElementById("catalogLoadMoreWrap");
+}
 
 /* =========================================================
-   FORMATAÇÃO
+   FUNÇÕES UTILITÁRIAS
 ========================================================= */
 
-function formatarPreco(valor) {
+function normalizeText(value) {
+  return String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function formatPrice(value) {
   return new Intl.NumberFormat(
     "pt-BR",
     {
       style: "currency",
       currency: "BRL"
     }
-  ).format(valor);
-}
-
-function escaparHTML(valor) {
-  return String(valor)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+  ).format(value);
 }
 
 /* =========================================================
-   WHATSAPP DOS PRODUTOS
+   COPY PROFISSIONAL DOS PRODUTOS
 ========================================================= */
 
-function criarMensagemProduto(produtoAtual) {
+function createSalesCopy(product) {
+  const name = normalizeText(product.name);
+
+  const rules = [
+    {
+      test: () => name.includes("malbec"),
+
+      copy:
+        "Uma presença marcante para ocasiões que pedem personalidade.",
+
+      description:
+        "Linha reconhecida por seu estilo intenso e sofisticado, ideal para uso pessoal ou para um presente de impacto."
+    },
+
+    {
+      test: () => name.includes("zaad"),
+
+      copy:
+        "Sofisticação masculina em uma escolha de alto padrão.",
+
+      description:
+        "Uma opção elegante para quem valoriza perfumaria refinada, apresentação premium e identidade marcante."
+    },
+
+    {
+      test: () => name.includes("the blend"),
+
+      copy:
+        "Exclusividade e elegância para uma coleção especial.",
+
+      description:
+        "Perfumaria masculina com proposta sofisticada, criada para quem procura presença e acabamento premium."
+    },
+
+    {
+      test: () => name.includes("quasar"),
+
+      copy:
+        "Versatilidade moderna para acompanhar todos os dias.",
+
+      description:
+        "Uma escolha prática para rotina, trabalho e momentos casuais, com apresentação limpa e masculina."
+    },
+
+    {
+      test: () => name.includes("arbo"),
+
+      copy:
+        "Leveza e liberdade em uma escolha masculina versátil.",
+
+      description:
+        "Uma opção equilibrada para o dia a dia, perfeita para quem busca praticidade sem abrir mão de personalidade."
+    },
+
+    {
+      test: () => name.includes("uomini"),
+
+      copy:
+        "Estilo contemporâneo para homens que cuidam da própria imagem.",
+
+      description:
+        "Uma opção masculina de presença elegante, indicada para diferentes momentos e perfis."
+    },
+
+    {
+      test: () => name.includes("coffee"),
+
+      copy:
+        "Uma escolha envolvente para fugir do comum.",
+
+      description:
+        "Perfumaria com identidade marcante, ideal para transformar a rotina ou surpreender em um presente."
+    },
+
+    {
+      test: () => name.includes("lily"),
+
+      copy:
+        "Elegância feminina em uma apresentação delicada e sofisticada.",
+
+      description:
+        "Uma escolha premium para quem valoriza beleza, cuidado e uma perfumaria com forte apelo para presente."
+    },
+
+    {
+      test: () => name.includes("floratta"),
+
+      copy:
+        "Delicadeza e charme para tornar cada momento mais especial.",
+
+      description:
+        "Uma opção feminina versátil, perfeita para uso diário, coleção pessoal ou para presentear."
+    },
+
+    {
+      test: () => name.includes("elysee"),
+
+      copy:
+        "Sofisticação feminina para ocasiões memoráveis.",
+
+      description:
+        "Uma escolha elegante e marcante, com apresentação premium para quem procura um presente especial."
+    },
+
+    {
+      test: () =>
+        name.startsWith("liz ") ||
+        name === "liz desodorante colonia 100 ml",
+
+      copy:
+        "Personalidade e confiança em uma escolha feminina contemporânea.",
+
+      description:
+        "Uma opção versátil para acompanhar a rotina, valorizar o autocuidado e completar uma coleção."
+    },
+
+    {
+      test: () => name.includes("glamour"),
+
+      copy:
+        "Brilho e presença para quem gosta de se destacar.",
+
+      description:
+        "Perfumaria feminina com apresentação marcante, ideal para ocasiões especiais ou para presentear."
+    },
+
+    {
+      test: () => name.includes("her code"),
+
+      copy:
+        "Uma escolha moderna, elegante e cheia de personalidade.",
+
+      description:
+        "Perfumaria feminina com proposta sofisticada para quem busca exclusividade e presença."
+    },
+
+    {
+      test: () => name.includes("egeo"),
+
+      copy:
+        "Personalidade jovem em uma escolha moderna e desejada.",
+
+      description:
+        "Uma opção descontraída para uso pessoal ou presente, com excelente apelo visual no catálogo."
+    },
+
+    {
+      test: () =>
+        name.includes("botica 214") ||
+        name.includes("boticollection"),
+
+      copy:
+        "Uma escolha elegante para transformar sua coleção.",
+
+      description:
+        "Perfumaria com apresentação especial, indicada para quem valoriza beleza, cuidado e personalidade."
+    },
+
+    {
+      test: () =>
+        product.category === "hidratantes",
+
+      copy:
+        "Autocuidado com apresentação premium para sua rotina.",
+
+      description:
+        "Uma opção prática para hidratar, perfumar e deixar os momentos de cuidado corporal ainda mais especiais."
+    },
+
+    {
+      test: () =>
+        product.category === "sabonetes",
+
+      copy:
+        "Cuidado e perfumação para elevar o banho diário.",
+
+      description:
+        "Uma escolha versátil para uso pessoal, presentes e composição de kits elegantes."
+    },
+
+    {
+      test: () =>
+        product.category === "feminino",
+
+      copy:
+        "Uma escolha feminina elegante para completar sua coleção.",
+
+      description:
+        "Produto selecionado para uso pessoal ou presente, com atendimento personalizado pelo WhatsApp."
+    }
+  ];
+
+  const match = rules.find(
+    (rule) => rule.test()
+  );
+
+  if (match) {
+    return {
+      copy: match.copy,
+      description: match.description
+    };
+  }
+
+  return {
+    copy:
+      "Uma escolha masculina com presença e personalidade.",
+
+    description:
+      "Produto selecionado para uso pessoal ou presente, com atendimento personalizado pelo WhatsApp."
+  };
+}
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+function createWhatsAppMessage(product) {
   return [
-    "Olá! Vim pelo site da Ana Essenci e quero comprar este produto:",
+    "Olá! Vim pelo site da Ana Essenci e tenho interesse neste produto:",
     "",
-    `Produto: ${produtoAtual.nome}`,
-    `Código: ${produtoAtual.codigo}`,
-    `Preço: ${formatarPreco(produtoAtual.preco)}`,
+    `Produto: ${product.name}`,
+    `Código: ${product.code}`,
+    `Preço: ${formatPrice(product.price)}`,
     "",
-    "Gostaria de confirmar a disponibilidade, as formas de pagamento e as opções de entrega."
+    "Pode confirmar a disponibilidade, as formas de pagamento e o valor da entrega?"
   ].join("\n");
 }
 
-function criarLinkProduto(produtoAtual) {
-  const mensagem = encodeURIComponent(
-    criarMensagemProduto(produtoAtual)
+function createProductWhatsAppUrl(product) {
+  const message = encodeURIComponent(
+    createWhatsAppMessage(product)
   );
 
   return (
-    `https://wa.me/${CONFIGURACOES.whatsappNumero}` +
-    `?text=${mensagem}`
+    `https://wa.me/${CONFIG.whatsappNumber}` +
+    `?text=${message}`
   );
 }
 
@@ -1166,25 +1144,28 @@ function criarLinkProduto(produtoAtual) {
    CARD DE PRODUTO
 ========================================================= */
 
-function criarCardProduto(
-  produtoAtual,
-  mostrarDestaque = false
+function createProductCard(
+  product,
+  isFeatured = false
 ) {
-  const linkWhatsApp =
-    criarLinkProduto(produtoAtual);
+  const salesCopy =
+    createSalesCopy(product);
 
-  const textoCategoria =
-    `${produtoAtual.marca} • ${produtoAtual.categoriaNome}`;
+  const productName =
+    escapeHtml(product.name);
+
+  const categoryText =
+    `${product.brand} • ${product.categoryLabel}`;
 
   return `
     <article
       class="product-card"
-      data-product-id="${escaparHTML(produtoAtual.id)}"
+      data-product-id="${escapeHtml(product.id)}"
     >
       <div class="product-card__media">
 
         ${
-          mostrarDestaque
+          isFeatured
             ? `
               <span class="product-card__badge">
                 Mais vendido
@@ -1195,9 +1176,9 @@ function criarCardProduto(
 
         <img
           class="product-card__image"
-          src="${escaparHTML(produtoAtual.imagem)}"
-          alt="${escaparHTML(produtoAtual.nome)}"
-          loading="${mostrarDestaque ? "eager" : "lazy"}"
+          src="${escapeHtml(product.image)}"
+          alt="${productName}"
+          loading="${isFeatured ? "eager" : "lazy"}"
           decoding="async"
         >
 
@@ -1206,22 +1187,25 @@ function criarCardProduto(
       <div class="product-card__content">
 
         <span class="product-card__brand">
-          ${escaparHTML(textoCategoria)}
+          ${escapeHtml(categoryText)}
         </span>
 
         <h3 class="product-card__title">
-          ${escaparHTML(produtoAtual.nome)}
+          ${productName}
         </h3>
 
+        <p class="product-card__copy">
+          ${escapeHtml(salesCopy.copy)}
+        </p>
+
         <p class="product-card__description">
-          ${escaparHTML(produtoAtual.chamada)}
-          ${escaparHTML(produtoAtual.descricao)}
+          ${escapeHtml(salesCopy.description)}
         </p>
 
         <p class="product-card__code">
           Código:
           <strong>
-            ${escaparHTML(produtoAtual.codigo)}
+            ${escapeHtml(product.code)}
           </strong>
         </p>
 
@@ -1229,23 +1213,29 @@ function criarCardProduto(
 
           <div>
             <span class="product-card__price-label">
-              Por
+              Preço
             </span>
 
             <strong class="product-card__price">
-              ${formatarPreco(produtoAtual.preco)}
+              ${formatPrice(product.price)}
             </strong>
+
+            <span class="product-card__payment">
+              Consulte pagamento e entrega
+            </span>
           </div>
 
           <a
             class="product-card__whatsapp"
-            href="${linkWhatsApp}"
+            href="${createProductWhatsAppUrl(product)}"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Comprar ${escaparHTML(produtoAtual.nome)} pelo WhatsApp"
+            aria-label="Comprar ${productName} pelo WhatsApp"
             title="Comprar pelo WhatsApp"
           >
-            ${ICONE_WHATSAPP}
+            <svg aria-hidden="true">
+              <use href="#icon-whatsapp"></use>
+            </svg>
           </a>
 
         </div>
@@ -1256,28 +1246,44 @@ function criarCardProduto(
 }
 
 /* =========================================================
-   PROTEÇÃO CONTRA IMAGEM QUEBRADA
+   PROTEÇÃO PARA IMAGENS AUSENTES
 ========================================================= */
 
-function configurarImagens(container) {
+function configureImageFallbacks(container) {
   if (!container) {
     return;
   }
 
-  const imagens = container.querySelectorAll(
-    ".product-card__image"
-  );
+  const images =
+    container.querySelectorAll(
+      ".product-card__image"
+    );
 
-  imagens.forEach((imagem) => {
-    imagem.addEventListener(
+  images.forEach((image) => {
+    image.addEventListener(
       "error",
       () => {
-        imagem.src = "logo/logo.jpg";
-        imagem.alt =
-          "Imagem temporariamente indisponível";
+        if (
+          image.dataset.fallbackApplied ===
+          "true"
+        ) {
+          return;
+        }
 
-        imagem.style.padding = "38px";
-        imagem.style.opacity = "0.65";
+        image.dataset.fallbackApplied =
+          "true";
+
+        image.src =
+          CONFIG.imageFallback;
+
+        image.alt =
+          "Imagem do produto temporariamente indisponível";
+
+        image.style.padding =
+          "22%";
+
+        image.style.opacity =
+          "0.72";
       },
       {
         once: true
@@ -1287,552 +1293,524 @@ function configurarImagens(container) {
 }
 
 /* =========================================================
-   PRODUTOS MAIS VENDIDOS
+   MAIS VENDIDOS
 ========================================================= */
 
-function obterProdutosDestaque() {
-  return PRODUTOS
+function getFeaturedProducts() {
+  return PRODUCTS
     .filter(
-      (produtoAtual) =>
-        produtoAtual.destaque > 0
+      (product) =>
+        product.featured > 0
     )
     .sort(
-      (produtoA, produtoB) =>
-        produtoA.destaque -
-        produtoB.destaque
+      (productA, productB) =>
+        productA.featured -
+        productB.featured
     )
     .slice(0, 10);
 }
 
-function renderizarDestaques() {
-  if (!elementos.featuredProducts) {
+function renderFeaturedProducts() {
+  if (!elements.featuredTrack) {
     return;
   }
 
-  const produtosDestaque =
-    obterProdutosDestaque();
-
-  elementos.featuredProducts.innerHTML =
-    produtosDestaque
+  elements.featuredTrack.innerHTML =
+    getFeaturedProducts()
       .map(
-        (produtoAtual) =>
-          criarCardProduto(produtoAtual, true)
+        (product) =>
+          createProductCard(
+            product,
+            true
+          )
       )
       .join("");
 
-  configurarImagens(
-    elementos.featuredProducts
+  configureImageFallbacks(
+    elements.featuredTrack
   );
 }
 
 /* =========================================================
-   MOVIMENTO DO CARROSSEL
+   FILTRO, PESQUISA E ORDENAÇÃO
 ========================================================= */
 
-function obterDistanciaCarrossel() {
-  if (!elementos.featuredProducts) {
-    return 280;
-  }
+function getFilteredProducts() {
+  const query =
+    normalizeText(state.query);
 
-  const primeiroCard =
-    elementos.featuredProducts.querySelector(
-      ".product-card"
-    );
+  let result =
+    PRODUCTS.filter((product) => {
+      const matchesCategory =
+        state.category === "todos" ||
+        product.category ===
+          state.category;
 
-  if (!primeiroCard) {
-    return 280;
-  }
+      const salesCopy =
+        createSalesCopy(product);
 
-  const estilos = window.getComputedStyle(
-    elementos.featuredProducts
-  );
+      const searchableText =
+        normalizeText(
+          [
+            product.name,
+            product.code,
+            product.brand,
+            product.categoryLabel,
+            salesCopy.copy,
+            salesCopy.description
+          ].join(" ")
+        );
 
-  const espacamento =
-    Number.parseFloat(estilos.columnGap) || 16;
-
-  return (
-    primeiroCard.getBoundingClientRect().width +
-    espacamento
-  );
-}
-
-function moverCarrossel(direcao) {
-  elementos.featuredProducts?.scrollBy({
-    left:
-      obterDistanciaCarrossel() *
-      direcao,
-
-    behavior: "smooth"
-  });
-}
-
-function configurarCarrossel() {
-  elementos.featuredPrevious?.addEventListener(
-    "click",
-    () => moverCarrossel(-1)
-  );
-
-  elementos.featuredNext?.addEventListener(
-    "click",
-    () => moverCarrossel(1)
-  );
-}
-
-/* =========================================================
-   FILTRAGEM DOS PRODUTOS
-========================================================= */
-
-function obterProdutosFiltrados() {
-  const pesquisa = normalizarTexto(
-    estadoCatalogo.pesquisa
-  );
-
-  let resultado = PRODUTOS.filter(
-    (produtoAtual) => {
-      const correspondeCategoria =
-        estadoCatalogo.categoria === "todos" ||
-        produtoAtual.categoria ===
-          estadoCatalogo.categoria;
-
-      const textoProduto = normalizarTexto(
-        [
-          produtoAtual.nome,
-          produtoAtual.codigo,
-          produtoAtual.marca,
-          produtoAtual.categoriaNome,
-          produtoAtual.chamada,
-          produtoAtual.descricao
-        ].join(" ")
-      );
-
-      const correspondePesquisa =
-        pesquisa === "" ||
-        textoProduto.includes(pesquisa);
+      const matchesQuery =
+        query === "" ||
+        searchableText.includes(query);
 
       return (
-        correspondeCategoria &&
-        correspondePesquisa
+        matchesCategory &&
+        matchesQuery
       );
-    }
-  );
+    });
 
-  if (
-    estadoCatalogo.ordem === "nome"
-  ) {
-    resultado = [...resultado].sort(
-      (produtoA, produtoB) =>
-        produtoA.nome.localeCompare(
-          produtoB.nome,
-          "pt-BR"
+  if (state.sort === "nome") {
+    result = [...result].sort(
+      (productA, productB) =>
+        productA.name.localeCompare(
+          productB.name,
+          "pt-BR",
+          {
+            sensitivity: "base"
+          }
         )
     );
-  }
-
-  if (
-    estadoCatalogo.ordem ===
-    "menor-preco"
+  } else if (
+    state.sort === "menor-preco"
   ) {
-    resultado = [...resultado].sort(
-      (produtoA, produtoB) =>
-        produtoA.preco -
-        produtoB.preco
+    result = [...result].sort(
+      (productA, productB) =>
+        productA.price -
+        productB.price
     );
-  }
-
-  if (
-    estadoCatalogo.ordem ===
-    "maior-preco"
+  } else if (
+    state.sort === "maior-preco"
   ) {
-    resultado = [...resultado].sort(
-      (produtoA, produtoB) =>
-        produtoB.preco -
-        produtoA.preco
+    result = [...result].sort(
+      (productA, productB) =>
+        productB.price -
+        productA.price
     );
-  }
+  } else {
+    result = [...result].sort(
+      (productA, productB) => {
+        const featuredA =
+          productA.featured > 0
+            ? productA.featured
+            : Number.POSITIVE_INFINITY;
 
-  if (
-    estadoCatalogo.ordem === "padrao"
-  ) {
-    resultado = [...resultado].sort(
-      (produtoA, produtoB) => {
-        const destaqueA =
-          produtoA.destaque > 0
-            ? produtoA.destaque
-            : 999;
+        const featuredB =
+          productB.featured > 0
+            ? productB.featured
+            : Number.POSITIVE_INFINITY;
 
-        const destaqueB =
-          produtoB.destaque > 0
-            ? produtoB.destaque
-            : 999;
-
-        if (destaqueA !== destaqueB) {
-          return destaqueA - destaqueB;
+        if (
+          featuredA !== featuredB
+        ) {
+          return (
+            featuredA -
+            featuredB
+          );
         }
 
         return (
-          produtoA.ordemOriginal -
-          produtoB.ordemOriginal
+          productA.originalOrder -
+          productB.originalOrder
         );
       }
     );
   }
 
-  return resultado;
+  return result;
+}
+
+/* =========================================================
+   RESUMO DO CATÁLOGO
+========================================================= */
+
+function updateCatalogSummary(
+  total,
+  visible
+) {
+  if (elements.catalogCount) {
+    if (total === 0) {
+      elements.catalogCount.textContent =
+        "Nenhum produto encontrado.";
+    } else if (total === 1) {
+      elements.catalogCount.textContent =
+        "1 produto encontrado.";
+    } else {
+      elements.catalogCount.textContent =
+        `Exibindo ${visible} de ${total} produtos.`;
+    }
+  }
+
+  if (elements.catalogEmpty) {
+    elements.catalogEmpty.hidden =
+      total !== 0;
+  }
+
+  if (
+    elements.catalogLoadMoreWrap
+  ) {
+    elements.catalogLoadMoreWrap
+      .classList.toggle(
+        "is-hidden",
+        total === 0 ||
+        visible >= total
+      );
+  }
 }
 
 /* =========================================================
    RENDERIZAÇÃO DO CATÁLOGO
 ========================================================= */
 
-function renderizarCatalogo() {
-  if (!elementos.productsGrid) {
+function renderCatalog() {
+  if (!elements.productsGrid) {
     return;
   }
 
-  const produtosFiltrados =
-    obterProdutosFiltrados();
+  const filteredProducts =
+    getFilteredProducts();
 
-  const produtosVisiveis =
-    produtosFiltrados.slice(
+  const visibleProducts =
+    filteredProducts.slice(
       0,
-      estadoCatalogo.quantidadeVisivel
+      state.visibleLimit
     );
 
-  elementos.productsGrid.innerHTML =
-    produtosVisiveis
+  elements.productsGrid.innerHTML =
+    visibleProducts
       .map(
-        (produtoAtual) =>
-          criarCardProduto(produtoAtual)
+        (product) =>
+          createProductCard(product)
       )
       .join("");
 
-  configurarImagens(
-    elementos.productsGrid
+  configureImageFallbacks(
+    elements.productsGrid
   );
 
-  atualizarInformacoesCatalogo(
-    produtosFiltrados.length,
-    produtosVisiveis.length
+  updateCatalogSummary(
+    filteredProducts.length,
+    visibleProducts.length
   );
-}
-
-function atualizarInformacoesCatalogo(
-  quantidadeTotal,
-  quantidadeVisivel
-) {
-  if (elementos.catalogCount) {
-    if (quantidadeTotal === 0) {
-      elementos.catalogCount.textContent =
-        "Nenhum produto encontrado.";
-    } else if (quantidadeTotal === 1) {
-      elementos.catalogCount.textContent =
-        "1 produto encontrado.";
-    } else {
-      elementos.catalogCount.textContent =
-        `Exibindo ${quantidadeVisivel} de ${quantidadeTotal} produtos.`;
-    }
-  }
-
-  if (elementos.catalogEmpty) {
-    elementos.catalogEmpty.hidden =
-      quantidadeTotal !== 0;
-  }
-
-  const areaBotao =
-    elementos.loadMoreProducts
-      ?.closest(".catalog-more");
-
-  if (areaBotao) {
-    const esconderBotao =
-      quantidadeTotal === 0 ||
-      quantidadeVisivel >= quantidadeTotal;
-
-    areaBotao.classList.toggle(
-      "is-hidden",
-      esconderBotao
-    );
-  }
 }
 
 /* =========================================================
-   SELEÇÃO DE CATEGORIA
+   CONTROLE DE CATEGORIA
 ========================================================= */
 
-function selecionarCategoria(categoria) {
-  estadoCatalogo.categoria =
-    categoria;
+function setCategory(category) {
+  state.category = category;
 
-  estadoCatalogo.quantidadeVisivel =
-    CONFIGURACOES.quantidadeInicial;
+  state.visibleLimit =
+    CONFIG.initialProductLimit;
 
-  elementos.catalogFilters
-    ?.querySelectorAll("[data-category]")
-    .forEach((botao) => {
-      botao.classList.toggle(
+  elements.catalogFilters
+    ?.querySelectorAll(
+      "[data-category]"
+    )
+    .forEach((button) => {
+      button.classList.toggle(
         "is-active",
-        botao.dataset.category === categoria
+        button.dataset.category ===
+          category
       );
     });
 
-  renderizarCatalogo();
+  renderCatalog();
 }
 
 /* =========================================================
-   PESQUISA
+   CONTROLE DA PESQUISA
 ========================================================= */
 
-function aplicarPesquisa(texto) {
-  estadoCatalogo.pesquisa = texto;
+function setSearchQuery(query) {
+  state.query = query;
 
-  estadoCatalogo.quantidadeVisivel =
-    CONFIGURACOES.quantidadeInicial;
+  state.visibleLimit =
+    CONFIG.initialProductLimit;
 
   if (
-    elementos.catalogSearch &&
-    elementos.catalogSearch.value !== texto
+    elements.catalogSearch &&
+    elements.catalogSearch.value !== query
   ) {
-    elementos.catalogSearch.value = texto;
+    elements.catalogSearch.value =
+      query;
   }
 
   if (
-    elementos.headerSearchInput &&
-    elementos.headerSearchInput.value !== texto
+    elements.siteSearchInput &&
+    elements.siteSearchInput.value !== query
   ) {
-    elementos.headerSearchInput.value = texto;
+    elements.siteSearchInput.value =
+      query;
   }
 
-  renderizarCatalogo();
+  renderCatalog();
+}
+
+/* =========================================================
+   LIMPAR FILTROS
+========================================================= */
+
+function resetCatalog() {
+  state.category = "todos";
+  state.query = "";
+  state.sort = "padrao";
+
+  state.visibleLimit =
+    CONFIG.initialProductLimit;
+
+  if (elements.catalogSearch) {
+    elements.catalogSearch.value = "";
+  }
+
+  if (elements.siteSearchInput) {
+    elements.siteSearchInput.value = "";
+  }
+
+  if (elements.catalogSort) {
+    elements.catalogSort.value =
+      "padrao";
+  }
+
+  setCategory("todos");
 }
 
 /* =========================================================
    EVENTOS DO CATÁLOGO
 ========================================================= */
 
-function configurarCatalogo() {
-  elementos.catalogFilters?.addEventListener(
-    "click",
-    (evento) => {
-      const botao = evento.target.closest(
-        "[data-category]"
-      );
+function setupCatalogEvents() {
+  elements.catalogFilters
+    ?.addEventListener(
+      "click",
+      (event) => {
+        const button =
+          event.target.closest(
+            "[data-category]"
+          );
 
-      if (!botao) {
-        return;
+        if (!button) {
+          return;
+        }
+
+        setCategory(
+          button.dataset.category
+        );
       }
+    );
 
-      selecionarCategoria(
-        botao.dataset.category
-      );
-    }
-  );
+  elements.catalogSearch
+    ?.addEventListener(
+      "input",
+      (event) => {
+        setSearchQuery(
+          event.target.value
+        );
+      }
+    );
 
-  elementos.catalogSearch?.addEventListener(
-    "input",
-    (evento) => {
-      aplicarPesquisa(
-        evento.target.value
-      );
-    }
-  );
+  elements.catalogSort
+    ?.addEventListener(
+      "change",
+      (event) => {
+        state.sort =
+          event.target.value;
 
-  elementos.catalogOrder?.addEventListener(
-    "change",
-    (evento) => {
-      estadoCatalogo.ordem =
-        evento.target.value;
+        state.visibleLimit =
+          CONFIG.initialProductLimit;
 
-      estadoCatalogo.quantidadeVisivel =
-        CONFIGURACOES.quantidadeInicial;
+        renderCatalog();
+      }
+    );
 
-      renderizarCatalogo();
-    }
-  );
+  elements.loadMoreProducts
+    ?.addEventListener(
+      "click",
+      () => {
+        state.visibleLimit +=
+          CONFIG.productLimitStep;
 
-  elementos.loadMoreProducts?.addEventListener(
-    "click",
-    () => {
-      estadoCatalogo.quantidadeVisivel +=
-        CONFIGURACOES.quantidadePorClique;
+        renderCatalog();
+      }
+    );
 
-      renderizarCatalogo();
-    }
-  );
-
-  elementos.clearCatalogFilters?.addEventListener(
-    "click",
-    limparCatalogo
-  );
-}
-
-function limparCatalogo() {
-  estadoCatalogo.categoria = "todos";
-  estadoCatalogo.pesquisa = "";
-  estadoCatalogo.ordem = "padrao";
-
-  estadoCatalogo.quantidadeVisivel =
-    CONFIGURACOES.quantidadeInicial;
-
-  if (elementos.catalogSearch) {
-    elementos.catalogSearch.value = "";
-  }
-
-  if (elementos.headerSearchInput) {
-    elementos.headerSearchInput.value = "";
-  }
-
-  if (elementos.catalogOrder) {
-    elementos.catalogOrder.value =
-      "padrao";
-  }
-
-  selecionarCategoria("todos");
+  elements.clearFilters
+    ?.addEventListener(
+      "click",
+      resetCatalog
+    );
 }
 
 /* =========================================================
    PESQUISA DO CABEÇALHO
 ========================================================= */
 
-function configurarPesquisaCabecalho() {
-  elementos.headerSearchForm?.addEventListener(
-    "submit",
-    (evento) => {
-      evento.preventDefault();
+function setupHeaderSearch() {
+  elements.siteSearchForm
+    ?.addEventListener(
+      "submit",
+      (event) => {
+        event.preventDefault();
 
-      const pesquisa =
-        elementos.headerSearchInput
-          ?.value
-          .trim() || "";
+        const query =
+          elements.siteSearchInput
+            ?.value
+            .trim() ?? "";
 
-      aplicarPesquisa(pesquisa);
+        setSearchQuery(query);
 
-      document
-        .getElementById("catalogo")
-        ?.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-    }
-  );
+        document
+          .getElementById("catalogo")
+          ?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+      }
+    );
 }
 
 /* =========================================================
-   LINKS DAS CATEGORIAS DO MENU
+   MENU DO CELULAR
 ========================================================= */
 
-function configurarLinksCategorias() {
-  document
-    .querySelectorAll("[data-category-link]")
-    .forEach((link) => {
-      link.addEventListener(
-        "click",
-        (evento) => {
-          evento.preventDefault();
+function openMobileMenu() {
+  if (
+    !elements.mobileMenu ||
+    !elements.mobileMenuBackdrop
+  ) {
+    return;
+  }
 
-          const categoria =
-            link.dataset.categoryLink;
+  lastFocusedElement =
+    document.activeElement;
 
-          selecionarCategoria(categoria);
-          fecharMenuMobile();
+  elements.mobileMenu
+    .classList.add("is-open");
 
-          document
-            .getElementById("catalogo")
-            ?.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-        }
-      );
-    });
-}
+  elements.mobileMenuBackdrop
+    .classList.add("is-visible");
 
-/* =========================================================
-   MENU MOBILE
-========================================================= */
+  elements.mobileMenu
+    .setAttribute(
+      "aria-hidden",
+      "false"
+    );
 
-function abrirMenuMobile() {
-  elementos.mobileMenu?.classList.add(
-    "is-open"
-  );
-
-  elementos.mobileMenuOverlay
-    ?.classList.add("is-visible");
-
-  elementos.mobileMenuButton
-    ?.classList.add("is-active");
-
-  elementos.mobileMenuButton
+  elements.mobileMenuToggle
     ?.setAttribute(
       "aria-expanded",
       "true"
     );
 
-  elementos.mobileMenu?.setAttribute(
-    "aria-hidden",
-    "false"
-  );
+  document.body
+    .classList.add("menu-is-open");
 
-  document.body.classList.add(
-    "mobile-menu-open"
-  );
+  window.setTimeout(() => {
+    elements.mobileMenuClose
+      ?.focus();
+  }, 50);
 }
 
-function fecharMenuMobile() {
-  elementos.mobileMenu?.classList.remove(
-    "is-open"
-  );
+function closeMobileMenu({
+  restoreFocus = true
+} = {}) {
+  elements.mobileMenu
+    ?.classList.remove("is-open");
 
-  elementos.mobileMenuOverlay
+  elements.mobileMenuBackdrop
     ?.classList.remove("is-visible");
 
-  elementos.mobileMenuButton
-    ?.classList.remove("is-active");
+  elements.mobileMenu
+    ?.setAttribute(
+      "aria-hidden",
+      "true"
+    );
 
-  elementos.mobileMenuButton
+  elements.mobileMenuToggle
     ?.setAttribute(
       "aria-expanded",
       "false"
     );
 
-  elementos.mobileMenu?.setAttribute(
-    "aria-hidden",
-    "true"
-  );
+  document.body
+    .classList.remove("menu-is-open");
 
-  document.body.classList.remove(
-    "mobile-menu-open"
-  );
+  if (
+    restoreFocus &&
+    lastFocusedElement instanceof HTMLElement
+  ) {
+    lastFocusedElement.focus();
+  }
 }
 
-function configurarMenuMobile() {
-  elementos.mobileMenuButton?.addEventListener(
-    "click",
-    abrirMenuMobile
-  );
+function setupMobileMenu() {
+  elements.mobileMenuToggle
+    ?.addEventListener(
+      "click",
+      () => {
+        const isOpen =
+          elements.mobileMenu
+            ?.classList
+            .contains("is-open");
 
-  elementos.mobileMenuClose?.addEventListener(
-    "click",
-    fecharMenuMobile
-  );
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+    );
 
-  elementos.mobileMenuOverlay?.addEventListener(
-    "click",
-    fecharMenuMobile
-  );
+  elements.mobileMenuClose
+    ?.addEventListener(
+      "click",
+      () => closeMobileMenu()
+    );
 
-  elementos.mobileMenu
+  elements.mobileMenuBackdrop
+    ?.addEventListener(
+      "click",
+      () => closeMobileMenu()
+    );
+
+  elements.mobileMenu
     ?.querySelectorAll("a")
     .forEach((link) => {
       link.addEventListener(
         "click",
-        fecharMenuMobile
+        () => {
+          closeMobileMenu({
+            restoreFocus: false
+          });
+        }
       );
     });
 
   document.addEventListener(
     "keydown",
-    (evento) => {
-      if (evento.key === "Escape") {
-        fecharMenuMobile();
+    (event) => {
+      const isOpen =
+        elements.mobileMenu
+          ?.classList
+          .contains("is-open");
+
+      if (
+        event.key === "Escape" &&
+        isOpen
+      ) {
+        closeMobileMenu();
       }
     }
   );
@@ -1840,132 +1818,188 @@ function configurarMenuMobile() {
   window.addEventListener(
     "resize",
     () => {
-      if (window.innerWidth > 900) {
-        fecharMenuMobile();
+      if (
+        window.innerWidth > 920
+      ) {
+        closeMobileMenu({
+          restoreFocus: false
+        });
       }
     }
   );
+}
+
+/* =========================================================
+   CARROSSEL DOS MAIS VENDIDOS
+========================================================= */
+
+function getFeaturedScrollAmount() {
+  const firstCard =
+    elements.featuredTrack
+      ?.querySelector(
+        ".product-card"
+      );
+
+  if (
+    !firstCard ||
+    !elements.featuredTrack
+  ) {
+    return 300;
+  }
+
+  const styles =
+    window.getComputedStyle(
+      elements.featuredTrack
+    );
+
+  const gap =
+    Number.parseFloat(
+      styles.columnGap ||
+      styles.gap
+    ) || 24;
+
+  return (
+    firstCard
+      .getBoundingClientRect()
+      .width +
+    gap
+  );
+}
+
+function setupFeaturedSlider() {
+  elements.featuredPrev
+    ?.addEventListener(
+      "click",
+      () => {
+        elements.featuredTrack
+          ?.scrollBy({
+            left:
+              -getFeaturedScrollAmount(),
+
+            behavior: "smooth"
+          });
+      }
+    );
+
+  elements.featuredNext
+    ?.addEventListener(
+      "click",
+      () => {
+        elements.featuredTrack
+          ?.scrollBy({
+            left:
+              getFeaturedScrollAmount(),
+
+            behavior: "smooth"
+          });
+      }
+    );
 }
 
 /* =========================================================
    CABEÇALHO AO ROLAR
 ========================================================= */
 
-function configurarCabecalho() {
-  function atualizarCabecalho() {
-    elementos.header?.classList.toggle(
-      "is-scrolled",
-      window.scrollY > 15
-    );
-  }
+function setupStickyHeader() {
+  const updateHeader = () => {
+    elements.siteHeader
+      ?.classList.toggle(
+        "is-scrolled",
+        window.scrollY > 16
+      );
+  };
 
   window.addEventListener(
     "scroll",
-    atualizarCabecalho,
+    updateHeader,
     {
       passive: true
     }
   );
 
-  atualizarCabecalho();
+  updateHeader();
 }
 
 /* =========================================================
-   MENU ATIVO
+   ITEM ATIVO DO MENU
 ========================================================= */
 
-function configurarMenuAtivo() {
-  const links =
-    document.querySelectorAll(
-      ".desktop-navigation a"
-    );
+function setupActiveNavigation() {
+  const navigationLinks = [
+    ...document.querySelectorAll(
+      '.main-nav a[href^="#"]'
+    )
+  ];
 
-  const secoes =
-    document.querySelectorAll(
+  const sections = [
+    ...document.querySelectorAll(
       "main section[id]"
-    );
+    )
+  ];
 
   if (
-    !("IntersectionObserver" in window)
+    !(
+      "IntersectionObserver"
+      in window
+    ) ||
+    navigationLinks.length === 0
   ) {
     return;
   }
 
-  const observador =
+  const observer =
     new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (!entrada.isIntersecting) {
-            return;
-          }
+      (entries) => {
+        const visibleEntry =
+          entries
+            .filter(
+              (entry) =>
+                entry.isIntersecting
+            )
+            .sort(
+              (entryA, entryB) =>
+                entryB.intersectionRatio -
+                entryA.intersectionRatio
+            )[0];
 
-          const idSecao =
-            entrada.target.id;
+        if (!visibleEntry) {
+          return;
+        }
 
-          links.forEach((link) => {
-            const href =
-              link.getAttribute("href");
-
+        navigationLinks.forEach(
+          (link) => {
             link.classList.toggle(
               "is-active",
-              href === `#${idSecao}`
+              link.getAttribute("href") ===
+                `#${visibleEntry.target.id}`
             );
-          });
-        });
+          }
+        );
       },
       {
         rootMargin:
           "-35% 0px -55% 0px",
 
-        threshold: 0
+        threshold:
+          [0, 0.1, 0.25, 0.5]
       }
     );
 
-  secoes.forEach((secao) => {
-    observador.observe(secao);
+  sections.forEach((section) => {
+    observer.observe(section);
   });
 }
 
 /* =========================================================
-   TOAST
+   LINKS GERAIS DO WHATSAPP
 ========================================================= */
 
-let temporizadorToast = null;
+function setupGeneralWhatsAppLinks() {
+  const selector =
+    `a[href="${CONFIG.whatsappGeneralUrl}"]`;
 
-function mostrarToast(mensagem) {
-  if (!elementos.siteToast) {
-    return;
-  }
-
-  elementos.siteToast.textContent =
-    mensagem;
-
-  elementos.siteToast.classList.add(
-    "is-visible"
-  );
-
-  if (temporizadorToast) {
-    window.clearTimeout(
-      temporizadorToast
-    );
-  }
-
-  temporizadorToast =
-    window.setTimeout(() => {
-      elementos.siteToast
-        ?.classList.remove("is-visible");
-    }, 3200);
-}
-
-/* =========================================================
-   VERIFICAÇÃO DOS LINKS GERAIS
-========================================================= */
-
-function configurarWhatsAppGeral() {
   document
-    .querySelectorAll(
-      `a[href="${CONFIGURACOES.whatsappGeral}"]`
-    )
+    .querySelectorAll(selector)
     .forEach((link) => {
       link.setAttribute(
         "target",
@@ -1983,21 +2017,22 @@ function configurarWhatsAppGeral() {
    INICIALIZAÇÃO
 ========================================================= */
 
-function iniciarSite() {
-  renderizarDestaques();
-  renderizarCatalogo();
+function initializeSite() {
+  cacheElements();
 
-  configurarCarrossel();
-  configurarCatalogo();
-  configurarPesquisaCabecalho();
-  configurarLinksCategorias();
-  configurarMenuMobile();
-  configurarCabecalho();
-  configurarMenuAtivo();
-  configurarWhatsAppGeral();
+  renderFeaturedProducts();
+  renderCatalog();
+
+  setupCatalogEvents();
+  setupHeaderSearch();
+  setupMobileMenu();
+  setupFeaturedSlider();
+  setupStickyHeader();
+  setupActiveNavigation();
+  setupGeneralWhatsAppLinks();
 }
 
 document.addEventListener(
   "DOMContentLoaded",
-  iniciarSite
+  initializeSite
 );

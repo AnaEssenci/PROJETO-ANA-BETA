@@ -2,20 +2,18 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
-
   <title>Ana Essenci | Perfumes, Cosméticos e Cuidados Pessoais</title>
 
   <meta
     name="description"
-    content="Perfumes, hidratantes, sabonetes e cosméticos selecionados. Atendimento personalizado pelo WhatsApp e envio para todo o Brasil."
+    content="Perfumes, hidratantes, sabonetes e cuidados pessoais com atendimento personalizado pelo WhatsApp. Ana Essenci."
   >
 
-  <meta name="theme-color" content="#e72e75">
+  <meta name="theme-color" content="#d62b70">
 
   <link
     rel="icon"
@@ -23,120 +21,160 @@
     href="favicon/favicon.ico"
   >
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- =====================================================
-       BARRA SUPERIOR
-  ====================================================== -->
+  <!-- Símbolos globais -->
+  <svg
+    class="svg-symbols"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 7.021 2.91 9.83 9.83 0 0 1 2.9 7.026c-.003 5.45-4.437 9.884-9.925 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0 0 12.047 23.8h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.481-8.413Z"
+      />
+    </symbol>
 
+    <symbol id="icon-gmail" viewBox="0 0 24 24">
+      <path fill="#4285F4" d="M3.273 18.182h3.272v-7.927L1.636 6.573v9.973c0 .904.733 1.636 1.637 1.636Z"/>
+      <path fill="#34A853" d="M17.455 18.182h3.272c.904 0 1.637-.732 1.637-1.636V6.573l-4.909 3.682v7.927Z"/>
+      <path fill="#FBBC04" d="M17.455 6.573v3.682l4.909-3.682V4.936c0-2.021-2.309-3.176-3.927-1.964l-.982.773v2.828Z"/>
+      <path fill="#EA4335" d="M6.545 10.255V6.573L12 10.664l5.455-4.091v3.682L12 14.346l-5.455-4.091Z"/>
+      <path fill="#C5221F" d="M1.636 4.936v1.637l4.909 3.682V6.573l-.982-3.601C3.945 1.761 1.636 2.915 1.636 4.936Z"/>
+    </symbol>
+
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="m21 19.6-4.3-4.3a8 8 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z"
+      />
+    </symbol>
+
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
+      />
+    </symbol>
+
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
+      />
+    </symbol>
+
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M14.7 5.3 8 12l6.7 6.7 1.4-1.4L10.8 12l5.3-5.3z"
+      />
+    </symbol>
+
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="m9.3 18.7 6.7-6.7-6.7-6.7-1.4 1.4 5.3 5.3-5.3 5.3z"
+      />
+    </symbol>
+
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M12 2 4 5v6c0 5.1 3.4 9.8 8 11 4.6-1.2 8-5.9 8-11V5l-8-3Z"
+      />
+    </symbol>
+
+    <symbol id="icon-truck" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M3 4h11v9h2.5l2.5-3H21l2 3v5h-2a3 3 0 0 1-6 0H9a3 3 0 0 1-6 0H1V6a2 2 0 0 1 2-2Zm1 2v7h8V6H4Zm3 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
+      />
+    </symbol>
+
+    <symbol id="icon-star" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="m12 2 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.3l-5.6 2.9 1.1-6.2L3 8.6l6.2-.9L12 2z"
+      />
+    </symbol>
+  </svg>
+
+  <!-- topo -->
   <div class="topbar">
     <div class="container topbar__content">
-
-      <span class="topbar__item">
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M20 7h-3V6a5 5 0 0 0-10 0v1H4a2 2 0 0 0-2 2v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2ZM9 6a3 3 0 0 1 6 0v1H9V6Zm11 13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9h3v2a1 1 0 0 0 2 0V9h6v2a1 1 0 0 0 2 0V9h3v10Z"
-          />
-        </svg>
-
-        Produtos selecionados
-      </span>
-
-      <span class="topbar__item">
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M12 2 4 5v6c0 5.1 3.4 9.8 8 11 4.6-1.2 8-5.9 8-11V5l-8-3Zm0 2.1L18 6v5c0 3.9-2.4 7.7-6 8.9C8.4 18.7 6 14.9 6 11V6l6-1.9Zm-1 10.3-2.3-2.3-1.4 1.4L11 17.2l6-6-1.4-1.4-4.6 4.6Z"
-          />
-        </svg>
-
-        Compra segura
-      </span>
-
-      <span class="topbar__item">
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M3 4h11v10h2.5l2.5-3h2l2 3v5h-2.2a3 3 0 0 1-5.6 0H9.8a3 3 0 0 1-5.6 0H2V6a2 2 0 0 1 1-2Zm1 2v8h8V6H4Zm12 7v1h4.2l-.7-1H16ZM7 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
-          />
-        </svg>
-
-        Envio para todo o Brasil
-      </span>
-
+      <p>Perfumes, hidratantes, sabonetes e cuidados pessoais</p>
       <a
-        class="topbar__item"
         href="https://wa.me/message/RFPQVIOKJU7AJ1"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
-          />
-        </svg>
-
         Atendimento via WhatsApp
       </a>
-
     </div>
   </div>
 
-  <!-- =====================================================
-       CABEÇALHO
-  ====================================================== -->
-
-  <header class="header" id="header">
-
-    <div class="container header__main">
+  <!-- header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container site-header__main">
 
       <button
         type="button"
-        class="mobile-menu-button"
-        id="mobileMenuButton"
+        class="mobile-menu-toggle"
+        id="mobileMenuToggle"
         aria-label="Abrir menu"
         aria-expanded="false"
         aria-controls="mobileMenu"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <svg aria-hidden="true">
+          <use href="#icon-menu"></use>
+        </svg>
       </button>
 
       <a
         href="#inicio"
-        class="header__logo"
-        aria-label="Ana Essenci - página inicial"
+        class="site-logo"
+        aria-label="Ana Essenci"
       >
         <img
           src="logo/logo.jpg"
           alt="Ana Essenci"
+          width="220"
+          height="90"
         >
       </a>
 
       <form
-        class="header-search"
-        id="headerSearchForm"
+        class="site-search"
+        id="siteSearchForm"
         role="search"
       >
+        <label
+          class="sr-only"
+          for="siteSearchInput"
+        >
+          Pesquisar produto
+        </label>
+
         <input
+          id="siteSearchInput"
           type="search"
-          id="headerSearchInput"
-          placeholder="Busque por perfumes, marcas ou produtos..."
-          aria-label="Pesquisar produtos"
+          placeholder="Pesquise pelo nome ou código do produto"
           autocomplete="off"
         >
 
@@ -144,134 +182,69 @@
           type="submit"
           aria-label="Pesquisar"
         >
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              d="m21 19.6-4.3-4.3a8 8 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z"
-            />
+          <svg aria-hidden="true">
+            <use href="#icon-search"></use>
           </svg>
         </button>
       </form>
 
-      <div class="header__contacts">
-
+      <div class="header-actions">
         <a
           href="https://wa.me/message/RFPQVIOKJU7AJ1"
-          class="header-contact header-contact--whatsapp"
+          class="header-action header-action--whatsapp"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Falar no WhatsApp"
         >
-          <span class="header-contact__icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
-              />
+          <span class="header-action__icon">
+            <svg aria-hidden="true">
+              <use href="#icon-whatsapp"></use>
             </svg>
           </span>
 
-          <span class="header-contact__text">
+          <span class="header-action__text">
             <strong>WhatsApp</strong>
-            <small>Atendimento online</small>
+            <small>Atendimento rápido</small>
           </span>
         </a>
 
         <a
           href="mailto:loja.anaessenci@gmail.com?subject=Atendimento%20-%20Ana%20Essenci"
-          class="header-contact header-contact--email"
+          class="header-action header-action--gmail"
+          aria-label="Enviar e-mail"
         >
-          <span class="header-contact__icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M20 4H4a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-.5 2L12 11.2 4.5 6h15ZM3 17V7.2l8.4 5.8a1 1 0 0 0 1.2 0L21 7.2V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"
-              />
+          <span class="header-action__icon">
+            <svg aria-hidden="true">
+              <use href="#icon-gmail"></use>
             </svg>
           </span>
 
-          <span class="header-contact__text">
+          <span class="header-action__text">
             <strong>E-mail</strong>
-            <small>loja.anaessenci@gmail.com</small>
+            <small>Suporte da loja</small>
           </span>
         </a>
-
       </div>
-
     </div>
 
-    <!-- Navegação no computador -->
-
     <nav
-      class="desktop-navigation"
+      class="main-nav"
       aria-label="Navegação principal"
     >
-      <div class="container desktop-navigation__content">
-
-        <a
-          href="#inicio"
-          class="is-active"
-        >
-          Início
-        </a>
-
-        <a
-          href="#catalogo"
-          data-category-link="feminino"
-        >
-          Feminino
-        </a>
-
-        <a
-          href="#catalogo"
-          data-category-link="masculino"
-        >
-          Masculino
-        </a>
-
-        <a
-          href="#catalogo"
-          data-category-link="hidratantes"
-        >
-          Hidratantes
-        </a>
-
-        <a
-          href="#catalogo"
-          data-category-link="sabonetes"
-        >
-          Sabonetes
-        </a>
-
-        <a href="#marcas">
-          Marcas
-        </a>
-
-        <a href="#destaques">
-          Mais vendidos
-        </a>
-
-        <a href="#atendimento">
-          Contato
-        </a>
-
+      <div class="container main-nav__links">
+        <a href="#inicio" class="is-active">Início</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#mais-vendidos">Mais vendidos</a>
+        <a href="#catalogo">Produtos</a>
+        <a href="#atendimento">Atendimento</a>
       </div>
     </nav>
-
   </header>
 
-  <!-- =====================================================
-       MENU DO CELULAR
-  ====================================================== -->
-
+  <!-- menu mobile -->
   <div
-    class="mobile-menu-overlay"
-    id="mobileMenuOverlay"
+    class="mobile-menu-backdrop"
+    id="mobileMenuBackdrop"
   ></div>
 
   <aside
@@ -280,7 +253,6 @@
     aria-hidden="true"
   >
     <div class="mobile-menu__header">
-
       <img
         src="logo/logo.jpg"
         alt="Ana Essenci"
@@ -291,362 +263,241 @@
         id="mobileMenuClose"
         aria-label="Fechar menu"
       >
-        ×
+        <svg aria-hidden="true">
+          <use href="#icon-close"></use>
+        </svg>
       </button>
-
     </div>
 
-    <nav aria-label="Menu para celular">
-
-      <a href="#inicio">
-        Início
-      </a>
-
-      <a
-        href="#catalogo"
-        data-category-link="feminino"
-      >
-        Perfumes femininos
-      </a>
-
-      <a
-        href="#catalogo"
-        data-category-link="masculino"
-      >
-        Perfumes masculinos
-      </a>
-
-      <a
-        href="#catalogo"
-        data-category-link="hidratantes"
-      >
-        Hidratantes
-      </a>
-
-      <a
-        href="#catalogo"
-        data-category-link="sabonetes"
-      >
-        Sabonetes
-      </a>
-
-      <a href="#marcas">
-        Marcas
-      </a>
-
-      <a href="#destaques">
-        Mais vendidos
-      </a>
-
-      <a href="#atendimento">
-        Atendimento
-      </a>
-
+    <nav class="mobile-menu__nav" aria-label="Menu mobile">
+      <a href="#inicio">Início</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#mais-vendidos">Mais vendidos</a>
+      <a href="#catalogo">Produtos</a>
+      <a href="#atendimento">Atendimento</a>
     </nav>
 
-    <div class="mobile-menu__support">
-
+    <div class="mobile-menu__actions">
       <a
         href="https://wa.me/message/RFPQVIOKJU7AJ1"
         target="_blank"
         rel="noopener noreferrer"
-        class="mobile-support mobile-support--whatsapp"
+        class="mobile-contact mobile-contact--whatsapp"
       >
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
-          />
+        <svg aria-hidden="true">
+          <use href="#icon-whatsapp"></use>
         </svg>
-
-        WhatsApp
+        <span>WhatsApp</span>
       </a>
 
       <a
         href="mailto:loja.anaessenci@gmail.com?subject=Atendimento%20-%20Ana%20Essenci"
-        class="mobile-support mobile-support--email"
+        class="mobile-contact mobile-contact--gmail"
       >
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M20 4H4a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-.5 2L12 11.2 4.5 6h15ZM3 17V7.2l8.4 5.8a1 1 0 0 0 1.2 0L21 7.2V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"
-          />
+        <svg aria-hidden="true">
+          <use href="#icon-gmail"></use>
         </svg>
-
-        E-mail
+        <span>E-mail</span>
       </a>
-
     </div>
   </aside>
 
   <main>
 
-    <!-- ===================================================
-         BANNER
-    ==================================================== -->
+    <!-- hero -->
+    <section class="hero" id="inicio">
+      <div class="hero__media">
+        <picture>
+          <source
+            media="(max-width: 768px)"
+            srcset="banners/banner-mobile.jpg"
+          >
+          <img
+            src="banners/banner-desktop.jpg"
+            alt="Ana Essenci - perfumes e cuidados pessoais"
+            class="hero__image"
+            fetchpriority="high"
+            decoding="async"
+            width="1920"
+            height="700"
+          >
+        </picture>
+      </div>
 
-    <section
-      class="hero"
-      id="inicio"
-    >
-      <picture class="hero__picture">
+      <div class="hero__overlay">
+        <div class="container hero__content">
+          <span class="hero__eyebrow">
+            Ana Essenci
+          </span>
 
-        <source
-          media="(max-width: 700px)"
-          srcset="banners/banner-mobile.jpg"
-        >
+          <h1>
+            Beleza, perfumação e cuidado
+            <span>com apresentação premium</span>
+          </h1>
 
-        <img
-          src="banners/banner-desktop.jpg"
-          alt="Ana Essenci - perfumes, cosméticos e cuidados pessoais"
-          class="hero__image"
-        >
+          <p>
+            Um catálogo pensado para quem valoriza fragrâncias marcantes,
+            autocuidado e atendimento atencioso.
+          </p>
 
-      </picture>
+          <div class="hero__actions">
+            <a href="#catalogo" class="btn btn--primary">
+              Ver produtos
+            </a>
+
+            <a
+              href="https://wa.me/message/RFPQVIOKJU7AJ1"
+              class="btn btn--secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Falar no WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ===================================================
-         BENEFÍCIOS
-    ==================================================== -->
-
-    <section
-      class="benefits"
-      aria-label="Vantagens da Ana Essenci"
-    >
+    <!-- diferenciais -->
+    <section class="benefits">
       <div class="container benefits__grid">
 
         <article class="benefit-card">
-
-          <span class="benefit-card__icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M12 2 4 5v6c0 5.1 3.4 9.8 8 11 4.6-1.2 8-5.9 8-11V5l-8-3Zm0 2.1L18 6v5c0 3.9-2.4 7.7-6 8.9C8.4 18.7 6 14.9 6 11V6l6-1.9Zm-1 10.3-2.3-2.3-1.4 1.4L11 17.2l6-6-1.4-1.4-4.6 4.6Z"
-              />
+          <div class="benefit-card__icon">
+            <svg aria-hidden="true">
+              <use href="#icon-shield"></use>
             </svg>
-          </span>
+          </div>
 
-          <span>
-            <strong>Compra segura</strong>
-            <small>Atendimento direto e transparente</small>
-          </span>
-
+          <div class="benefit-card__content">
+            <strong>Atendimento confiável</strong>
+            <p>Suporte direto, humano e organizado.</p>
+          </div>
         </article>
 
         <article class="benefit-card">
-
-          <span class="benefit-card__icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M3 4h11v10h2.5l2.5-3h2l2 3v5h-2.2a3 3 0 0 1-5.6 0H9.8a3 3 0 0 1-5.6 0H2V6a2 2 0 0 1 1-2Zm1 2v8h8V6H4Zm12 7v1h4.2l-.7-1H16ZM7 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
-              />
+          <div class="benefit-card__icon">
+            <svg aria-hidden="true">
+              <use href="#icon-truck"></use>
             </svg>
-          </span>
+          </div>
 
-          <span>
-            <strong>Envio nacional</strong>
-            <small>Consulte o frete para seu CEP</small>
-          </span>
-
+          <div class="benefit-card__content">
+            <strong>Envio para todo o Brasil</strong>
+            <p>Consulte frete e prazo para seu CEP.</p>
+          </div>
         </article>
 
         <article class="benefit-card">
-
-          <span class="benefit-card__icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
-              />
+          <div class="benefit-card__icon">
+            <svg aria-hidden="true">
+              <use href="#icon-star"></use>
             </svg>
-          </span>
+          </div>
 
-          <span>
-            <strong>Atendimento exclusivo</strong>
-            <small>Suporte rápido pelo WhatsApp</small>
-          </span>
-
-        </article>
-
-        <article class="benefit-card">
-
-          <span class="benefit-card__icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="m12 2 2.8 5.7L21 8.6l-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 8.6l6.2-.9L12 2Z"
-              />
-            </svg>
-          </span>
-
-          <span>
+          <div class="benefit-card__content">
             <strong>Produtos selecionados</strong>
-            <small>Beleza para todos os momentos</small>
-          </span>
-
+            <p>Itens escolhidos para vender com mais força.</p>
+          </div>
         </article>
-
       </div>
     </section>
 
-    <!-- ===================================================
-         MARCAS
-    ==================================================== -->
-
-    <section
-      class="brands section"
-      id="marcas"
-    >
+    <!-- marcas -->
+    <section class="section brands-section" id="marcas">
       <div class="container">
-
-        <header class="section-title">
-          <span>Marcas que você ama</span>
-          <h2>Encontre seus produtos favoritos</h2>
-        </header>
-
-        <div class="brands__track">
-
-          <article class="brand-card">
-            <img
-              src="marcas/boticario.webp"
-              alt="O Boticário"
-              loading="lazy"
-            >
-          </article>
-
-          <article class="brand-card">
-            <img
-              src="marcas/eudora.webp"
-              alt="Eudora"
-              loading="lazy"
-            >
-          </article>
-
-          <article class="brand-card">
-            <img
-              src="marcas/natura.webp"
-              alt="Natura"
-              loading="lazy"
-            >
-          </article>
-
-          <article class="brand-card">
-            <img
-              src="marcas/avon.webp"
-              alt="Avon"
-              loading="lazy"
-            >
-          </article>
-
-          <article class="brand-card">
-            <img
-              src="marcas/oui.webp"
-              alt="O.U.i"
-              loading="lazy"
-            >
-          </article>
-
-          <article class="brand-card">
-            <img
-              src="marcas/quem-disse-berenice.webp"
-              alt="Quem Disse, Berenice?"
-              loading="lazy"
-            >
-          </article>
-
+        <div class="section-heading section-heading--center">
+          <span class="section-kicker">Marcas</span>
+          <h2>As marcas que seu público já procura</h2>
+          <p>
+            Um catálogo com linhas reconhecidas e desejadas.
+          </p>
         </div>
 
+        <div class="brands-grid">
+          <article class="brand-card">
+            <img src="marcas/avon.webp" alt="Avon" loading="lazy">
+          </article>
+
+          <article class="brand-card">
+            <img src="marcas/boticario.webp" alt="O Boticário" loading="lazy">
+          </article>
+
+          <article class="brand-card">
+            <img src="marcas/eudora.webp" alt="Eudora" loading="lazy">
+          </article>
+
+          <article class="brand-card">
+            <img src="marcas/natura.webp" alt="Natura" loading="lazy">
+          </article>
+
+          <article class="brand-card">
+            <img src="marcas/oui.webp" alt="O.U.i" loading="lazy">
+          </article>
+
+          <article class="brand-card">
+            <img src="marcas/quem-disse-berenice.webp" alt="Quem Disse, Berenice?" loading="lazy">
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ===================================================
-         DESTAQUES
-    ==================================================== -->
-
-    <section
-      class="featured section"
-      id="destaques"
-    >
+    <!-- mais vendidos -->
+    <section class="section featured-section" id="mais-vendidos">
       <div class="container">
-
         <div class="section-heading">
+          <div>
+            <span class="section-kicker">Seleção especial</span>
+            <h2>Os 10 perfumes mais vendidos</h2>
+            <p>
+              Produtos com maior apelo de venda e maior procura.
+            </p>
+          </div>
 
-          <header class="section-title section-title--left">
-            <span>Seleção Ana Essenci</span>
-            <h2>Perfumes mais vendidos</h2>
-          </header>
-
-          <div class="slider-controls">
-
+          <div class="slider-buttons">
             <button
               type="button"
-              id="featuredPrevious"
-              aria-label="Produtos anteriores"
+              id="featuredPrev"
+              aria-label="Voltar"
             >
-              ←
+              <svg aria-hidden="true">
+                <use href="#icon-arrow-left"></use>
+              </svg>
             </button>
 
             <button
               type="button"
               id="featuredNext"
-              aria-label="Próximos produtos"
+              aria-label="Avançar"
             >
-              →
+              <svg aria-hidden="true">
+                <use href="#icon-arrow-right"></use>
+              </svg>
             </button>
-
           </div>
-
         </div>
 
         <div
-          class="featured__track"
-          id="featuredProducts"
-        >
-          <!-- Produtos adicionados pelo script.js -->
-        </div>
-
+          class="featured-track"
+          id="featuredTrack"
+        ></div>
       </div>
     </section>
 
-    <!-- ===================================================
-         CATÁLOGO
-    ==================================================== -->
-
-    <section
-      class="catalog section"
-      id="catalogo"
-    >
+    <!-- catálogo -->
+    <section class="section catalog-section" id="catalogo">
       <div class="container">
-
-        <header class="section-title">
-          <span>Catálogo Ana Essenci</span>
-          <h2>Escolha seu produto</h2>
-
+        <div class="section-heading section-heading--center">
+          <span class="section-kicker">Catálogo</span>
+          <h2>Escolha o produto ideal</h2>
           <p>
-            Pesquise pelo nome ou código e fale diretamente
-            pelo WhatsApp para realizar seu pedido.
+            Pesquise, filtre e envie direto para o WhatsApp com nome,
+            código e preço prontos.
           </p>
-        </header>
+        </div>
 
-        <div class="catalog-toolbar">
-
-          <div
-            class="catalog-filters"
-            id="catalogFilters"
-          >
+        <div class="catalog-controls">
+          <div class="catalog-filters" id="catalogFilters">
             <button
               type="button"
               class="catalog-filter is-active"
@@ -688,68 +539,37 @@
             </button>
           </div>
 
-          <div class="catalog-sort">
+          <div class="catalog-tools">
+            <div class="catalog-search">
+              <svg aria-hidden="true">
+                <use href="#icon-search"></use>
+              </svg>
 
-            <label for="catalogOrder">
-              Ordenar por:
-            </label>
+              <input
+                type="search"
+                id="catalogSearch"
+                placeholder="Pesquisar por nome ou código"
+                autocomplete="off"
+              >
+            </div>
 
-            <select id="catalogOrder">
-              <option value="padrao">
-                Mais vendidos
-              </option>
-
-              <option value="nome">
-                Nome: A–Z
-              </option>
-
-              <option value="menor-preco">
-                Menor preço
-              </option>
-
-              <option value="maior-preco">
-                Maior preço
-              </option>
+            <select id="catalogSort" aria-label="Ordenar produtos">
+              <option value="padrao">Mais vendidos</option>
+              <option value="nome">Nome: A–Z</option>
+              <option value="menor-preco">Menor preço</option>
+              <option value="maior-preco">Maior preço</option>
             </select>
-
           </div>
-
         </div>
 
-        <div class="catalog-information">
-
-          <p id="catalogCount">
-            Carregando produtos...
-          </p>
-
-          <div class="catalog-search">
-
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="m21 19.6-4.3-4.3a8 8 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z"
-              />
-            </svg>
-
-            <input
-              type="search"
-              id="catalogSearch"
-              placeholder="Pesquisar produto ou código"
-              autocomplete="off"
-            >
-
-          </div>
-
+        <div class="catalog-summary">
+          <p id="catalogCount">Carregando produtos...</p>
         </div>
 
         <div
           class="products-grid"
           id="productsGrid"
-        >
-          <!-- Produtos adicionados pelo script.js -->
-        </div>
+        ></div>
 
         <div
           class="catalog-empty"
@@ -757,211 +577,120 @@
           hidden
         >
           <h3>Nenhum produto encontrado</h3>
-
-          <p>
-            Tente pesquisar outro nome, código ou categoria.
-          </p>
+          <p>Tente pesquisar outro nome, código ou categoria.</p>
 
           <button
             type="button"
-            id="clearCatalogFilters"
+            id="clearFilters"
+            class="btn btn--primary"
           >
-            Limpar pesquisa
+            Limpar filtros
           </button>
         </div>
 
-        <div class="catalog-more">
+        <div class="catalog-load-more" id="catalogLoadMoreWrap">
           <button
             type="button"
             id="loadMoreProducts"
+            class="btn btn--outline"
           >
             Ver mais produtos
           </button>
         </div>
-
       </div>
     </section>
 
-    <!-- ===================================================
-         ATENDIMENTO
-    ==================================================== -->
-
-    <section
-      class="support section"
-      id="atendimento"
-    >
+    <!-- atendimento -->
+    <section class="section support-section" id="atendimento">
       <div class="container">
-
-        <header class="section-title">
-          <span>Fale com a Ana Essenci</span>
-          <h2>Atendimento rápido e personalizado</h2>
-
+        <div class="section-heading section-heading--center">
+          <span class="section-kicker">Atendimento</span>
+          <h2>Fale com a Ana Essenci</h2>
           <p>
-            Consulte disponibilidade, pagamento, frete e entrega.
+            Tire dúvidas, consulte disponibilidade, pagamento, frete e entrega.
           </p>
-        </header>
+        </div>
 
-        <div class="support__grid">
-
+        <div class="support-grid">
           <article class="support-card support-card--whatsapp">
-
             <div class="support-card__icon">
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
-                />
+              <svg aria-hidden="true">
+                <use href="#icon-whatsapp"></use>
               </svg>
             </div>
 
             <div class="support-card__content">
-              <span>Compras e dúvidas</span>
-
+              <span>Atendimento principal</span>
               <h3>WhatsApp</h3>
-
               <p>
-                Converse diretamente para consultar produtos,
-                preços, formas de pagamento e entrega.
+                Converse diretamente para comprar, consultar estoque,
+                confirmar pagamento e alinhar a entrega.
               </p>
 
               <a
                 href="https://wa.me/message/RFPQVIOKJU7AJ1"
+                class="support-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Conversar no WhatsApp
+                Conversar agora
               </a>
             </div>
-
           </article>
 
-          <article class="support-card support-card--email">
-
+          <article class="support-card support-card--gmail">
             <div class="support-card__icon">
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M20 4H4a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-.5 2L12 11.2 4.5 6h15ZM3 17V7.2l8.4 5.8a1 1 0 0 0 1.2 0L21 7.2V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"
-                />
+              <svg aria-hidden="true">
+                <use href="#icon-gmail"></use>
               </svg>
             </div>
 
             <div class="support-card__content">
-              <span>Suporte e solicitações</span>
-
-              <h3>E-mail</h3>
-
+              <span>Suporte por e-mail</span>
+              <h3>Gmail</h3>
               <p>
-                Envie dúvidas, solicitações relacionadas a pedidos,
-                entregas, trocas ou devoluções.
+                Use o e-mail para dúvidas, suporte, política de envio,
+                trocas, devoluções e atendimento complementar.
               </p>
 
               <a
                 href="mailto:loja.anaessenci@gmail.com?subject=Suporte%20-%20Ana%20Essenci"
+                class="support-link"
               >
                 Enviar e-mail
               </a>
-
-              <small>
-                loja.anaessenci@gmail.com
-              </small>
             </div>
-
           </article>
-
         </div>
-
       </div>
     </section>
 
   </main>
 
-  <!-- =====================================================
-       RODAPÉ — SEM LOCALIZAÇÃO E SEM MAPA
-  ====================================================== -->
+  <!-- rodapé -->
+  <footer class="site-footer">
+    <div class="container site-footer__content">
 
-  <footer class="footer">
-
-    <div class="container footer__content">
-
-      <div class="footer__brand">
-
-        <img
-          src="logo/logo.jpg"
-          alt="Ana Essenci"
-        >
-
-        <p>
-          Perfumes, cosméticos e cuidados pessoais selecionados
-          para diferentes estilos e momentos.
-        </p>
-
-        <p class="footer__independent">
-          Revendedora multimarcas independente.
-        </p>
-
-      </div>
-
-      <div class="footer__column">
-
+      <div class="site-footer__column">
         <h3>Navegação</h3>
-
-        <a href="#inicio">
-          Início
-        </a>
-
-        <a href="#marcas">
-          Marcas
-        </a>
-
-        <a href="#destaques">
-          Mais vendidos
-        </a>
-
-        <a href="#catalogo">
-          Produtos
-        </a>
-
-        <a href="#atendimento">
-          Atendimento
-        </a>
-
+        <a href="#inicio">Início</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#mais-vendidos">Mais vendidos</a>
+        <a href="#catalogo">Produtos</a>
+        <a href="#atendimento">Atendimento</a>
       </div>
 
-      <div class="footer__column">
-
+      <div class="site-footer__column">
         <h3>Informações</h3>
-
-        <a href="paginas/termos-de-uso.html">
-          Termos de Uso
-        </a>
-
-        <a href="paginas/politica-de-privacidade.html">
-          Política de Privacidade
-        </a>
-
-        <a href="paginas/politica-de-envio.html">
-          Política de Envio
-        </a>
-
-        <a href="paginas/trocas-e-devolucoes.html">
-          Trocas e Devoluções
-        </a>
-
-        <a href="paginas/perguntas-frequentes.html">
-          Perguntas Frequentes
-        </a>
-
+        <a href="paginas/termos-de-uso.html">Termos de Uso</a>
+        <a href="paginas/politica-de-privacidade.html">Política de Privacidade</a>
+        <a href="paginas/politica-de-envio.html">Política de Envio</a>
+        <a href="paginas/trocas-e-devolucoes.html">Trocas e Devoluções</a>
+        <a href="paginas/perguntas-frequentes.html">Perguntas Frequentes</a>
       </div>
 
-      <div class="footer__column">
-
-        <h3>Atendimento</h3>
-
+      <div class="site-footer__column">
+        <h3>Contato</h3>
         <a
           href="https://wa.me/message/RFPQVIOKJU7AJ1"
           target="_blank"
@@ -971,71 +700,35 @@
         </a>
 
         <a
-          href="mailto:loja.anaessenci@gmail.com?subject=Atendimento%20-%20Ana%20Essenci"
+          href="mailto:loja.anaessenci@gmail.com"
         >
           loja.anaessenci@gmail.com
         </a>
 
-        <span>
-          Atendimento exclusivamente online
-        </span>
-
-      </div>
-
-    </div>
-
-    <div class="footer__bottom">
-      <div class="container footer__bottom-content">
-
-        <p>
-          © 2026 Ana Essenci. Todos os direitos reservados.
-        </p>
-
-        <p>
-          Site seguro e atendimento personalizado.
-        </p>
-
+        <p>Atendimento exclusivamente online</p>
       </div>
     </div>
 
+    <div class="site-footer__bottom">
+      <div class="container">
+        <p>© 2026 Ana Essenci. Todos os direitos reservados.</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- =====================================================
-       WHATSAPP FLUTUANTE
-  ====================================================== -->
-
+  <!-- botão flutuante -->
   <a
     href="https://wa.me/message/RFPQVIOKJU7AJ1"
     class="floating-whatsapp"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Conversar com a Ana Essenci pelo WhatsApp"
+    aria-label="Falar no WhatsApp"
   >
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
-      />
+    <svg aria-hidden="true">
+      <use href="#icon-whatsapp"></use>
     </svg>
   </a>
 
-  <div
-    class="site-toast"
-    id="siteToast"
-    role="status"
-    aria-live="polite"
-  ></div>
-
-  <noscript>
-    <div class="noscript-alert">
-      Ative o JavaScript para visualizar os produtos e utilizar
-      todos os recursos do site.
-    </div>
-  </noscript>
-
   <script src="script.js"></script>
-
 </body>
 </html>
