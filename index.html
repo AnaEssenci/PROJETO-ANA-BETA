@@ -304,58 +304,24 @@
 
   <main>
 
-    <!-- hero -->
-    <section class="hero" id="inicio">
-      <div class="hero__media">
-        <picture>
-          <source
-            media="(max-width: 768px)"
-            srcset="banners/banner-mobile.jpg"
-          >
-          <img
-            src="banners/banner-desktop.jpg"
-            alt="Ana Essenci - perfumes e cuidados pessoais"
-            class="hero__image"
-            fetchpriority="high"
-            decoding="async"
-            width="1920"
-            height="700"
-          >
-        </picture>
-      </div>
+    <!-- banner principal -->
+    <section class="hero" id="inicio" aria-label="Destaque Ana Essenci">
+      <picture class="hero__picture">
+        <source
+          media="(max-width: 768px)"
+          srcset="banners/banner-mobile.jpg"
+        >
 
-      <div class="hero__overlay">
-        <div class="container hero__content">
-          <span class="hero__eyebrow">
-            Ana Essenci
-          </span>
-
-          <h1>
-            Beleza, perfumação e cuidado
-            <span>com apresentação premium</span>
-          </h1>
-
-          <p>
-            Um catálogo pensado para quem valoriza fragrâncias marcantes,
-            autocuidado e atendimento atencioso.
-          </p>
-
-          <div class="hero__actions">
-            <a href="#catalogo" class="btn btn--primary">
-              Ver produtos
-            </a>
-
-            <a
-              href="https://wa.me/message/RFPQVIOKJU7AJ1"
-              class="btn btn--secondary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Falar no WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
+        <img
+          src="banners/banner-desktop.jpg"
+          alt="Ana Essenci — perfumes, hidratantes, sabonetes e cuidados pessoais"
+          class="hero__image"
+          width="1920"
+          height="700"
+          fetchpriority="high"
+          decoding="async"
+        >
+      </picture>
     </section>
 
     <!-- diferenciais -->

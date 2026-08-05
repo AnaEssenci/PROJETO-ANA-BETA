@@ -2613,3 +2613,243 @@ a {
       0.01ms !important;
   }
 }
+
+/* =========================================================
+   AJUSTES FINAIS — ANA ESSENCI
+   Banner, cards, preços e carrossel
+========================================================= */
+
+.hero {
+  min-height: 0;
+  overflow: hidden;
+  background: #f8dce7;
+}
+
+.hero__picture {
+  display: block;
+  width: 100%;
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
+.hero__media,
+.hero__overlay,
+.hero__content,
+.hero__eyebrow,
+.hero__actions {
+  display: none;
+}
+
+.featured-track {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 3px 30px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+
+.featured-track::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-track .product-card {
+  flex: 0 0 calc((100% - 60px) / 4);
+  width: calc((100% - 60px) / 4);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.product-card__title {
+  display: block;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  text-overflow: clip;
+}
+
+.product-card__copy {
+  display: block;
+  min-height: 38px;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+}
+
+.product-card__description {
+  display: block;
+  min-height: 52px;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+}
+
+.product-card__offer {
+  display: grid;
+  gap: 13px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.product-card__price-area {
+  padding: 15px;
+  border: 1px solid rgba(201, 43, 108, 0.13);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fffafd, #fff1f7);
+}
+
+.product-card__price-label {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.product-card__price {
+  margin-top: 7px;
+  color: var(--wine-900);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.product-card__payment {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+.product-card__buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--pink-600);
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--pink-500), var(--pink-700));
+  box-shadow: 0 11px 25px rgba(201, 43, 108, 0.24);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+}
+
+.product-card__buy:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 16px 34px rgba(201, 43, 108, 0.34);
+  transform: translateY(-3px);
+}
+
+.product-card__whatsapp,
+.product-card__button,
+.product-card__meta {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .featured-track .product-card {
+    flex-basis: calc((100% - 40px) / 3);
+    width: calc((100% - 40px) / 3);
+  }
+}
+
+@media (max-width: 920px) {
+  .featured-track .product-card {
+    flex-basis: calc((100% - 20px) / 2);
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+@media (max-width: 700px) {
+  .hero__image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+
+  .featured-track {
+    gap: 14px;
+    margin-inline: -14px;
+    padding-inline: 14px;
+  }
+
+  .featured-track .product-card {
+    flex: 0 0 86%;
+    width: 86%;
+  }
+
+  .product-card__content {
+    padding: 13px;
+  }
+
+  .product-card__title {
+    min-height: 0;
+    font-size: 17px;
+    line-height: 1.18;
+  }
+
+  .product-card__copy {
+    min-height: 0;
+    font-size: 9px;
+  }
+
+  .product-card__description {
+    display: none;
+  }
+
+  .product-card__offer {
+    gap: 10px;
+    padding-top: 13px;
+  }
+
+  .product-card__price-area {
+    padding: 11px;
+    border-radius: 12px;
+  }
+
+  .product-card__price {
+    font-size: 20px;
+  }
+
+  .product-card__buy {
+    min-height: 38px;
+    padding-inline: 8px;
+    font-size: 8px;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-width: 390px) {
+  .featured-track .product-card {
+    flex-basis: 90%;
+    width: 90%;
+  }
+
+  .product-card__title {
+    font-size: 15px;
+  }
+
+  .product-card__price {
+    font-size: 18px;
+  }
+}

@@ -1209,11 +1209,11 @@ function createProductCard(
           </strong>
         </p>
 
-        <div class="product-card__meta">
+        <div class="product-card__offer">
 
-          <div>
+          <div class="product-card__price-area">
             <span class="product-card__price-label">
-              Preço
+              Valor do produto
             </span>
 
             <strong class="product-card__price">
@@ -1221,21 +1221,18 @@ function createProductCard(
             </strong>
 
             <span class="product-card__payment">
-              Consulte pagamento e entrega
+              Consulte disponibilidade, pagamento e entrega
             </span>
           </div>
 
           <a
-            class="product-card__whatsapp"
+            class="product-card__buy"
             href="${createProductWhatsAppUrl(product)}"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Comprar ${productName} pelo WhatsApp"
-            title="Comprar pelo WhatsApp"
+            aria-label="Comprar ${productName}"
           >
-            <svg aria-hidden="true">
-              <use href="#icon-whatsapp"></use>
-            </svg>
+            Comprar agora
           </a>
 
         </div>
@@ -1866,34 +1863,101 @@ function getFeaturedScrollAmount() {
   );
 }
 
+let featuredAutoplayTimer = null;
+
+function moveFeaturedSlider(direction = 1) {
+  const track = elements.featuredTrack;
+
+  if (!track) {
+    return;
+  }
+
+  const maximumScroll =
+    track.scrollWidth - track.clientWidth;
+
+  const reachedEnd =
+    track.scrollLeft >= maximumScroll - 8;
+
+  const reachedStart =
+    track.scrollLeft <= 8;
+
+  if (direction > 0 && reachedEnd) {
+    track.scrollTo({
+      left: 0,
+      behavior: "smooth"
+    });
+    return;
+  }
+
+  if (direction < 0 && reachedStart) {
+    track.scrollTo({
+      left: maximumScroll,
+      behavior: "smooth"
+    });
+    return;
+  }
+
+  track.scrollBy({
+    left: getFeaturedScrollAmount() * direction,
+    behavior: "smooth"
+  });
+}
+
+function stopFeaturedAutoplay() {
+  if (featuredAutoplayTimer !== null) {
+    window.clearInterval(featuredAutoplayTimer);
+    featuredAutoplayTimer = null;
+  }
+}
+
+function startFeaturedAutoplay() {
+  stopFeaturedAutoplay();
+
+  if (
+    !elements.featuredTrack ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return;
+  }
+
+  featuredAutoplayTimer = window.setInterval(() => {
+    moveFeaturedSlider(1);
+  }, 4500);
+}
+
 function setupFeaturedSlider() {
-  elements.featuredPrev
-    ?.addEventListener(
-      "click",
-      () => {
-        elements.featuredTrack
-          ?.scrollBy({
-            left:
-              -getFeaturedScrollAmount(),
+  elements.featuredPrev?.addEventListener("click", () => {
+    moveFeaturedSlider(-1);
+    startFeaturedAutoplay();
+  });
 
-            behavior: "smooth"
-          });
-      }
-    );
+  elements.featuredNext?.addEventListener("click", () => {
+    moveFeaturedSlider(1);
+    startFeaturedAutoplay();
+  });
 
-  elements.featuredNext
-    ?.addEventListener(
-      "click",
-      () => {
-        elements.featuredTrack
-          ?.scrollBy({
-            left:
-              getFeaturedScrollAmount(),
+  const track = elements.featuredTrack;
 
-            behavior: "smooth"
-          });
-      }
-    );
+  if (!track) {
+    return;
+  }
+
+  track.addEventListener("mouseenter", stopFeaturedAutoplay);
+  track.addEventListener("mouseleave", startFeaturedAutoplay);
+  track.addEventListener("focusin", stopFeaturedAutoplay);
+  track.addEventListener("focusout", startFeaturedAutoplay);
+  track.addEventListener("touchstart", stopFeaturedAutoplay, { passive: true });
+  track.addEventListener("touchend", startFeaturedAutoplay, { passive: true });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopFeaturedAutoplay();
+    } else {
+      startFeaturedAutoplay();
+    }
+  });
+
+  startFeaturedAutoplay();
 }
 
 /* =========================================================
