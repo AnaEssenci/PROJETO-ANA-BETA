@@ -2,55 +2,49 @@
 
 /* =========================================================
    ANA ESSENCI — SCRIPT.JS
-   ========================================================= */
+   Catálogo, pesquisa, filtros, WhatsApp, menu e carrossel
+========================================================= */
 
-/* ---------------------------------------------------------
-   CONFIGURAÇÕES DA LOJA
---------------------------------------------------------- */
+/* =========================================================
+   CONFIGURAÇÕES
+========================================================= */
 
 const CONFIGURACOES = {
-  /*
-    Coloque 55 + DDD + número.
-    Não use espaços, parênteses, traços ou sinal de +.
+  whatsappNumero: "5562998390546",
 
-    Exemplo:
-    whatsapp: "5562999999999"
-  */
-  whatsapp: "SEU_NUMERO_AQUI",
+  whatsappGeral:
+    "https://wa.me/message/RFPQVIOKJU7AJ1",
 
-  emailSuporte: "loja.anaessenci@gmail.com",
+  email:
+    "loja.anaessenci@gmail.com",
 
-  mensagemGeral:
-    "Olá! Vim pelo site da Ana Essenci e gostaria de conhecer os produtos disponíveis.",
+  quantidadeInicial: 15,
 
-  assuntoEmail: "Suporte — Ana Essenci",
-
-  mensagemEmail:
-    "Olá! Vim pelo site da Ana Essenci e preciso de ajuda com:"
+  quantidadePorClique: 15
 };
 
-/* ---------------------------------------------------------
+/* =========================================================
    CATEGORIAS
---------------------------------------------------------- */
+========================================================= */
 
-const CATEGORIAS = {
+const NOMES_CATEGORIAS = {
   masculino: "Perfume masculino",
   feminino: "Perfume feminino",
   hidratantes: "Hidratante corporal",
   sabonetes: "Sabonete"
 };
 
-/* ---------------------------------------------------------
+/* =========================================================
    CRIAÇÃO DOS PRODUTOS
---------------------------------------------------------- */
+========================================================= */
 
-function criarProduto(
+function produto(
   id,
   nome,
   codigo,
   preco,
   categoria,
-  posicaoDestaque = 0
+  destaque = 0
 ) {
   return {
     id,
@@ -58,23 +52,26 @@ function criarProduto(
     codigo: String(codigo),
     preco,
     categoria,
-    categoriaNome: CATEGORIAS[categoria],
+    categoriaNome: NOMES_CATEGORIAS[categoria],
+    marca: "O Boticário",
     imagem: `produtos/${categoria}/${id}.webp`,
-    posicaoDestaque
+    destaque
   };
 }
 
-/* ---------------------------------------------------------
-   BANCO DE PRODUTOS
-   Zaad Venture foi removido porque não existe imagem dele.
---------------------------------------------------------- */
+/* =========================================================
+   PRODUTOS
+
+   Zaad Venture não foi incluído porque a imagem não existe.
+========================================================= */
 
 const PRODUTOS_BASE = [
-  /* =========================
-     PERFUMES MASCULINOS
-  ========================= */
 
-  criarProduto(
+  /* =======================================================
+     PERFUMES MASCULINOS
+  ======================================================= */
+
+  produto(
     "malbec",
     "Malbec Desodorante Colônia 100 ml",
     "84387",
@@ -83,7 +80,7 @@ const PRODUTOS_BASE = [
     1
   ),
 
-  criarProduto(
+  produto(
     "malbec-gold",
     "Malbec Gold Desodorante Colônia 100 ml",
     "73849",
@@ -92,7 +89,7 @@ const PRODUTOS_BASE = [
     2
   ),
 
-  criarProduto(
+  produto(
     "malbec-x",
     "Malbec X Desodorante Colônia 100 ml",
     "30192",
@@ -100,7 +97,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "malbec-black",
     "Malbec Black Desodorante Colônia 100 ml",
     "74723",
@@ -108,7 +105,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "malbec-ultra-bleu",
     "Malbec Ultra Bleu Desodorante Colônia 100 ml",
     "50119",
@@ -117,7 +114,7 @@ const PRODUTOS_BASE = [
     3
   ),
 
-  criarProduto(
+  produto(
     "malbec-pure-gold",
     "Malbec Pure Gold Desodorante Colônia 100 ml",
     "58506",
@@ -125,7 +122,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "malbec-signature",
     "Malbec Signature Eau de Parfum 90 ml",
     "48134",
@@ -133,7 +130,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "malbec-magnetic",
     "Malbec Magnetic Desodorante Colônia 100 ml",
     "73743",
@@ -141,7 +138,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "malbec-noir",
     "Malbec Noir Desodorante Colônia 100 ml",
     "84388",
@@ -149,15 +146,16 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "zaad",
     "Zaad Eau de Parfum 95 ml",
     "47950",
     314.91,
-    "masculino"
+    "masculino",
+    4
   ),
 
-  criarProduto(
+  produto(
     "zaad-expedition",
     "Zaad Expedition Eau de Parfum 95 ml",
     "46898",
@@ -165,7 +163,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "zaad-santal",
     "Zaad Santal Eau de Parfum 95 ml",
     "81382",
@@ -173,7 +171,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "zaad-intense",
     "Zaad Intense Eau de Parfum 95 ml",
     "58644",
@@ -181,7 +179,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "quasar-blue",
     "Quasar Blue Desodorante Colônia 100 ml",
     "51244",
@@ -189,7 +187,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "quasar-brave",
     "Quasar Brave Desodorante Colônia 100 ml",
     "51242",
@@ -197,7 +195,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "quasar-vision",
     "Quasar Vision Desodorante Colônia 100 ml",
     "50662",
@@ -205,7 +203,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "quasar-deep-blue",
     "Quasar Deep Blue Desodorante Colônia 100 ml",
     "58526",
@@ -213,7 +211,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "quasar-rush",
     "Quasar Rush Desodorante Colônia 100 ml",
     "50820",
@@ -221,7 +219,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "arbo",
     "Arbo Desodorante Colônia 100 ml",
     "74438",
@@ -229,7 +227,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "arbo-reserva",
     "Arbo Reserva Desodorante Colônia 100 ml",
     "81138",
@@ -237,7 +235,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "arbo-liberte",
     "Arbo Liberté Desodorante Colônia 100 ml",
     "74440",
@@ -245,7 +243,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "arbo-atlantica",
     "Arbo Atlântica Desodorante Colônia 100 ml",
     "55366",
@@ -253,7 +251,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "uomini",
     "Uomini Desodorante Colônia 100 ml",
     "49765",
@@ -261,7 +259,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "uomini-black",
     "Uomini Black Desodorante Colônia 100 ml",
     "49766",
@@ -269,7 +267,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "uomini-infinite",
     "Uomini Infinite Desodorante Colônia 100 ml",
     "50418",
@@ -277,7 +275,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "egeo-bomb-black",
     "Egeo Bomb Black Desodorante Colônia 90 ml",
     "82685",
@@ -285,7 +283,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "coffee-man-sense",
     "Coffee Man Sense Desodorante Colônia 100 ml",
     "80972",
@@ -293,7 +291,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "coffee-man-duo",
     "Coffee Man Duo Desodorante Colônia 100 ml",
     "73614",
@@ -301,7 +299,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "coffee-man-seduction",
     "Coffee Man Seduction Desodorante Colônia 100 ml",
     "48365",
@@ -309,7 +307,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "the-blend-bourbon",
     "The Blend Bourbon Eau de Parfum 100 ml",
     "77489",
@@ -317,7 +315,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "the-blend-cardamom",
     "The Blend Cardamom Eau de Parfum 100 ml",
     "83529",
@@ -325,16 +323,15 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "clash",
     "Clash Desodorante Colônia 100 ml",
     "50677",
     179.90,
-    "masculino",
-    4
+    "masculino"
   ),
 
-  criarProduto(
+  produto(
     "egeo-blue",
     "Egeo Blue Desodorante Colônia 90 ml",
     "82686",
@@ -342,7 +339,7 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  criarProduto(
+  produto(
     "botica-214-verano-en-firenze",
     "Botica 214 Verano en Firenze Eau de Parfum 75 ml",
     "47553",
@@ -350,11 +347,11 @@ const PRODUTOS_BASE = [
     "masculino"
   ),
 
-  /* =========================
+  /* =======================================================
      PERFUMES FEMININOS
-  ========================= */
+  ======================================================= */
 
-  criarProduto(
+  produto(
     "lily-eau-de-parfum",
     "Lily Eau de Parfum 75 ml",
     "77524",
@@ -363,7 +360,7 @@ const PRODUTOS_BASE = [
     5
   ),
 
-  criarProduto(
+  produto(
     "lily-lumiere",
     "Lily Lumière Eau de Parfum 75 ml",
     "77989",
@@ -371,7 +368,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "lily-absolu",
     "Lily Absolu Eau de Parfum 75 ml",
     "77988",
@@ -379,7 +376,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "lily-gardenia",
     "Lily Gardénia Eau de Parfum 75 ml",
     "55363",
@@ -388,7 +385,7 @@ const PRODUTOS_BASE = [
     6
   ),
 
-  criarProduto(
+  produto(
     "lily-le-parfum",
     "Lily Le Parfum 30 ml",
     "48734",
@@ -396,7 +393,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "floratta-red",
     "Floratta Red Desodorante Colônia 75 ml",
     "75792",
@@ -405,7 +402,7 @@ const PRODUTOS_BASE = [
     7
   ),
 
-  criarProduto(
+  produto(
     "floratta-blue",
     "Floratta Blue Desodorante Colônia 75 ml",
     "25458",
@@ -414,7 +411,7 @@ const PRODUTOS_BASE = [
     8
   ),
 
-  criarProduto(
+  produto(
     "floratta-my-blue",
     "Floratta My Blue Desodorante Colônia 75 ml",
     "01004",
@@ -422,7 +419,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "floratta-flores-secretas",
     "Floratta Flores Secretas Desodorante Colônia 75 ml",
     "48136",
@@ -430,7 +427,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "floratta-fleur-supreme",
     "Floratta Fleur Suprême Eau de Parfum 75 ml",
     "75877",
@@ -438,7 +435,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "floratta-romance-de-verao",
     "Floratta Romance de Verão Desodorante Colônia 75 ml",
     "55659",
@@ -446,7 +443,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "floratta-rose",
     "Floratta Rose Desodorante Colônia 75 ml",
     "48635",
@@ -454,7 +451,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "floratta-red-blossom",
     "Floratta Red Blossom Desodorante Colônia 75 ml",
     "49973",
@@ -462,7 +459,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "elysee",
     "Elysée Eau de Parfum 50 ml",
     "53518",
@@ -471,7 +468,7 @@ const PRODUTOS_BASE = [
     9
   ),
 
-  criarProduto(
+  produto(
     "elysee-blanc",
     "Elysée Blanc Eau de Parfum 50 ml",
     "48143",
@@ -479,7 +476,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "elysee-nuit",
     "Elysée Nuit Eau de Parfum 50 ml",
     "48146",
@@ -487,7 +484,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "elysee-succes",
     "Elysée Succès Eau de Parfum 50 ml",
     "81331",
@@ -495,7 +492,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "leau-de-lily-blanche",
     "L’Eau de Lily Blanche Desodorante Colônia 75 ml",
     "86895",
@@ -503,7 +500,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "liz",
     "Liz Desodorante Colônia 100 ml",
     "76700",
@@ -511,7 +508,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "liz-intenso",
     "Liz Intenso Desodorante Colônia 100 ml",
     "53415",
@@ -519,7 +516,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "liz-sublime",
     "Liz Sublime Desodorante Colônia 100 ml",
     "47339",
@@ -527,7 +524,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "liz-flora",
     "Liz Flora Desodorante Colônia 100 ml",
     "59466",
@@ -535,7 +532,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "coffee-woman-seduction",
     "Coffee Woman Seduction Desodorante Colônia 100 ml",
     "48139",
@@ -543,7 +540,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "coffee-woman-duo",
     "Coffee Woman Duo Desodorante Colônia 100 ml",
     "73613",
@@ -551,7 +548,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "coffee-addictive",
     "Coffee Addictive Desodorante Colônia 100 ml",
     "56385",
@@ -559,7 +556,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "coffee-woman-sense",
     "Coffee Woman Sense Desodorante Colônia 100 ml",
     "80971",
@@ -567,7 +564,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "glamour-secrets-black",
     "Glamour Secrets Black Desodorante Colônia 75 ml",
     "74103",
@@ -575,7 +572,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "glamour-fever",
     "Glamour Fever Desodorante Colônia 75 ml",
     "84224",
@@ -583,7 +580,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "glamour-just-shine",
     "Glamour Just Shine Desodorante Colônia 75 ml",
     "84223",
@@ -591,7 +588,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "her-code",
     "Her Code Eau de Parfum 50 ml",
     "50022",
@@ -599,7 +596,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "her-code-touch",
     "Her Code Touch Eau de Parfum 50 ml",
     "59555",
@@ -607,7 +604,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "egeo-dolce",
     "Egeo Dolce Desodorante Colônia 90 ml",
     "82688",
@@ -616,7 +613,7 @@ const PRODUTOS_BASE = [
     10
   ),
 
-  criarProduto(
+  produto(
     "egeo-choc",
     "Egeo Choc Desodorante Colônia 90 ml",
     "82689",
@@ -624,7 +621,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "botica-214-golden-gardenia",
     "Botica 214 Golden Gardênia Eau de Parfum 75 ml",
     "89261",
@@ -632,7 +629,7 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  criarProduto(
+  produto(
     "boticollection-acqua-fresca",
     "Boticollection Acqua Fresca Desodorante Colônia 100 ml",
     "47905",
@@ -640,11 +637,11 @@ const PRODUTOS_BASE = [
     "feminino"
   ),
 
-  /* =========================
+  /* =======================================================
      HIDRATANTES
-  ========================= */
+  ======================================================= */
 
-  criarProduto(
+  produto(
     "nativa-spa-ameixa",
     "Loção Hidratante Nativa Spa Ameixa 400 ml",
     "48282",
@@ -652,7 +649,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "nativa-spa-ameixa-negra",
     "Loção Hidratante Nativa Spa Ameixa Negra 400 ml",
     "48281",
@@ -660,7 +657,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "nativa-spa-rose",
     "Loção Revitalizante Nativa Spa Rosé 400 ml",
     "75971",
@@ -668,7 +665,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "nativa-spa-orquidea-noire",
     "Loção Noturna Nativa Spa Orquídea Noire 400 ml",
     "49958",
@@ -676,7 +673,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "nativa-spa-quinoa",
     "Loção Firmadora Nativa Spa Quinoa 400 ml",
     "49954",
@@ -684,7 +681,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "nativa-spa-uva-merlot",
     "Loção Nutritiva Nativa Spa Uva Merlot 400 ml",
     "58978",
@@ -692,7 +689,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "cuide-se-bem-deleite",
     "Loção Hidratante Cuide-se Bem Deleite 400 ml",
     "75151",
@@ -700,7 +697,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "cuide-se-bem-beijinho",
     "Loção Hidratante Cuide-se Bem Beijinho 400 ml",
     "49825",
@@ -708,7 +705,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "nativa-spa-orquidea-lumiere",
     "Creme Perfumado Nativa Spa Orquídea Lumière 400 ml",
     "59823",
@@ -716,7 +713,7 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  criarProduto(
+  produto(
     "nativa-spa-lilac",
     "Loção Renovadora Nativa Spa Lilac 400 ml",
     "53346",
@@ -724,59 +721,59 @@ const PRODUTOS_BASE = [
     "hidratantes"
   ),
 
-  /* =========================
+  /* =======================================================
      SABONETES
-  ========================= */
+  ======================================================= */
 
-  criarProduto(
+  produto(
     "sabonete-nativa-spa-ameixa",
-    "Sabonete em Barra Nativa Spa Ameixa 3 unidades de 90 g",
+    "Sabonete em Barra Nativa Spa Ameixa 3 unidades",
     "51423",
     42.90,
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "kit-sabonete-morango-e-leite",
-    "Kit de Sabonetes Cuide-se Bem Morango e Leite 4 unidades",
+    "Kit de Sabonetes Cuide-se Bem Morango e Leite",
     "88311",
     38.90,
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "sabonete-pessegura",
-    "Sabonete em Barra Cuide-se Bem Pessegura 4 unidades",
+    "Sabonete em Barra Cuide-se Bem Pessegura",
     "94499",
     38.90,
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "sabonete-rosa-e-algodao",
-    "Sabonetes Cuide-se Bem Rosa e Algodão 4 unidades",
+    "Sabonetes Cuide-se Bem Rosa e Algodão",
     "51165",
     38.90,
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "sabonete-deleite",
-    "Sabonete em Barra Cuide-se Bem Deleite 4 unidades",
+    "Sabonete em Barra Cuide-se Bem Deleite",
     "85564",
     38.90,
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "kit-sabonete-beijinho",
-    "Kit de Sabonetes Cuide-se Bem Beijinho 2 unidades",
+    "Kit de Sabonetes Cuide-se Bem Beijinho",
     "87373",
     24.90,
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "sabonete-malbec",
     "Sabonete em Barra Malbec 4 unidades",
     "84654",
@@ -784,7 +781,7 @@ const PRODUTOS_BASE = [
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "sabonete-clash",
     "Sabonete em Barra Clash 2 unidades",
     "86870",
@@ -792,7 +789,7 @@ const PRODUTOS_BASE = [
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "instance-karite",
     "Sabonete Líquido Perfumado Instance Karité 400 ml",
     "52373",
@@ -800,18 +797,18 @@ const PRODUTOS_BASE = [
     "sabonetes"
   ),
 
-  criarProduto(
+  produto(
     "sabonete-liquido-deleite-caramelizado",
-    "Sabonete Líquido Cuide-se Bem Deleite Caramelizado 150 ml",
+    "Sabonete Líquido Deleite Caramelizado 150 ml",
     "90998",
     52.90,
     "sabonetes"
   )
 ];
 
-/* ---------------------------------------------------------
-   TEXTOS COMERCIAIS DOS PRODUTOS
---------------------------------------------------------- */
+/* =========================================================
+   DESCRIÇÕES COMERCIAIS
+========================================================= */
 
 function normalizarTexto(texto) {
   return String(texto)
@@ -821,276 +818,312 @@ function normalizarTexto(texto) {
     .trim();
 }
 
-function criarTextosProduto(produto) {
-  const nomeNormalizado = normalizarTexto(produto.nome);
+function criarDescricao(produtoAtual) {
+  const nome = normalizarTexto(produtoAtual.nome);
 
-  let chamada = "Uma escolha especial para completar sua rotina.";
-  let descricao =
-    "Consulte a disponibilidade e faça seu pedido diretamente pelo WhatsApp.";
-
-  if (produto.categoria === "masculino") {
-    chamada =
-      "Uma escolha de perfumaria masculina para destacar presença e personalidade.";
-
-    descricao =
-      `${produto.nome} é uma excelente opção para uso pessoal ou para presentear. ` +
-      "Fale conosco para confirmar disponibilidade, pagamento e entrega.";
+  if (nome.includes("malbec")) {
+    return {
+      chamada:
+        "Presença e personalidade em uma escolha marcante.",
+      descricao:
+        "Uma opção especial de perfumaria masculina para uso pessoal ou para presentear."
+    };
   }
 
-  if (produto.categoria === "feminino") {
-    chamada =
-      "Uma fragrância feminina para tornar sua coleção ainda mais especial.";
-
-    descricao =
-      `${produto.nome} combina beleza, cuidado e personalidade em uma opção ideal para você ou para presentear.`;
+  if (nome.includes("zaad")) {
+    return {
+      chamada:
+        "Sofisticação para quem valoriza escolhas elegantes.",
+      descricao:
+        "Uma fragrância masculina para completar uma coleção especial e cheia de personalidade."
+    };
   }
 
-  if (produto.categoria === "hidratantes") {
-    chamada =
-      "Cuidado corporal para deixar sua rotina mais completa e especial.";
-
-    descricao =
-      `${produto.nome} é uma opção prática para incluir nos seus momentos de autocuidado. ` +
-      "Consulte disponibilidade pelo WhatsApp.";
+  if (nome.includes("quasar")) {
+    return {
+      chamada:
+        "Uma escolha moderna para acompanhar sua rotina.",
+      descricao:
+        "Perfume masculino versátil para diferentes momentos e ocasiões."
+    };
   }
 
-  if (produto.categoria === "sabonetes") {
-    chamada =
-      "Cuidado e perfumação para transformar os pequenos momentos da rotina.";
-
-    descricao =
-      `${produto.nome} é uma ótima escolha para uso diário, para presentear ou montar kits especiais.`;
+  if (nome.includes("arbo")) {
+    return {
+      chamada:
+        "Leveza e personalidade para todos os momentos.",
+      descricao:
+        "Uma opção masculina prática para uso diário ou para presentear."
+    };
   }
 
-  if (nomeNormalizado.includes("malbec")) {
-    chamada =
-      "Presença, personalidade e elegância em uma escolha marcante.";
-
-    descricao =
-      `${produto.nome} é indicado para quem deseja uma fragrância masculina com identidade forte. ` +
-      "Uma excelente opção para uso pessoal ou presente.";
+  if (nome.includes("uomini")) {
+    return {
+      chamada:
+        "Estilo e presença para uma rotina mais especial.",
+      descricao:
+        "Uma escolha de perfumaria masculina para quem gosta de cuidar da imagem."
+    };
   }
 
-  if (nomeNormalizado.includes("zaad")) {
-    chamada =
-      "Sofisticação para quem valoriza escolhas elegantes e especiais.";
-
-    descricao =
-      `${produto.nome} completa a coleção de quem procura uma opção masculina refinada. ` +
-      "Consulte disponibilidade e envio pelo WhatsApp.";
+  if (nome.includes("the blend")) {
+    return {
+      chamada:
+        "Uma escolha sofisticada para elevar sua coleção.",
+      descricao:
+        "Uma opção especial para quem procura elegância e personalidade."
+    };
   }
 
-  if (nomeNormalizado.includes("quasar")) {
-    chamada =
-      "Uma opção moderna para acompanhar diferentes momentos da rotina.";
-
-    descricao =
-      `${produto.nome} é uma escolha versátil para quem procura praticidade e personalidade em sua perfumaria masculina.`;
+  if (nome.includes("coffee")) {
+    return {
+      chamada:
+        "Uma escolha envolvente para fugir do comum.",
+      descricao:
+        "Perfume com personalidade para uso pessoal ou para surpreender em um presente."
+    };
   }
 
-  if (nomeNormalizado.includes("arbo")) {
-    chamada =
-      "Leveza e personalidade para acompanhar seus melhores momentos.";
-
-    descricao =
-      `${produto.nome} é uma opção masculina para uso diário, ocasiões especiais ou para presentear alguém importante.`;
+  if (nome.includes("lily")) {
+    return {
+      chamada:
+        "Elegância e delicadeza em uma escolha especial.",
+      descricao:
+        "Uma opção feminina sofisticada para sua coleção ou para presentear."
+    };
   }
 
-  if (nomeNormalizado.includes("uomini")) {
-    chamada =
-      "Estilo e presença em uma fragrância masculina cheia de personalidade.";
+  if (nome.includes("floratta")) {
+    return {
+      chamada:
+        "Delicadeza para deixar cada momento mais especial.",
+      descricao:
+        "Uma escolha feminina versátil para completar sua rotina de perfumaria."
+    };
+  }
 
-    descricao =
-      `${produto.nome} é uma escolha para homens que gostam de cuidar da imagem e manter sua coleção sempre completa.`;
+  if (nome.includes("elysee")) {
+    return {
+      chamada:
+        "Sofisticação e presença em uma escolha feminina.",
+      descricao:
+        "Uma opção elegante para ocasiões especiais ou para transformar um presente."
+    };
+  }
+
+  if (nome.includes("liz")) {
+    return {
+      chamada:
+        "Personalidade e confiança em uma escolha especial.",
+      descricao:
+        "Uma fragrância feminina para acompanhar diferentes momentos da sua vida."
+    };
+  }
+
+  if (nome.includes("glamour")) {
+    return {
+      chamada:
+        "Brilho e personalidade para quem gosta de se destacar.",
+      descricao:
+        "Uma opção feminina para ocasiões especiais ou para presentear."
+    };
+  }
+
+  if (nome.includes("her code")) {
+    return {
+      chamada:
+        "Uma escolha moderna, elegante e cheia de personalidade.",
+      descricao:
+        "Uma opção especial de perfumaria feminina para você ou para presentear."
+    };
+  }
+
+  if (nome.includes("egeo")) {
+    return {
+      chamada:
+        "Uma escolha divertida e cheia de personalidade.",
+      descricao:
+        "Uma opção versátil para quem gosta de experimentar fragrâncias diferentes."
+    };
+  }
+
+  if (nome.includes("botica 214")) {
+    return {
+      chamada:
+        "Uma opção elegante para tornar sua coleção especial.",
+      descricao:
+        "Uma escolha de perfumaria para quem valoriza beleza e personalidade."
+    };
+  }
+
+  if (nome.includes("acqua fresca")) {
+    return {
+      chamada:
+        "Um clássico versátil para diferentes momentos.",
+      descricao:
+        "Uma opção feminina para uso pessoal ou para presentear."
+    };
   }
 
   if (
-    nomeNormalizado.includes("coffee man") ||
-    nomeNormalizado.includes("coffee woman") ||
-    nomeNormalizado.includes("coffee addictive")
+    produtoAtual.categoria === "hidratantes"
   ) {
-    chamada =
-      "Uma escolha envolvente para quem deseja fugir do comum.";
-
-    descricao =
-      `${produto.nome} é uma opção de perfumaria com personalidade, ideal para uso pessoal ou para surpreender em um presente.`;
+    return {
+      chamada:
+        "Autocuidado para deixar sua rotina ainda mais especial.",
+      descricao:
+        "Uma opção prática para completar seus momentos de cuidado corporal."
+    };
   }
 
-  if (nomeNormalizado.includes("the blend")) {
-    chamada =
-      "Uma escolha sofisticada para elevar sua coleção de perfumes.";
-
-    descricao =
-      `${produto.nome} é uma opção masculina especial para quem valoriza elegância, cuidado e exclusividade.`;
+  if (
+    produtoAtual.categoria === "sabonetes"
+  ) {
+    return {
+      chamada:
+        "Cuidado e perfumação para sua rotina diária.",
+      descricao:
+        "Uma ótima escolha para uso pessoal, presentes ou montagem de kits."
+    };
   }
 
-  if (nomeNormalizado.includes("clash")) {
-    chamada =
-      "Atitude e personalidade para quem gosta de deixar sua marca.";
-
-    descricao =
-      `${produto.nome} é uma escolha masculina moderna, ideal para completar sua rotina ou presentear.`;
-  }
-
-  if (nomeNormalizado.includes("lily")) {
-    chamada =
-      "Elegância e delicadeza em uma escolha especial de perfumaria feminina.";
-
-    descricao =
-      `${produto.nome} é ideal para quem valoriza sofisticação e deseja uma opção marcante para sua coleção ou para presentear.`;
-  }
-
-  if (nomeNormalizado.includes("floratta")) {
-    chamada =
-      "Uma escolha feminina delicada para deixar cada momento mais especial.";
-
-    descricao =
-      `${produto.nome} é uma opção versátil para quem procura beleza, personalidade e uma fragrância para completar sua rotina.`;
-  }
-
-  if (nomeNormalizado.includes("elysee")) {
-    chamada =
-      "Sofisticação e presença em uma escolha de perfumaria feminina.";
-
-    descricao =
-      `${produto.nome} é uma opção elegante para ocasiões especiais, uso pessoal ou para transformar um presente em algo inesquecível.`;
-  }
-
-  if (nomeNormalizado.includes("liz")) {
-    chamada =
-      "Uma fragrância feminina feita para destacar personalidade e confiança.";
-
-    descricao =
-      `${produto.nome} é uma escolha especial para completar sua coleção e acompanhar diferentes momentos da sua vida.`;
-  }
-
-  if (nomeNormalizado.includes("glamour")) {
-    chamada =
-      "Brilho, personalidade e elegância para quem gosta de se destacar.";
-
-    descricao =
-      `${produto.nome} é uma opção feminina para momentos especiais, presentes e para deixar sua coleção ainda mais completa.`;
-  }
-
-  if (nomeNormalizado.includes("her code")) {
-    chamada =
-      "Uma escolha feminina moderna, elegante e cheia de personalidade.";
-
-    descricao =
-      `${produto.nome} foi selecionado para quem deseja uma opção especial de perfumaria feminina para si ou para presentear.`;
-  }
-
-  if (nomeNormalizado.includes("egeo")) {
-    chamada =
-      "Uma escolha divertida e cheia de personalidade para sua coleção.";
-
-    descricao =
-      `${produto.nome} é uma opção versátil para quem gosta de experimentar fragrâncias diferentes e presentear com criatividade.`;
-  }
-
-  if (nomeNormalizado.includes("botica 214")) {
-    chamada =
-      "Uma opção elegante para tornar sua coleção ainda mais especial.";
-
-    descricao =
-      `${produto.nome} é uma escolha de perfumaria para quem valoriza produtos especiais, beleza e personalidade.`;
-  }
-
-  if (nomeNormalizado.includes("acqua fresca")) {
-    chamada =
-      "Um clássico para quem busca uma escolha versátil e especial.";
-
-    descricao =
-      `${produto.nome} é uma opção feminina para diferentes momentos, para uso pessoal ou para presentear.`;
-  }
-
-  if (nomeNormalizado.includes("nativa spa")) {
-    chamada =
-      "Autocuidado para deixar sua rotina corporal ainda mais especial.";
-
-    descricao =
-      `${produto.nome} é uma opção prática para cuidar do corpo e montar uma rotina completa de beleza e bem-estar.`;
-  }
-
-  if (nomeNormalizado.includes("cuide-se bem")) {
-    chamada =
-      "Um cuidado especial para tornar sua rotina mais leve e prazerosa.";
-
-    descricao =
-      `${produto.nome} é uma ótima opção para autocuidado, uso diário ou para montar kits de presente.`;
+  if (
+    produtoAtual.categoria === "feminino"
+  ) {
+    return {
+      chamada:
+        "Uma fragrância feminina para completar sua coleção.",
+      descricao:
+        "Uma escolha especial para uso pessoal ou para presentear alguém importante."
+    };
   }
 
   return {
-    chamada,
-    descricao
+    chamada:
+      "Uma escolha masculina cheia de personalidade.",
+    descricao:
+      "Uma opção especial para completar sua rotina ou para presentear."
   };
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    PRODUTOS COMPLETOS
---------------------------------------------------------- */
+========================================================= */
 
-const PRODUTOS = PRODUTOS_BASE.map((produto, indice) => {
-  const textos = criarTextosProduto(produto);
+const PRODUTOS = PRODUTOS_BASE.map(
+  (produtoAtual, indice) => {
+    const textos = criarDescricao(produtoAtual);
 
-  return {
-    ...produto,
-    ...textos,
-    ordemOriginal: indice
-  };
-});
+    return {
+      ...produtoAtual,
+      ...textos,
+      ordemOriginal: indice
+    };
+  }
+);
 
-/* ---------------------------------------------------------
+/* =========================================================
    ESTADO DO CATÁLOGO
---------------------------------------------------------- */
+========================================================= */
 
 const estadoCatalogo = {
   categoria: "todos",
   pesquisa: "",
   ordem: "padrao",
-  quantidadeVisivel: 12,
-  produtosPorPagina: 12
+  quantidadeVisivel:
+    CONFIGURACOES.quantidadeInicial
 };
 
-/* ---------------------------------------------------------
-   ELEMENTOS DO SITE
---------------------------------------------------------- */
+/* =========================================================
+   ELEMENTOS DA PÁGINA
+========================================================= */
 
 const elementos = {
-  loader: document.getElementById("pageLoader"),
-  header: document.getElementById("header"),
+  header:
+    document.getElementById("header"),
 
-  menuButton: document.getElementById("menuButton"),
-  navigation: document.getElementById("navigation"),
+  mobileMenuButton:
+    document.getElementById("mobileMenuButton"),
 
-  carousel: document.getElementById("productsCarousel"),
-  carouselPrevious: document.getElementById("carouselPrevious"),
-  carouselNext: document.getElementById("carouselNext"),
-  carouselIndicators: document.getElementById("carouselIndicators"),
+  mobileMenu:
+    document.getElementById("mobileMenu"),
 
-  productSearch: document.getElementById("productSearch"),
-  categoryFilters: document.getElementById("categoryFilters"),
-  productOrder: document.getElementById("productOrder"),
+  mobileMenuOverlay:
+    document.getElementById("mobileMenuOverlay"),
 
-  productsGrid: document.getElementById("productsGrid"),
-  catalogResultText: document.getElementById("catalogResultText"),
-  emptyResults: document.getElementById("emptyResults"),
-  clearFilters: document.getElementById("clearFilters"),
-  loadMoreProducts: document.getElementById("loadMoreProducts"),
+  mobileMenuClose:
+    document.getElementById("mobileMenuClose"),
 
-  toast: document.getElementById("toast"),
-  toastMessage: document.getElementById("toastMessage")
+  headerSearchForm:
+    document.getElementById("headerSearchForm"),
+
+  headerSearchInput:
+    document.getElementById("headerSearchInput"),
+
+  featuredProducts:
+    document.getElementById("featuredProducts"),
+
+  featuredPrevious:
+    document.getElementById("featuredPrevious"),
+
+  featuredNext:
+    document.getElementById("featuredNext"),
+
+  catalogFilters:
+    document.getElementById("catalogFilters"),
+
+  catalogOrder:
+    document.getElementById("catalogOrder"),
+
+  catalogCount:
+    document.getElementById("catalogCount"),
+
+  catalogSearch:
+    document.getElementById("catalogSearch"),
+
+  productsGrid:
+    document.getElementById("productsGrid"),
+
+  catalogEmpty:
+    document.getElementById("catalogEmpty"),
+
+  clearCatalogFilters:
+    document.getElementById("clearCatalogFilters"),
+
+  loadMoreProducts:
+    document.getElementById("loadMoreProducts"),
+
+  siteToast:
+    document.getElementById("siteToast")
 };
 
-/* ---------------------------------------------------------
+/* =========================================================
+   ÍCONE DO WHATSAPP EM SVG
+========================================================= */
+
+const ICONE_WHATSAPP = `
+  <svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1C18.7 23.7 24 18.4 24 11.9c0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.1.2 2.4 3.7 5.9 5.2 2.2 1 3.1 1 4.2.9.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"
+    />
+  </svg>
+`;
+
+/* =========================================================
    FORMATAÇÃO
---------------------------------------------------------- */
+========================================================= */
 
 function formatarPreco(valor) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  }).format(valor);
+  return new Intl.NumberFormat(
+    "pt-BR",
+    {
+      style: "currency",
+      currency: "BRL"
+    }
+  ).format(valor);
 }
 
 function escaparHTML(valor) {
@@ -1102,179 +1135,131 @@ function escaparHTML(valor) {
     .replaceAll("'", "&#039;");
 }
 
-/* ---------------------------------------------------------
-   WHATSAPP
---------------------------------------------------------- */
+/* =========================================================
+   WHATSAPP DOS PRODUTOS
+========================================================= */
 
-function obterNumeroWhatsApp() {
-  return CONFIGURACOES.whatsapp.replace(/\D/g, "");
-}
-
-function whatsappConfigurado() {
-  const numero = obterNumeroWhatsApp();
-
-  return (
-    numero.length >= 12 &&
-    CONFIGURACOES.whatsapp !== "SEU_NUMERO_AQUI"
-  );
-}
-
-function criarLinkWhatsApp(mensagem) {
-  if (!whatsappConfigurado()) {
-    return "#";
-  }
-
-  const numero = obterNumeroWhatsApp();
-  const texto = encodeURIComponent(mensagem);
-
-  return `https://wa.me/${numero}?text=${texto}`;
-}
-
-function criarMensagemProduto(produto) {
+function criarMensagemProduto(produtoAtual) {
   return [
     "Olá! Vim pelo site da Ana Essenci e quero comprar este produto:",
     "",
-    `Produto: ${produto.nome}`,
-    `Código: ${produto.codigo}`,
-    `Preço: ${formatarPreco(produto.preco)}`,
+    `Produto: ${produtoAtual.nome}`,
+    `Código: ${produtoAtual.codigo}`,
+    `Preço: ${formatarPreco(produtoAtual.preco)}`,
     "",
     "Gostaria de confirmar a disponibilidade, as formas de pagamento e as opções de entrega."
   ].join("\n");
 }
 
-function configurarLinksWhatsAppGerais() {
-  const link = criarLinkWhatsApp(CONFIGURACOES.mensagemGeral);
-
-  document
-    .querySelectorAll(".js-whatsapp-geral")
-    .forEach((elemento) => {
-      elemento.href = link;
-
-      if (!whatsappConfigurado()) {
-        elemento.dataset.naoConfigurado = "true";
-      }
-    });
-}
-
-/* ---------------------------------------------------------
-   GMAIL
---------------------------------------------------------- */
-
-function criarLinkGmail() {
-  const destinatario = encodeURIComponent(
-    CONFIGURACOES.emailSuporte
-  );
-
-  const assunto = encodeURIComponent(
-    CONFIGURACOES.assuntoEmail
-  );
-
+function criarLinkProduto(produtoAtual) {
   const mensagem = encodeURIComponent(
-    CONFIGURACOES.mensagemEmail
+    criarMensagemProduto(produtoAtual)
   );
 
   return (
-    "https://mail.google.com/mail/?" +
-    `view=cm&fs=1&to=${destinatario}` +
-    `&su=${assunto}&body=${mensagem}`
+    `https://wa.me/${CONFIGURACOES.whatsappNumero}` +
+    `?text=${mensagem}`
   );
 }
 
-function configurarLinksGmail() {
-  const link = criarLinkGmail();
+/* =========================================================
+   CARD DE PRODUTO
+========================================================= */
 
-  document
-    .querySelectorAll(".js-gmail-link")
-    .forEach((elemento) => {
-      elemento.href = link;
-    });
-}
+function criarCardProduto(
+  produtoAtual,
+  mostrarDestaque = false
+) {
+  const linkWhatsApp =
+    criarLinkProduto(produtoAtual);
 
-/* ---------------------------------------------------------
-   CARD DO PRODUTO
---------------------------------------------------------- */
-
-function criarHTMLProduto(produto, destaque = false) {
-  const mensagem = criarMensagemProduto(produto);
-  const link = criarLinkWhatsApp(mensagem);
-
-  const textoCompleto =
-    `${produto.chamada} ${produto.descricao}`;
+  const textoCategoria =
+    `${produtoAtual.marca} • ${produtoAtual.categoriaNome}`;
 
   return `
-    <a
-      class="product-card js-product-link"
-      href="${link}"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-product-id="${escaparHTML(produto.id)}"
-      data-whatsapp-configurado="${whatsappConfigurado()}"
-      aria-label="Comprar ${escaparHTML(produto.nome)} pelo WhatsApp"
+    <article
+      class="product-card"
+      data-product-id="${escaparHTML(produtoAtual.id)}"
     >
-      <div class="product-card__image-container">
+      <div class="product-card__media">
+
         ${
-          destaque
-            ? '<span class="product-card__badge">Mais vendido</span>'
+          mostrarDestaque
+            ? `
+              <span class="product-card__badge">
+                Mais vendido
+              </span>
+            `
             : ""
         }
 
         <img
           class="product-card__image"
-          src="${escaparHTML(produto.imagem)}"
-          alt="${escaparHTML(produto.nome)}"
-          loading="lazy"
+          src="${escaparHTML(produtoAtual.imagem)}"
+          alt="${escaparHTML(produtoAtual.nome)}"
+          loading="${mostrarDestaque ? "eager" : "lazy"}"
+          decoding="async"
         >
+
       </div>
 
       <div class="product-card__content">
-        <span class="product-card__category">
-          ${escaparHTML(produto.categoriaNome)}
+
+        <span class="product-card__brand">
+          ${escaparHTML(textoCategoria)}
         </span>
 
         <h3 class="product-card__title">
-          ${escaparHTML(produto.nome)}
+          ${escaparHTML(produtoAtual.nome)}
         </h3>
 
-        <p class="product-card__copy">
-          ${escaparHTML(textoCompleto)}
+        <p class="product-card__description">
+          ${escaparHTML(produtoAtual.chamada)}
+          ${escaparHTML(produtoAtual.descricao)}
         </p>
 
         <p class="product-card__code">
           Código:
-          <strong>${escaparHTML(produto.codigo)}</strong>
+          <strong>
+            ${escaparHTML(produtoAtual.codigo)}
+          </strong>
         </p>
 
-        <div class="product-card__footer">
+        <div class="product-card__meta">
+
           <div>
             <span class="product-card__price-label">
               Por
             </span>
 
             <strong class="product-card__price">
-              ${formatarPreco(produto.preco)}
+              ${formatarPreco(produtoAtual.preco)}
             </strong>
           </div>
 
-          <span
-            class="product-card__button"
-            aria-hidden="true"
+          <a
+            class="product-card__whatsapp"
+            href="${linkWhatsApp}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Comprar ${escaparHTML(produtoAtual.nome)} pelo WhatsApp"
+            title="Comprar pelo WhatsApp"
           >
-            <img
-              src="icons/whatsapp.png"
-              alt=""
-            >
-          </span>
+            ${ICONE_WHATSAPP}
+          </a>
+
         </div>
+
       </div>
-    </a>
+    </article>
   `;
 }
 
-/* ---------------------------------------------------------
-   CORREÇÃO DE IMAGENS QUEBRADAS
---------------------------------------------------------- */
+/* =========================================================
+   PROTEÇÃO CONTRA IMAGEM QUEBRADA
+========================================================= */
 
-function configurarFallbackDeImagens(container) {
+function configurarImagens(container) {
   if (!container) {
     return;
   }
@@ -1288,314 +1273,242 @@ function configurarFallbackDeImagens(container) {
       "error",
       () => {
         imagem.src = "logo/logo.jpg";
-        imagem.alt = "Imagem temporariamente indisponível";
+        imagem.alt =
+          "Imagem temporariamente indisponível";
+
+        imagem.style.padding = "38px";
+        imagem.style.opacity = "0.65";
       },
-      { once: true }
+      {
+        once: true
+      }
     );
   });
 }
 
-/* ---------------------------------------------------------
-   CARROSSEL DOS MAIS VENDIDOS
---------------------------------------------------------- */
+/* =========================================================
+   PRODUTOS MAIS VENDIDOS
+========================================================= */
 
-function obterMaisVendidos() {
+function obterProdutosDestaque() {
   return PRODUTOS
-    .filter((produto) => produto.posicaoDestaque > 0)
+    .filter(
+      (produtoAtual) =>
+        produtoAtual.destaque > 0
+    )
     .sort(
       (produtoA, produtoB) =>
-        produtoA.posicaoDestaque -
-        produtoB.posicaoDestaque
-    );
+        produtoA.destaque -
+        produtoB.destaque
+    )
+    .slice(0, 10);
 }
 
-function renderizarCarrossel() {
-  if (!elementos.carousel) {
+function renderizarDestaques() {
+  if (!elementos.featuredProducts) {
     return;
   }
 
-  const destaques = obterMaisVendidos();
+  const produtosDestaque =
+    obterProdutosDestaque();
 
-  elementos.carousel.innerHTML = destaques
-    .map((produto) => criarHTMLProduto(produto, true))
-    .join("");
+  elementos.featuredProducts.innerHTML =
+    produtosDestaque
+      .map(
+        (produtoAtual) =>
+          criarCardProduto(produtoAtual, true)
+      )
+      .join("");
 
-  renderizarIndicadoresCarrossel(destaques.length);
-  configurarFallbackDeImagens(elementos.carousel);
-  configurarLinksProdutos(elementos.carousel);
+  configurarImagens(
+    elementos.featuredProducts
+  );
 }
 
-function renderizarIndicadoresCarrossel(quantidade) {
-  if (!elementos.carouselIndicators) {
-    return;
-  }
+/* =========================================================
+   MOVIMENTO DO CARROSSEL
+========================================================= */
 
-  elementos.carouselIndicators.innerHTML = Array.from(
-    { length: quantidade },
-    (_, indice) => {
-      return `
-        <button
-          type="button"
-          class="${indice === 0 ? "is-active" : ""}"
-          data-carousel-index="${indice}"
-          aria-label="Ir para o produto ${indice + 1}"
-        ></button>
-      `;
-    }
-  ).join("");
-}
-
-function obterLarguraMovimentoCarrossel() {
-  if (!elementos.carousel) {
-    return 300;
+function obterDistanciaCarrossel() {
+  if (!elementos.featuredProducts) {
+    return 280;
   }
 
   const primeiroCard =
-    elementos.carousel.querySelector(".product-card");
+    elementos.featuredProducts.querySelector(
+      ".product-card"
+    );
 
   if (!primeiroCard) {
-    return 300;
+    return 280;
   }
 
   const estilos = window.getComputedStyle(
-    elementos.carousel
+    elementos.featuredProducts
   );
 
-  const gap = Number.parseFloat(estilos.columnGap) || 22;
+  const espacamento =
+    Number.parseFloat(estilos.columnGap) || 16;
 
-  return primeiroCard.getBoundingClientRect().width + gap;
+  return (
+    primeiroCard.getBoundingClientRect().width +
+    espacamento
+  );
 }
 
 function moverCarrossel(direcao) {
-  if (!elementos.carousel) {
-    return;
-  }
+  elementos.featuredProducts?.scrollBy({
+    left:
+      obterDistanciaCarrossel() *
+      direcao,
 
-  elementos.carousel.scrollBy({
-    left: obterLarguraMovimentoCarrossel() * direcao,
     behavior: "smooth"
   });
 }
 
-function atualizarIndicadorCarrossel() {
-  if (
-    !elementos.carousel ||
-    !elementos.carouselIndicators
-  ) {
-    return;
-  }
-
-  const larguraMovimento =
-    obterLarguraMovimentoCarrossel();
-
-  const indice = Math.round(
-    elementos.carousel.scrollLeft / larguraMovimento
-  );
-
-  const indicadores =
-    elementos.carouselIndicators.querySelectorAll("button");
-
-  indicadores.forEach((indicador, indicadorIndice) => {
-    indicador.classList.toggle(
-      "is-active",
-      indicadorIndice === indice
-    );
-  });
-}
-
 function configurarCarrossel() {
-  if (!elementos.carousel) {
-    return;
-  }
-
-  elementos.carouselPrevious?.addEventListener(
+  elementos.featuredPrevious?.addEventListener(
     "click",
     () => moverCarrossel(-1)
   );
 
-  elementos.carouselNext?.addEventListener(
+  elementos.featuredNext?.addEventListener(
     "click",
     () => moverCarrossel(1)
   );
-
-  elementos.carousel.addEventListener(
-    "scroll",
-    atualizarIndicadorCarrossel,
-    { passive: true }
-  );
-
-  elementos.carouselIndicators?.addEventListener(
-    "click",
-    (evento) => {
-      const indicador = evento.target.closest(
-        "[data-carousel-index]"
-      );
-
-      if (!indicador) {
-        return;
-      }
-
-      const indice = Number(
-        indicador.dataset.carouselIndex
-      );
-
-      elementos.carousel.scrollTo({
-        left: obterLarguraMovimentoCarrossel() * indice,
-        behavior: "smooth"
-      });
-    }
-  );
-
-  let intervaloAutomatico = null;
-
-  function iniciarMovimentoAutomatico() {
-    pararMovimentoAutomatico();
-
-    intervaloAutomatico = window.setInterval(() => {
-      const chegouAoFinal =
-        elementos.carousel.scrollLeft +
-          elementos.carousel.clientWidth >=
-        elementos.carousel.scrollWidth - 10;
-
-      if (chegouAoFinal) {
-        elementos.carousel.scrollTo({
-          left: 0,
-          behavior: "smooth"
-        });
-      } else {
-        moverCarrossel(1);
-      }
-    }, 5000);
-  }
-
-  function pararMovimentoAutomatico() {
-    if (intervaloAutomatico) {
-      window.clearInterval(intervaloAutomatico);
-      intervaloAutomatico = null;
-    }
-  }
-
-  elementos.carousel.addEventListener(
-    "mouseenter",
-    pararMovimentoAutomatico
-  );
-
-  elementos.carousel.addEventListener(
-    "mouseleave",
-    iniciarMovimentoAutomatico
-  );
-
-  elementos.carousel.addEventListener(
-    "focusin",
-    pararMovimentoAutomatico
-  );
-
-  elementos.carousel.addEventListener(
-    "focusout",
-    iniciarMovimentoAutomatico
-  );
-
-  document.addEventListener(
-    "visibilitychange",
-    () => {
-      if (document.hidden) {
-        pararMovimentoAutomatico();
-      } else {
-        iniciarMovimentoAutomatico();
-      }
-    }
-  );
-
-  iniciarMovimentoAutomatico();
 }
 
-/* ---------------------------------------------------------
-   FILTROS DO CATÁLOGO
---------------------------------------------------------- */
+/* =========================================================
+   FILTRAGEM DOS PRODUTOS
+========================================================= */
 
 function obterProdutosFiltrados() {
-  const pesquisaNormalizada = normalizarTexto(
+  const pesquisa = normalizarTexto(
     estadoCatalogo.pesquisa
   );
 
-  let resultado = PRODUTOS.filter((produto) => {
-    const correspondeCategoria =
-      estadoCatalogo.categoria === "todos" ||
-      produto.categoria === estadoCatalogo.categoria;
+  let resultado = PRODUTOS.filter(
+    (produtoAtual) => {
+      const correspondeCategoria =
+        estadoCatalogo.categoria === "todos" ||
+        produtoAtual.categoria ===
+          estadoCatalogo.categoria;
 
-    const textoProduto = normalizarTexto(
-      [
-        produto.nome,
-        produto.codigo,
-        produto.categoriaNome,
-        produto.chamada,
-        produto.descricao
-      ].join(" ")
-    );
+      const textoProduto = normalizarTexto(
+        [
+          produtoAtual.nome,
+          produtoAtual.codigo,
+          produtoAtual.marca,
+          produtoAtual.categoriaNome,
+          produtoAtual.chamada,
+          produtoAtual.descricao
+        ].join(" ")
+      );
 
-    const correspondePesquisa =
-      !pesquisaNormalizada ||
-      textoProduto.includes(pesquisaNormalizada);
+      const correspondePesquisa =
+        pesquisa === "" ||
+        textoProduto.includes(pesquisa);
 
-    return correspondeCategoria && correspondePesquisa;
-  });
+      return (
+        correspondeCategoria &&
+        correspondePesquisa
+      );
+    }
+  );
 
-  if (estadoCatalogo.ordem === "nome-az") {
-    resultado = [...resultado].sort((produtoA, produtoB) =>
-      produtoA.nome.localeCompare(
-        produtoB.nome,
-        "pt-BR"
-      )
+  if (
+    estadoCatalogo.ordem === "nome"
+  ) {
+    resultado = [...resultado].sort(
+      (produtoA, produtoB) =>
+        produtoA.nome.localeCompare(
+          produtoB.nome,
+          "pt-BR"
+        )
     );
   }
 
-  if (estadoCatalogo.ordem === "preco-menor") {
+  if (
+    estadoCatalogo.ordem ===
+    "menor-preco"
+  ) {
     resultado = [...resultado].sort(
       (produtoA, produtoB) =>
-        produtoA.preco - produtoB.preco
+        produtoA.preco -
+        produtoB.preco
     );
   }
 
-  if (estadoCatalogo.ordem === "preco-maior") {
+  if (
+    estadoCatalogo.ordem ===
+    "maior-preco"
+  ) {
     resultado = [...resultado].sort(
       (produtoA, produtoB) =>
-        produtoB.preco - produtoA.preco
+        produtoB.preco -
+        produtoA.preco
     );
   }
 
-  if (estadoCatalogo.ordem === "padrao") {
+  if (
+    estadoCatalogo.ordem === "padrao"
+  ) {
     resultado = [...resultado].sort(
-      (produtoA, produtoB) =>
-        produtoA.ordemOriginal -
-        produtoB.ordemOriginal
+      (produtoA, produtoB) => {
+        const destaqueA =
+          produtoA.destaque > 0
+            ? produtoA.destaque
+            : 999;
+
+        const destaqueB =
+          produtoB.destaque > 0
+            ? produtoB.destaque
+            : 999;
+
+        if (destaqueA !== destaqueB) {
+          return destaqueA - destaqueB;
+        }
+
+        return (
+          produtoA.ordemOriginal -
+          produtoB.ordemOriginal
+        );
+      }
     );
   }
 
   return resultado;
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    RENDERIZAÇÃO DO CATÁLOGO
---------------------------------------------------------- */
+========================================================= */
 
 function renderizarCatalogo() {
   if (!elementos.productsGrid) {
     return;
   }
 
-  const produtosFiltrados = obterProdutosFiltrados();
+  const produtosFiltrados =
+    obterProdutosFiltrados();
 
-  const produtosVisiveis = produtosFiltrados.slice(
-    0,
-    estadoCatalogo.quantidadeVisivel
+  const produtosVisiveis =
+    produtosFiltrados.slice(
+      0,
+      estadoCatalogo.quantidadeVisivel
+    );
+
+  elementos.productsGrid.innerHTML =
+    produtosVisiveis
+      .map(
+        (produtoAtual) =>
+          criarCardProduto(produtoAtual)
+      )
+      .join("");
+
+  configurarImagens(
+    elementos.productsGrid
   );
-
-  elementos.productsGrid.innerHTML = produtosVisiveis
-    .map((produto) => criarHTMLProduto(produto, false))
-    .join("");
-
-  configurarFallbackDeImagens(elementos.productsGrid);
-  configurarLinksProdutos(elementos.productsGrid);
 
   atualizarInformacoesCatalogo(
     produtosFiltrados.length,
@@ -1607,83 +1520,96 @@ function atualizarInformacoesCatalogo(
   quantidadeTotal,
   quantidadeVisivel
 ) {
-  if (elementos.catalogResultText) {
+  if (elementos.catalogCount) {
     if (quantidadeTotal === 0) {
-      elementos.catalogResultText.textContent =
+      elementos.catalogCount.textContent =
         "Nenhum produto encontrado.";
     } else if (quantidadeTotal === 1) {
-      elementos.catalogResultText.textContent =
+      elementos.catalogCount.textContent =
         "1 produto encontrado.";
     } else {
-      elementos.catalogResultText.textContent =
-        `${quantidadeTotal} produtos encontrados.`;
+      elementos.catalogCount.textContent =
+        `Exibindo ${quantidadeVisivel} de ${quantidadeTotal} produtos.`;
     }
   }
 
-  if (elementos.emptyResults) {
-    elementos.emptyResults.hidden =
+  if (elementos.catalogEmpty) {
+    elementos.catalogEmpty.hidden =
       quantidadeTotal !== 0;
   }
 
-  if (elementos.loadMoreProducts) {
-    const deveEsconder =
+  const areaBotao =
+    elementos.loadMoreProducts
+      ?.closest(".catalog-more");
+
+  if (areaBotao) {
+    const esconderBotao =
       quantidadeTotal === 0 ||
       quantidadeVisivel >= quantidadeTotal;
 
-    elementos.loadMoreProducts
-      .parentElement
-      ?.classList.toggle(
-        "is-hidden",
-        deveEsconder
+    areaBotao.classList.toggle(
+      "is-hidden",
+      esconderBotao
+    );
+  }
+}
+
+/* =========================================================
+   SELEÇÃO DE CATEGORIA
+========================================================= */
+
+function selecionarCategoria(categoria) {
+  estadoCatalogo.categoria =
+    categoria;
+
+  estadoCatalogo.quantidadeVisivel =
+    CONFIGURACOES.quantidadeInicial;
+
+  elementos.catalogFilters
+    ?.querySelectorAll("[data-category]")
+    .forEach((botao) => {
+      botao.classList.toggle(
+        "is-active",
+        botao.dataset.category === categoria
       );
-  }
-}
-
-/* ---------------------------------------------------------
-   LINKS DOS PRODUTOS
---------------------------------------------------------- */
-
-function configurarLinksProdutos(container) {
-  if (!container) {
-    return;
-  }
-
-  const links = container.querySelectorAll(
-    ".js-product-link"
-  );
-
-  links.forEach((link) => {
-    link.addEventListener("click", (evento) => {
-      if (!whatsappConfigurado()) {
-        evento.preventDefault();
-
-        mostrarToast(
-          "Coloque o número do WhatsApp no início do arquivo script.js."
-        );
-      }
     });
-  });
+
+  renderizarCatalogo();
 }
 
-/* ---------------------------------------------------------
-   EVENTOS DOS FILTROS
---------------------------------------------------------- */
+/* =========================================================
+   PESQUISA
+========================================================= */
+
+function aplicarPesquisa(texto) {
+  estadoCatalogo.pesquisa = texto;
+
+  estadoCatalogo.quantidadeVisivel =
+    CONFIGURACOES.quantidadeInicial;
+
+  if (
+    elementos.catalogSearch &&
+    elementos.catalogSearch.value !== texto
+  ) {
+    elementos.catalogSearch.value = texto;
+  }
+
+  if (
+    elementos.headerSearchInput &&
+    elementos.headerSearchInput.value !== texto
+  ) {
+    elementos.headerSearchInput.value = texto;
+  }
+
+  renderizarCatalogo();
+}
+
+/* =========================================================
+   EVENTOS DO CATÁLOGO
+========================================================= */
 
 function configurarCatalogo() {
-  elementos.productSearch?.addEventListener(
-    "input",
-    (evento) => {
-      estadoCatalogo.pesquisa =
-        evento.target.value;
-
-      estadoCatalogo.quantidadeVisivel =
-        estadoCatalogo.produtosPorPagina;
-
-      renderizarCatalogo();
-    }
-  );
-
-  elementos.categoryFilters?.addEventListener(
+  elementos.catalogFilters?.addEventListener(
     "click",
     (evento) => {
       const botao = evento.target.closest(
@@ -1694,33 +1620,29 @@ function configurarCatalogo() {
         return;
       }
 
-      estadoCatalogo.categoria =
-        botao.dataset.category;
-
-      estadoCatalogo.quantidadeVisivel =
-        estadoCatalogo.produtosPorPagina;
-
-      elementos.categoryFilters
-        .querySelectorAll("[data-category]")
-        .forEach((item) => {
-          item.classList.toggle(
-            "is-active",
-            item === botao
-          );
-        });
-
-      renderizarCatalogo();
+      selecionarCategoria(
+        botao.dataset.category
+      );
     }
   );
 
-  elementos.productOrder?.addEventListener(
+  elementos.catalogSearch?.addEventListener(
+    "input",
+    (evento) => {
+      aplicarPesquisa(
+        evento.target.value
+      );
+    }
+  );
+
+  elementos.catalogOrder?.addEventListener(
     "change",
     (evento) => {
       estadoCatalogo.ordem =
         evento.target.value;
 
       estadoCatalogo.quantidadeVisivel =
-        estadoCatalogo.produtosPorPagina;
+        CONFIGURACOES.quantidadeInicial;
 
       renderizarCatalogo();
     }
@@ -1730,260 +1652,349 @@ function configurarCatalogo() {
     "click",
     () => {
       estadoCatalogo.quantidadeVisivel +=
-        estadoCatalogo.produtosPorPagina;
+        CONFIGURACOES.quantidadePorClique;
 
       renderizarCatalogo();
     }
   );
 
-  elementos.clearFilters?.addEventListener(
+  elementos.clearCatalogFilters?.addEventListener(
     "click",
-    limparFiltrosCatalogo
+    limparCatalogo
   );
 }
 
-function limparFiltrosCatalogo() {
+function limparCatalogo() {
   estadoCatalogo.categoria = "todos";
   estadoCatalogo.pesquisa = "";
   estadoCatalogo.ordem = "padrao";
+
   estadoCatalogo.quantidadeVisivel =
-    estadoCatalogo.produtosPorPagina;
+    CONFIGURACOES.quantidadeInicial;
 
-  if (elementos.productSearch) {
-    elementos.productSearch.value = "";
+  if (elementos.catalogSearch) {
+    elementos.catalogSearch.value = "";
   }
 
-  if (elementos.productOrder) {
-    elementos.productOrder.value = "padrao";
+  if (elementos.headerSearchInput) {
+    elementos.headerSearchInput.value = "";
   }
 
-  elementos.categoryFilters
-    ?.querySelectorAll("[data-category]")
-    .forEach((botao) => {
-      botao.classList.toggle(
-        "is-active",
-        botao.dataset.category === "todos"
+  if (elementos.catalogOrder) {
+    elementos.catalogOrder.value =
+      "padrao";
+  }
+
+  selecionarCategoria("todos");
+}
+
+/* =========================================================
+   PESQUISA DO CABEÇALHO
+========================================================= */
+
+function configurarPesquisaCabecalho() {
+  elementos.headerSearchForm?.addEventListener(
+    "submit",
+    (evento) => {
+      evento.preventDefault();
+
+      const pesquisa =
+        elementos.headerSearchInput
+          ?.value
+          .trim() || "";
+
+      aplicarPesquisa(pesquisa);
+
+      document
+        .getElementById("catalogo")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    }
+  );
+}
+
+/* =========================================================
+   LINKS DAS CATEGORIAS DO MENU
+========================================================= */
+
+function configurarLinksCategorias() {
+  document
+    .querySelectorAll("[data-category-link]")
+    .forEach((link) => {
+      link.addEventListener(
+        "click",
+        (evento) => {
+          evento.preventDefault();
+
+          const categoria =
+            link.dataset.categoryLink;
+
+          selecionarCategoria(categoria);
+          fecharMenuMobile();
+
+          document
+            .getElementById("catalogo")
+            ?.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+        }
       );
     });
-
-  renderizarCatalogo();
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    MENU MOBILE
---------------------------------------------------------- */
+========================================================= */
 
-function abrirMenu() {
-  elementos.navigation?.classList.add("is-open");
-  elementos.menuButton?.classList.add("is-active");
-
-  elementos.menuButton?.setAttribute(
-    "aria-expanded",
-    "true"
+function abrirMenuMobile() {
+  elementos.mobileMenu?.classList.add(
+    "is-open"
   );
 
-  document.body.classList.add("menu-open");
-}
+  elementos.mobileMenuOverlay
+    ?.classList.add("is-visible");
 
-function fecharMenu() {
-  elementos.navigation?.classList.remove("is-open");
-  elementos.menuButton?.classList.remove("is-active");
+  elementos.mobileMenuButton
+    ?.classList.add("is-active");
 
-  elementos.menuButton?.setAttribute(
-    "aria-expanded",
+  elementos.mobileMenuButton
+    ?.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+  elementos.mobileMenu?.setAttribute(
+    "aria-hidden",
     "false"
   );
 
-  document.body.classList.remove("menu-open");
+  document.body.classList.add(
+    "mobile-menu-open"
+  );
 }
 
-function configurarMenu() {
-  elementos.menuButton?.addEventListener(
-    "click",
-    () => {
-      const menuAberto =
-        elementos.navigation?.classList.contains(
-          "is-open"
-        );
+function fecharMenuMobile() {
+  elementos.mobileMenu?.classList.remove(
+    "is-open"
+  );
 
-      if (menuAberto) {
-        fecharMenu();
-      } else {
-        abrirMenu();
+  elementos.mobileMenuOverlay
+    ?.classList.remove("is-visible");
+
+  elementos.mobileMenuButton
+    ?.classList.remove("is-active");
+
+  elementos.mobileMenuButton
+    ?.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  elementos.mobileMenu?.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.classList.remove(
+    "mobile-menu-open"
+  );
+}
+
+function configurarMenuMobile() {
+  elementos.mobileMenuButton?.addEventListener(
+    "click",
+    abrirMenuMobile
+  );
+
+  elementos.mobileMenuClose?.addEventListener(
+    "click",
+    fecharMenuMobile
+  );
+
+  elementos.mobileMenuOverlay?.addEventListener(
+    "click",
+    fecharMenuMobile
+  );
+
+  elementos.mobileMenu
+    ?.querySelectorAll("a")
+    .forEach((link) => {
+      link.addEventListener(
+        "click",
+        fecharMenuMobile
+      );
+    });
+
+  document.addEventListener(
+    "keydown",
+    (evento) => {
+      if (evento.key === "Escape") {
+        fecharMenuMobile();
       }
     }
   );
 
-  elementos.navigation
-    ?.querySelectorAll("a")
-    .forEach((link) => {
-      link.addEventListener("click", fecharMenu);
-    });
-
-  document.addEventListener("keydown", (evento) => {
-    if (evento.key === "Escape") {
-      fecharMenu();
+  window.addEventListener(
+    "resize",
+    () => {
+      if (window.innerWidth > 900) {
+        fecharMenuMobile();
+      }
     }
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 900) {
-      fecharMenu();
-    }
-  });
+  );
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    CABEÇALHO AO ROLAR
---------------------------------------------------------- */
+========================================================= */
 
 function configurarCabecalho() {
   function atualizarCabecalho() {
     elementos.header?.classList.toggle(
       "is-scrolled",
-      window.scrollY > 20
+      window.scrollY > 15
     );
   }
 
   window.addEventListener(
     "scroll",
     atualizarCabecalho,
-    { passive: true }
+    {
+      passive: true
+    }
   );
 
   atualizarCabecalho();
 }
 
-/* ---------------------------------------------------------
-   ANIMAÇÕES AO ROLAR
---------------------------------------------------------- */
+/* =========================================================
+   MENU ATIVO
+========================================================= */
 
-function configurarAnimacoesDeRolagem() {
-  const elementosReveal =
-    document.querySelectorAll(".reveal");
+function configurarMenuAtivo() {
+  const links =
+    document.querySelectorAll(
+      ".desktop-navigation a"
+    );
 
-  if (!("IntersectionObserver" in window)) {
-    elementosReveal.forEach((elemento) => {
-      elemento.classList.add("is-visible");
-    });
+  const secoes =
+    document.querySelectorAll(
+      "main section[id]"
+    );
 
+  if (
+    !("IntersectionObserver" in window)
+  ) {
     return;
   }
 
-  const observador = new IntersectionObserver(
-    (entradas, observer) => {
-      entradas.forEach((entrada) => {
-        if (entrada.isIntersecting) {
-          entrada.target.classList.add(
-            "is-visible"
-          );
+  const observador =
+    new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          if (!entrada.isIntersecting) {
+            return;
+          }
 
-          observer.unobserve(entrada.target);
-        }
-      });
-    },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -50px 0px"
-    }
-  );
+          const idSecao =
+            entrada.target.id;
 
-  elementosReveal.forEach((elemento, indice) => {
-    elemento.style.transitionDelay =
-      `${Math.min(indice * 45, 240)}ms`;
+          links.forEach((link) => {
+            const href =
+              link.getAttribute("href");
 
-    observador.observe(elemento);
+            link.classList.toggle(
+              "is-active",
+              href === `#${idSecao}`
+            );
+          });
+        });
+      },
+      {
+        rootMargin:
+          "-35% 0px -55% 0px",
+
+        threshold: 0
+      }
+    );
+
+  secoes.forEach((secao) => {
+    observador.observe(secao);
   });
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    TOAST
---------------------------------------------------------- */
+========================================================= */
 
 let temporizadorToast = null;
 
 function mostrarToast(mensagem) {
-  if (!elementos.toast || !elementos.toastMessage) {
-    window.alert(mensagem);
+  if (!elementos.siteToast) {
     return;
   }
 
-  elementos.toastMessage.textContent = mensagem;
-  elementos.toast.classList.add("is-visible");
+  elementos.siteToast.textContent =
+    mensagem;
+
+  elementos.siteToast.classList.add(
+    "is-visible"
+  );
 
   if (temporizadorToast) {
-    window.clearTimeout(temporizadorToast);
+    window.clearTimeout(
+      temporizadorToast
+    );
   }
 
-  temporizadorToast = window.setTimeout(() => {
-    elementos.toast.classList.remove("is-visible");
-  }, 3500);
+  temporizadorToast =
+    window.setTimeout(() => {
+      elementos.siteToast
+        ?.classList.remove("is-visible");
+    }, 3200);
 }
 
-/* ---------------------------------------------------------
-   LINKS NÃO CONFIGURADOS
---------------------------------------------------------- */
+/* =========================================================
+   VERIFICAÇÃO DOS LINKS GERAIS
+========================================================= */
 
-function configurarAvisosDeLinks() {
-  document.addEventListener("click", (evento) => {
-    const link = evento.target.closest(
-      "[data-nao-configurado='true']"
-    );
+function configurarWhatsAppGeral() {
+  document
+    .querySelectorAll(
+      `a[href="${CONFIGURACOES.whatsappGeral}"]`
+    )
+    .forEach((link) => {
+      link.setAttribute(
+        "target",
+        "_blank"
+      );
 
-    if (!link) {
-      return;
-    }
-
-    evento.preventDefault();
-
-    mostrarToast(
-      "Coloque o número do WhatsApp no início do arquivo script.js."
-    );
-  });
+      link.setAttribute(
+        "rel",
+        "noopener noreferrer"
+      );
+    });
 }
 
-/* ---------------------------------------------------------
-   LOADER
---------------------------------------------------------- */
-
-function esconderLoader() {
-  if (!elementos.loader) {
-    return;
-  }
-
-  elementos.loader.classList.add("is-hidden");
-
-  window.setTimeout(() => {
-    elementos.loader.remove();
-  }, 700);
-}
-
-function configurarLoader() {
-  window.addEventListener("load", () => {
-    window.setTimeout(esconderLoader, 450);
-  });
-
-  window.setTimeout(esconderLoader, 2800);
-}
-
-/* ---------------------------------------------------------
+/* =========================================================
    INICIALIZAÇÃO
---------------------------------------------------------- */
+========================================================= */
 
 function iniciarSite() {
-  configurarLinksWhatsAppGerais();
-  configurarLinksGmail();
-
-  renderizarCarrossel();
+  renderizarDestaques();
   renderizarCatalogo();
 
   configurarCarrossel();
   configurarCatalogo();
-  configurarMenu();
+  configurarPesquisaCabecalho();
+  configurarLinksCategorias();
+  configurarMenuMobile();
   configurarCabecalho();
-  configurarAnimacoesDeRolagem();
-  configurarAvisosDeLinks();
-  configurarLoader();
+  configurarMenuAtivo();
+  configurarWhatsAppGeral();
 }
 
 document.addEventListener(
