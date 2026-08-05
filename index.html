@@ -2,34 +2,25 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Ana Essenci | Perfumes, Cosméticos e Cuidados Pessoais</title>
 
   <meta
     name="description"
-    content="Perfumes, hidratantes, sabonetes e cuidados pessoais com atendimento personalizado pelo WhatsApp. Ana Essenci."
+    content="Perfumes, hidratantes, sabonetes e cuidados pessoais com atendimento personalizado pelo WhatsApp. Conheça a Ana Essenci."
   >
 
-  <meta name="theme-color" content="#d62b70">
+  <meta name="theme-color" content="#c92b6c">
+  <meta name="color-scheme" content="light">
 
-  <link
-    rel="icon"
-    type="image/x-icon"
-    href="favicon/favicon.ico"
-  >
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet"
   >
 
@@ -37,12 +28,10 @@
 </head>
 <body>
 
-  <!-- Símbolos globais -->
-  <svg
-    class="svg-symbols"
-    aria-hidden="true"
-    focusable="false"
-  >
+  <!-- =====================================================
+       SÍMBOLOS SVG
+  ====================================================== -->
+  <svg class="svg-symbols" aria-hidden="true" focusable="false">
     <symbol id="icon-whatsapp" viewBox="0 0 24 24">
       <path
         fill="currentColor"
@@ -59,77 +48,62 @@
     </symbol>
 
     <symbol id="icon-search" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="m21 19.6-4.3-4.3a8 8 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z"
-      />
+      <path fill="currentColor" d="m21 19.6-4.3-4.3a8 8 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z"/>
     </symbol>
 
     <symbol id="icon-menu" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
-      />
+      <path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
     </symbol>
 
     <symbol id="icon-close" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
-      />
+      <path fill="currentColor" d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/>
     </symbol>
 
     <symbol id="icon-arrow-left" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="M14.7 5.3 8 12l6.7 6.7 1.4-1.4L10.8 12l5.3-5.3z"
-      />
+      <path fill="currentColor" d="M14.7 5.3 8 12l6.7 6.7 1.4-1.4L10.8 12l5.3-5.3z"/>
     </symbol>
 
     <symbol id="icon-arrow-right" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="m9.3 18.7 6.7-6.7-6.7-6.7-1.4 1.4 5.3 5.3-5.3 5.3z"
-      />
+      <path fill="currentColor" d="m9.3 18.7 6.7-6.7-6.7-6.7-1.4 1.4 5.3 5.3-5.3 5.3z"/>
     </symbol>
 
     <symbol id="icon-shield" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="M12 2 4 5v6c0 5.1 3.4 9.8 8 11 4.6-1.2 8-5.9 8-11V5l-8-3Z"
-      />
+      <path fill="currentColor" d="M12 2 4 5v6c0 5.1 3.4 9.8 8 11 4.6-1.2 8-5.9 8-11V5l-8-3Zm0 3.1 5 1.9v4c0 3.5-2.1 6.9-5 8-2.9-1.1-5-4.5-5-8V7l5-1.9Z"/>
     </symbol>
 
     <symbol id="icon-truck" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="M3 4h11v9h2.5l2.5-3H21l2 3v5h-2a3 3 0 0 1-6 0H9a3 3 0 0 1-6 0H1V6a2 2 0 0 1 2-2Zm1 2v7h8V6H4Zm3 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
-      />
+      <path fill="currentColor" d="M3 4h11v9h2.5l2.5-3H21l2 3v5h-2a3 3 0 0 1-6 0H9a3 3 0 0 1-6 0H1V6a2 2 0 0 1 2-2Zm1 2v7h8V6H4Zm3 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/>
     </symbol>
 
     <symbol id="icon-star" viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="m12 2 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.3l-5.6 2.9 1.1-6.2L3 8.6l6.2-.9L12 2z"
-      />
+      <path fill="currentColor" d="m12 2 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.3l-5.6 2.9 1.1-6.2L3 8.6l6.2-.9L12 2z"/>
+    </symbol>
+
+    <symbol id="icon-bag" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 7V6a5 5 0 0 1 10 0v1h3l1 15H3L4 7h3Zm2 0h6V6a3 3 0 0 0-6 0v1Zm-3.1 2-.7 11h13.6l-.7-11H17v2h-2V9H9v2H7V9H5.9Z"/>
     </symbol>
   </svg>
 
-  <!-- topo -->
+  <!-- =====================================================
+       BARRA SUPERIOR
+  ====================================================== -->
   <div class="topbar">
     <div class="container topbar__content">
       <p>Perfumes, hidratantes, sabonetes e cuidados pessoais</p>
+
       <a
         href="https://wa.me/message/RFPQVIOKJU7AJ1"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Atendimento via WhatsApp
+        Atendimento pelo WhatsApp
       </a>
     </div>
   </div>
 
-  <!-- header -->
+  <!-- =====================================================
+       CABEÇALHO
+  ====================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container site-header__main">
 
@@ -146,11 +120,7 @@
         </svg>
       </button>
 
-      <a
-        href="#inicio"
-        class="site-logo"
-        aria-label="Ana Essenci"
-      >
+      <a href="#inicio" class="site-logo" aria-label="Ana Essenci">
         <img
           src="logo/logo.jpg"
           alt="Ana Essenci"
@@ -159,29 +129,19 @@
         >
       </a>
 
-      <form
-        class="site-search"
-        id="siteSearchForm"
-        role="search"
-      >
-        <label
-          class="sr-only"
-          for="siteSearchInput"
-        >
+      <form class="site-search" id="siteSearchForm" role="search">
+        <label class="sr-only" for="siteSearchInput">
           Pesquisar produto
         </label>
 
         <input
           id="siteSearchInput"
           type="search"
-          placeholder="Pesquise pelo nome ou código do produto"
+          placeholder="Pesquise pelo nome ou código"
           autocomplete="off"
         >
 
-        <button
-          type="submit"
-          aria-label="Pesquisar"
-        >
+        <button type="submit" aria-label="Pesquisar">
           <svg aria-hidden="true">
             <use href="#icon-search"></use>
           </svg>
@@ -194,7 +154,6 @@
           class="header-action header-action--whatsapp"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Falar no WhatsApp"
         >
           <span class="header-action__icon">
             <svg aria-hidden="true">
@@ -211,7 +170,6 @@
         <a
           href="mailto:loja.anaessenci@gmail.com?subject=Atendimento%20-%20Ana%20Essenci"
           class="header-action header-action--gmail"
-          aria-label="Enviar e-mail"
         >
           <span class="header-action__icon">
             <svg aria-hidden="true">
@@ -220,17 +178,14 @@
           </span>
 
           <span class="header-action__text">
-            <strong>E-mail</strong>
+            <strong>Gmail</strong>
             <small>Suporte da loja</small>
           </span>
         </a>
       </div>
     </div>
 
-    <nav
-      class="main-nav"
-      aria-label="Navegação principal"
-    >
+    <nav class="main-nav" aria-label="Navegação principal">
       <div class="container main-nav__links">
         <a href="#inicio" class="is-active">Início</a>
         <a href="#marcas">Marcas</a>
@@ -241,28 +196,16 @@
     </nav>
   </header>
 
-  <!-- menu mobile -->
-  <div
-    class="mobile-menu-backdrop"
-    id="mobileMenuBackdrop"
-  ></div>
+  <!-- =====================================================
+       MENU MOBILE
+  ====================================================== -->
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
 
-  <aside
-    class="mobile-menu"
-    id="mobileMenu"
-    aria-hidden="true"
-  >
+  <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu__header">
-      <img
-        src="logo/logo.jpg"
-        alt="Ana Essenci"
-      >
+      <img src="logo/logo.jpg" alt="Ana Essenci">
 
-      <button
-        type="button"
-        id="mobileMenuClose"
-        aria-label="Fechar menu"
-      >
+      <button type="button" id="mobileMenuClose" aria-label="Fechar menu">
         <svg aria-hidden="true">
           <use href="#icon-close"></use>
         </svg>
@@ -297,88 +240,131 @@
         <svg aria-hidden="true">
           <use href="#icon-gmail"></use>
         </svg>
-        <span>E-mail</span>
+        <span>Gmail</span>
       </a>
     </div>
   </aside>
 
   <main>
 
-    <!-- banner principal -->
-    <section class="hero" id="inicio" aria-label="Destaque Ana Essenci">
-      <picture class="hero__picture">
-        <source
-          media="(max-width: 768px)"
-          srcset="banners/banner-mobile.jpg"
-        >
+    <!-- ===================================================
+         APRESENTAÇÃO PRINCIPAL — SEM BANNER DE IMAGEM
+    ==================================================== -->
+    <section class="hero" id="inicio">
+      <div class="hero__decoration hero__decoration--one"></div>
+      <div class="hero__decoration hero__decoration--two"></div>
+      <div class="hero__decoration hero__decoration--three"></div>
 
-        <img
-          src="banners/banner-desktop.jpg"
-          alt="Ana Essenci — perfumes, hidratantes, sabonetes e cuidados pessoais"
-          class="hero__image"
-          width="1920"
-          height="700"
-          fetchpriority="high"
-          decoding="async"
-        >
-      </picture>
-    </section>
+      <div class="container hero__layout">
+        <div class="hero__content">
+          <span class="hero__eyebrow">Beleza que combina com você</span>
 
-    <!-- diferenciais -->
-    <section class="benefits">
-      <div class="container benefits__grid">
+          <h1>
+            Perfumes e cuidados
+            <span>para marcar presença.</span>
+          </h1>
 
-        <article class="benefit-card">
-          <div class="benefit-card__icon">
-            <svg aria-hidden="true">
-              <use href="#icon-shield"></use>
-            </svg>
+          <p>
+            Descubra fragrâncias, hidratantes e sabonetes selecionados
+            para transformar sua rotina e tornar cada presente mais especial.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#catalogo" class="button button--primary">
+              Explorar produtos
+            </a>
+
+            <a
+              href="https://wa.me/message/RFPQVIOKJU7AJ1"
+              class="button button--secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Falar no WhatsApp
+            </a>
           </div>
 
-          <div class="benefit-card__content">
+          <div class="hero__proof">
+            <span>Atendimento personalizado</span>
+            <span>Envio para todo o Brasil</span>
+            <span>Compra direta pelo WhatsApp</span>
+          </div>
+        </div>
+
+        <div class="hero__showcase" aria-label="Destaques da Ana Essenci">
+          <div class="hero__showcase-card hero__showcase-card--large">
+            <span class="hero__showcase-kicker">Seleção especial</span>
+            <strong>Perfumes desejados</strong>
+            <p>Fragrâncias femininas e masculinas para todos os estilos.</p>
+          </div>
+
+          <div class="hero__showcase-row">
+            <div class="hero__showcase-card">
+              <span class="hero__showcase-number">01</span>
+              <strong>Presentes</strong>
+              <p>Escolhas elegantes para surpreender.</p>
+            </div>
+
+            <div class="hero__showcase-card">
+              <span class="hero__showcase-number">02</span>
+              <strong>Autocuidado</strong>
+              <p>Produtos para deixar a rotina mais especial.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         BENEFÍCIOS
+    ==================================================== -->
+    <section class="benefits" aria-label="Diferenciais da Ana Essenci">
+      <div class="container benefits__grid">
+        <article class="benefit-card">
+          <span class="benefit-card__icon">
+            <svg aria-hidden="true"><use href="#icon-shield"></use></svg>
+          </span>
+
+          <div>
             <strong>Atendimento confiável</strong>
-            <p>Suporte direto, humano e organizado.</p>
+            <p>Suporte direto, claro e organizado.</p>
           </div>
         </article>
 
         <article class="benefit-card">
-          <div class="benefit-card__icon">
-            <svg aria-hidden="true">
-              <use href="#icon-truck"></use>
-            </svg>
-          </div>
+          <span class="benefit-card__icon">
+            <svg aria-hidden="true"><use href="#icon-truck"></use></svg>
+          </span>
 
-          <div class="benefit-card__content">
-            <strong>Envio para todo o Brasil</strong>
+          <div>
+            <strong>Envio nacional</strong>
             <p>Consulte frete e prazo para seu CEP.</p>
           </div>
         </article>
 
         <article class="benefit-card">
-          <div class="benefit-card__icon">
-            <svg aria-hidden="true">
-              <use href="#icon-star"></use>
-            </svg>
-          </div>
+          <span class="benefit-card__icon">
+            <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+          </span>
 
-          <div class="benefit-card__content">
+          <div>
             <strong>Produtos selecionados</strong>
-            <p>Itens escolhidos para vender com mais força.</p>
+            <p>Opções para uso pessoal e presentes.</p>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- marcas -->
+    <!-- ===================================================
+         MARCAS
+    ==================================================== -->
     <section class="section brands-section" id="marcas">
       <div class="container">
-        <div class="section-heading section-heading--center">
+        <header class="section-heading section-heading--center">
           <span class="section-kicker">Marcas</span>
           <h2>As marcas que seu público já procura</h2>
-          <p>
-            Um catálogo com linhas reconhecidas e desejadas.
-          </p>
-        </div>
+          <p>Um catálogo com opções reconhecidas e desejadas.</p>
+        </header>
 
         <div class="brands-grid">
           <article class="brand-card">
@@ -402,122 +388,98 @@
           </article>
 
           <article class="brand-card">
-            <img src="marcas/quem-disse-berenice.webp" alt="Quem Disse, Berenice?" loading="lazy">
+            <img
+              src="marcas/quem-disse-berenice.webp"
+              alt="Quem Disse, Berenice?"
+              loading="lazy"
+            >
           </article>
         </div>
       </div>
     </section>
 
-    <!-- mais vendidos -->
+    <!-- ===================================================
+         CARROSSEL DE MAIS VENDIDOS
+    ==================================================== -->
     <section class="section featured-section" id="mais-vendidos">
       <div class="container">
         <div class="section-heading">
           <div>
             <span class="section-kicker">Seleção especial</span>
-            <h2>Os 10 perfumes mais vendidos</h2>
-            <p>
-              Produtos com maior apelo de venda e maior procura.
-            </p>
+            <h2>Perfumes mais vendidos</h2>
+            <p>Uma vitrine automática com os produtos de maior destaque.</p>
           </div>
 
-          <div class="slider-buttons">
-            <button
-              type="button"
-              id="featuredPrev"
-              aria-label="Voltar"
-            >
-              <svg aria-hidden="true">
-                <use href="#icon-arrow-left"></use>
-              </svg>
+          <div class="carousel-controls">
+            <button type="button" id="featuredPrev" aria-label="Produto anterior">
+              <svg aria-hidden="true"><use href="#icon-arrow-left"></use></svg>
             </button>
 
-            <button
-              type="button"
-              id="featuredNext"
-              aria-label="Avançar"
-            >
-              <svg aria-hidden="true">
-                <use href="#icon-arrow-right"></use>
-              </svg>
+            <button type="button" id="featuredNext" aria-label="Próximo produto">
+              <svg aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
             </button>
           </div>
         </div>
 
+        <div class="featured-carousel" id="featuredCarousel">
+          <div class="featured-track" id="featuredTrack"></div>
+        </div>
+
         <div
-          class="featured-track"
-          id="featuredTrack"
+          class="carousel-pagination"
+          id="featuredPagination"
+          aria-label="Paginação do carrossel"
         ></div>
       </div>
     </section>
 
-    <!-- catálogo -->
+    <!-- ===================================================
+         CATÁLOGO
+    ==================================================== -->
     <section class="section catalog-section" id="catalogo">
       <div class="container">
-        <div class="section-heading section-heading--center">
+        <header class="section-heading section-heading--center">
           <span class="section-kicker">Catálogo</span>
           <h2>Escolha o produto ideal</h2>
           <p>
-            Pesquise, filtre e envie direto para o WhatsApp com nome,
-            código e preço prontos.
+            Pesquise, filtre e envie sua escolha diretamente para o WhatsApp.
           </p>
-        </div>
+        </header>
 
         <div class="catalog-controls">
           <div class="catalog-filters" id="catalogFilters">
-            <button
-              type="button"
-              class="catalog-filter is-active"
-              data-category="todos"
-            >
+            <button type="button" class="catalog-filter is-active" data-category="todos">
               Todos
             </button>
 
-            <button
-              type="button"
-              class="catalog-filter"
-              data-category="feminino"
-            >
+            <button type="button" class="catalog-filter" data-category="feminino">
               Feminino
             </button>
 
-            <button
-              type="button"
-              class="catalog-filter"
-              data-category="masculino"
-            >
+            <button type="button" class="catalog-filter" data-category="masculino">
               Masculino
             </button>
 
-            <button
-              type="button"
-              class="catalog-filter"
-              data-category="hidratantes"
-            >
+            <button type="button" class="catalog-filter" data-category="hidratantes">
               Hidratantes
             </button>
 
-            <button
-              type="button"
-              class="catalog-filter"
-              data-category="sabonetes"
-            >
+            <button type="button" class="catalog-filter" data-category="sabonetes">
               Sabonetes
             </button>
           </div>
 
           <div class="catalog-tools">
-            <div class="catalog-search">
-              <svg aria-hidden="true">
-                <use href="#icon-search"></use>
-              </svg>
+            <label class="catalog-search" for="catalogSearch">
+              <svg aria-hidden="true"><use href="#icon-search"></use></svg>
 
               <input
                 type="search"
                 id="catalogSearch"
-                placeholder="Pesquisar por nome ou código"
+                placeholder="Pesquisar nome ou código"
                 autocomplete="off"
               >
-            </div>
+            </label>
 
             <select id="catalogSort" aria-label="Ordenar produtos">
               <option value="padrao">Mais vendidos</option>
@@ -532,65 +494,48 @@
           <p id="catalogCount">Carregando produtos...</p>
         </div>
 
-        <div
-          class="products-grid"
-          id="productsGrid"
-        ></div>
+        <div class="products-grid" id="productsGrid"></div>
 
-        <div
-          class="catalog-empty"
-          id="catalogEmpty"
-          hidden
-        >
+        <div class="catalog-empty" id="catalogEmpty" hidden>
           <h3>Nenhum produto encontrado</h3>
           <p>Tente pesquisar outro nome, código ou categoria.</p>
 
-          <button
-            type="button"
-            id="clearFilters"
-            class="btn btn--primary"
-          >
+          <button type="button" id="clearFilters" class="button button--primary">
             Limpar filtros
           </button>
         </div>
 
         <div class="catalog-load-more" id="catalogLoadMoreWrap">
-          <button
-            type="button"
-            id="loadMoreProducts"
-            class="btn btn--outline"
-          >
+          <button type="button" id="loadMoreProducts" class="button button--outline">
             Ver mais produtos
           </button>
         </div>
       </div>
     </section>
 
-    <!-- atendimento -->
+    <!-- ===================================================
+         ATENDIMENTO
+    ==================================================== -->
     <section class="section support-section" id="atendimento">
       <div class="container">
-        <div class="section-heading section-heading--center">
+        <header class="section-heading section-heading--center">
           <span class="section-kicker">Atendimento</span>
           <h2>Fale com a Ana Essenci</h2>
-          <p>
-            Tire dúvidas, consulte disponibilidade, pagamento, frete e entrega.
-          </p>
-        </div>
+          <p>Consulte disponibilidade, pagamento, frete e entrega.</p>
+        </header>
 
         <div class="support-grid">
           <article class="support-card support-card--whatsapp">
-            <div class="support-card__icon">
-              <svg aria-hidden="true">
-                <use href="#icon-whatsapp"></use>
-              </svg>
-            </div>
+            <span class="support-card__icon">
+              <svg aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+            </span>
 
             <div class="support-card__content">
               <span>Atendimento principal</span>
               <h3>WhatsApp</h3>
               <p>
-                Converse diretamente para comprar, consultar estoque,
-                confirmar pagamento e alinhar a entrega.
+                Converse diretamente para comprar, confirmar estoque,
+                formas de pagamento e entrega.
               </p>
 
               <a
@@ -605,18 +550,16 @@
           </article>
 
           <article class="support-card support-card--gmail">
-            <div class="support-card__icon">
-              <svg aria-hidden="true">
-                <use href="#icon-gmail"></use>
-              </svg>
-            </div>
+            <span class="support-card__icon">
+              <svg aria-hidden="true"><use href="#icon-gmail"></use></svg>
+            </span>
 
             <div class="support-card__content">
               <span>Suporte por e-mail</span>
               <h3>Gmail</h3>
               <p>
-                Use o e-mail para dúvidas, suporte, política de envio,
-                trocas, devoluções e atendimento complementar.
+                Use o e-mail para suporte, dúvidas sobre pedidos,
+                trocas, devoluções e entregas.
               </p>
 
               <a
@@ -633,10 +576,11 @@
 
   </main>
 
-  <!-- rodapé -->
+  <!-- =====================================================
+       RODAPÉ SEM LOGO, LOCALIZAÇÃO OU CARRINHO
+  ====================================================== -->
   <footer class="site-footer">
     <div class="container site-footer__content">
-
       <div class="site-footer__column">
         <h3>Navegação</h3>
         <a href="#inicio">Início</a>
@@ -665,13 +609,11 @@
           WhatsApp
         </a>
 
-        <a
-          href="mailto:loja.anaessenci@gmail.com"
-        >
+        <a href="mailto:loja.anaessenci@gmail.com">
           loja.anaessenci@gmail.com
         </a>
 
-        <p>Atendimento exclusivamente online</p>
+        <p>Atendimento exclusivamente online.</p>
       </div>
     </div>
 
@@ -682,7 +624,9 @@
     </div>
   </footer>
 
-  <!-- botão flutuante -->
+  <!-- =====================================================
+       WHATSAPP FLUTUANTE
+  ====================================================== -->
   <a
     href="https://wa.me/message/RFPQVIOKJU7AJ1"
     class="floating-whatsapp"
@@ -694,6 +638,12 @@
       <use href="#icon-whatsapp"></use>
     </svg>
   </a>
+
+  <noscript>
+    <div class="noscript-message">
+      Ative o JavaScript para visualizar o catálogo e utilizar todos os recursos.
+    </div>
+  </noscript>
 
   <script src="script.js"></script>
 </body>

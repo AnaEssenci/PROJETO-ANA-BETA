@@ -697,8 +697,7 @@ const PRODUCTS = [
     price: 89.90,
     category: "hidratantes"
   }),
-
-  /* =======================================================
+    /* =======================================================
      SABONETES
   ======================================================= */
 
@@ -837,6 +836,12 @@ function cacheElements() {
 
   elements.featuredTrack =
     document.getElementById("featuredTrack");
+
+  elements.featuredCarousel =
+    document.getElementById("featuredCarousel");
+
+  elements.featuredPagination =
+    document.getElementById("featuredPagination");
 
   elements.catalogFilters =
     document.getElementById("catalogFilters");
@@ -1144,16 +1149,9 @@ function createProductWhatsAppUrl(product) {
    CARD DE PRODUTO
 ========================================================= */
 
-function createProductCard(
-  product,
-  isFeatured = false
-) {
-  const salesCopy =
-    createSalesCopy(product);
-
-  const productName =
-    escapeHtml(product.name);
-
+function createProductCard(product, isFeatured = false) {
+  const salesCopy = createSalesCopy(product);
+  const productName = escapeHtml(product.name);
   const categoryText =
     `${product.brand} • ${product.categoryLabel}`;
 
@@ -1212,6 +1210,7 @@ function createProductCard(
         <div class="product-card__offer">
 
           <div class="product-card__price-area">
+
             <span class="product-card__price-label">
               Valor do produto
             </span>
@@ -1221,8 +1220,9 @@ function createProductCard(
             </strong>
 
             <span class="product-card__payment">
-              Consulte disponibilidade, pagamento e entrega
+              Consulte estoque, pagamento e entrega
             </span>
+
           </div>
 
           <a
@@ -1327,102 +1327,79 @@ function renderFeaturedProducts() {
     elements.featuredTrack
   );
 }
-
 /* =========================================================
    FILTRO, PESQUISA E ORDENAÇÃO
 ========================================================= */
 
 function getFilteredProducts() {
-  const query =
-    normalizeText(state.query);
+  const query = normalizeText(state.query);
 
-  let result =
-    PRODUCTS.filter((product) => {
-      const matchesCategory =
-        state.category === "todos" ||
-        product.category ===
-          state.category;
+  let result = PRODUCTS.filter((product) => {
+    const matchesCategory =
+      state.category === "todos" ||
+      product.category === state.category;
 
-      const salesCopy =
-        createSalesCopy(product);
+    const salesCopy = createSalesCopy(product);
 
-      const searchableText =
-        normalizeText(
-          [
-            product.name,
-            product.code,
-            product.brand,
-            product.categoryLabel,
-            salesCopy.copy,
-            salesCopy.description
-          ].join(" ")
-        );
+    const searchableText = normalizeText(
+      [
+        product.name,
+        product.code,
+        product.brand,
+        product.categoryLabel,
+        salesCopy.copy,
+        salesCopy.description
+      ].join(" ")
+    );
 
-      const matchesQuery =
-        query === "" ||
-        searchableText.includes(query);
+    const matchesQuery =
+      query === "" ||
+      searchableText.includes(query);
 
-      return (
-        matchesCategory &&
-        matchesQuery
-      );
-    });
+    return matchesCategory && matchesQuery;
+  });
 
   if (state.sort === "nome") {
-    result = [...result].sort(
-      (productA, productB) =>
-        productA.name.localeCompare(
-          productB.name,
-          "pt-BR",
-          {
-            sensitivity: "base"
-          }
-        )
+    result = [...result].sort((productA, productB) =>
+      productA.name.localeCompare(
+        productB.name,
+        "pt-BR",
+        {
+          sensitivity: "base"
+        }
+      )
     );
-  } else if (
-    state.sort === "menor-preco"
-  ) {
+  } else if (state.sort === "menor-preco") {
     result = [...result].sort(
       (productA, productB) =>
-        productA.price -
-        productB.price
+        productA.price - productB.price
     );
-  } else if (
-    state.sort === "maior-preco"
-  ) {
+  } else if (state.sort === "maior-preco") {
     result = [...result].sort(
       (productA, productB) =>
-        productB.price -
-        productA.price
+        productB.price - productA.price
     );
   } else {
-    result = [...result].sort(
-      (productA, productB) => {
-        const featuredA =
-          productA.featured > 0
-            ? productA.featured
-            : Number.POSITIVE_INFINITY;
+    result = [...result].sort((productA, productB) => {
+      const featuredA =
+        productA.featured > 0
+          ? productA.featured
+          : Number.POSITIVE_INFINITY;
 
-        const featuredB =
-          productB.featured > 0
-            ? productB.featured
-            : Number.POSITIVE_INFINITY;
+      const featuredB =
+        productB.featured > 0
+          ? productB.featured
+          : Number.POSITIVE_INFINITY;
 
-        if (
-          featuredA !== featuredB
-        ) {
-          return (
-            featuredA -
-            featuredB
-          );
-        }
-
-        return (
-          productA.originalOrder -
-          productB.originalOrder
-        );
+      if (featuredA !== featuredB) {
+        return featuredA - featuredB;
       }
-    );
+
+      return (
+        productA.originalOrder -
+        productB.originalOrder
+      );
+    });
   }
 
   return result;
@@ -1432,10 +1409,7 @@ function getFilteredProducts() {
    RESUMO DO CATÁLOGO
 ========================================================= */
 
-function updateCatalogSummary(
-  total,
-  visible
-) {
+function updateCatalogSummary(total, visible) {
   if (elements.catalogCount) {
     if (total === 0) {
       elements.catalogCount.textContent =
@@ -1454,15 +1428,11 @@ function updateCatalogSummary(
       total !== 0;
   }
 
-  if (
-    elements.catalogLoadMoreWrap
-  ) {
-    elements.catalogLoadMoreWrap
-      .classList.toggle(
-        "is-hidden",
-        total === 0 ||
-        visible >= total
-      );
+  if (elements.catalogLoadMoreWrap) {
+    elements.catalogLoadMoreWrap.classList.toggle(
+      "is-hidden",
+      total === 0 || visible >= total
+    );
   }
 }
 
@@ -1486,9 +1456,8 @@ function renderCatalog() {
 
   elements.productsGrid.innerHTML =
     visibleProducts
-      .map(
-        (product) =>
-          createProductCard(product)
+      .map((product) =>
+        createProductCard(product)
       )
       .join("");
 
@@ -1503,24 +1472,20 @@ function renderCatalog() {
 }
 
 /* =========================================================
-   CONTROLE DE CATEGORIA
+   CATEGORIAS
 ========================================================= */
 
 function setCategory(category) {
   state.category = category;
-
   state.visibleLimit =
     CONFIG.initialProductLimit;
 
   elements.catalogFilters
-    ?.querySelectorAll(
-      "[data-category]"
-    )
+    ?.querySelectorAll("[data-category]")
     .forEach((button) => {
       button.classList.toggle(
         "is-active",
-        button.dataset.category ===
-          category
+        button.dataset.category === category
       );
     });
 
@@ -1528,12 +1493,11 @@ function setCategory(category) {
 }
 
 /* =========================================================
-   CONTROLE DA PESQUISA
+   PESQUISA
 ========================================================= */
 
 function setSearchQuery(query) {
   state.query = query;
-
   state.visibleLimit =
     CONFIG.initialProductLimit;
 
@@ -1541,16 +1505,14 @@ function setSearchQuery(query) {
     elements.catalogSearch &&
     elements.catalogSearch.value !== query
   ) {
-    elements.catalogSearch.value =
-      query;
+    elements.catalogSearch.value = query;
   }
 
   if (
     elements.siteSearchInput &&
     elements.siteSearchInput.value !== query
   ) {
-    elements.siteSearchInput.value =
-      query;
+    elements.siteSearchInput.value = query;
   }
 
   renderCatalog();
@@ -1564,7 +1526,6 @@ function resetCatalog() {
   state.category = "todos";
   state.query = "";
   state.sort = "padrao";
-
   state.visibleLimit =
     CONFIG.initialProductLimit;
 
@@ -1577,8 +1538,7 @@ function resetCatalog() {
   }
 
   if (elements.catalogSort) {
-    elements.catalogSort.value =
-      "padrao";
+    elements.catalogSort.value = "padrao";
   }
 
   setCategory("todos");
@@ -1589,65 +1549,57 @@ function resetCatalog() {
 ========================================================= */
 
 function setupCatalogEvents() {
-  elements.catalogFilters
-    ?.addEventListener(
-      "click",
-      (event) => {
-        const button =
-          event.target.closest(
-            "[data-category]"
-          );
+  elements.catalogFilters?.addEventListener(
+    "click",
+    (event) => {
+      const button = event.target.closest(
+        "[data-category]"
+      );
 
-        if (!button) {
-          return;
-        }
-
-        setCategory(
-          button.dataset.category
-        );
+      if (!button) {
+        return;
       }
-    );
 
-  elements.catalogSearch
-    ?.addEventListener(
-      "input",
-      (event) => {
-        setSearchQuery(
-          event.target.value
-        );
-      }
-    );
+      setCategory(
+        button.dataset.category
+      );
+    }
+  );
 
-  elements.catalogSort
-    ?.addEventListener(
-      "change",
-      (event) => {
-        state.sort =
-          event.target.value;
+  elements.catalogSearch?.addEventListener(
+    "input",
+    (event) => {
+      setSearchQuery(
+        event.target.value
+      );
+    }
+  );
 
-        state.visibleLimit =
-          CONFIG.initialProductLimit;
+  elements.catalogSort?.addEventListener(
+    "change",
+    (event) => {
+      state.sort = event.target.value;
+      state.visibleLimit =
+        CONFIG.initialProductLimit;
 
-        renderCatalog();
-      }
-    );
+      renderCatalog();
+    }
+  );
 
-  elements.loadMoreProducts
-    ?.addEventListener(
-      "click",
-      () => {
-        state.visibleLimit +=
-          CONFIG.productLimitStep;
+  elements.loadMoreProducts?.addEventListener(
+    "click",
+    () => {
+      state.visibleLimit +=
+        CONFIG.productLimitStep;
 
-        renderCatalog();
-      }
-    );
+      renderCatalog();
+    }
+  );
 
-  elements.clearFilters
-    ?.addEventListener(
-      "click",
-      resetCatalog
-    );
+  elements.clearFilters?.addEventListener(
+    "click",
+    resetCatalog
+  );
 }
 
 /* =========================================================
@@ -1655,31 +1607,30 @@ function setupCatalogEvents() {
 ========================================================= */
 
 function setupHeaderSearch() {
-  elements.siteSearchForm
-    ?.addEventListener(
-      "submit",
-      (event) => {
-        event.preventDefault();
+  elements.siteSearchForm?.addEventListener(
+    "submit",
+    (event) => {
+      event.preventDefault();
 
-        const query =
-          elements.siteSearchInput
-            ?.value
-            .trim() ?? "";
+      const query =
+        elements.siteSearchInput
+          ?.value
+          .trim() ?? "";
 
-        setSearchQuery(query);
+      setSearchQuery(query);
 
-        document
-          .getElementById("catalogo")
-          ?.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-      }
-    );
+      document
+        .getElementById("catalogo")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    }
+  );
 }
 
 /* =========================================================
-   MENU DO CELULAR
+   MENU MOBILE
 ========================================================= */
 
 function openMobileMenu() {
@@ -1693,56 +1644,57 @@ function openMobileMenu() {
   lastFocusedElement =
     document.activeElement;
 
-  elements.mobileMenu
-    .classList.add("is-open");
+  elements.mobileMenu.classList.add(
+    "is-open"
+  );
 
-  elements.mobileMenuBackdrop
-    .classList.add("is-visible");
+  elements.mobileMenuBackdrop.classList.add(
+    "is-visible"
+  );
 
-  elements.mobileMenu
-    .setAttribute(
-      "aria-hidden",
-      "false"
-    );
+  elements.mobileMenu.setAttribute(
+    "aria-hidden",
+    "false"
+  );
 
-  elements.mobileMenuToggle
-    ?.setAttribute(
-      "aria-expanded",
-      "true"
-    );
+  elements.mobileMenuToggle?.setAttribute(
+    "aria-expanded",
+    "true"
+  );
 
-  document.body
-    .classList.add("menu-is-open");
+  document.body.classList.add(
+    "menu-is-open"
+  );
 
   window.setTimeout(() => {
-    elements.mobileMenuClose
-      ?.focus();
+    elements.mobileMenuClose?.focus();
   }, 50);
 }
 
 function closeMobileMenu({
   restoreFocus = true
 } = {}) {
-  elements.mobileMenu
-    ?.classList.remove("is-open");
+  elements.mobileMenu?.classList.remove(
+    "is-open"
+  );
 
-  elements.mobileMenuBackdrop
-    ?.classList.remove("is-visible");
+  elements.mobileMenuBackdrop?.classList.remove(
+    "is-visible"
+  );
 
-  elements.mobileMenu
-    ?.setAttribute(
-      "aria-hidden",
-      "true"
-    );
+  elements.mobileMenu?.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
-  elements.mobileMenuToggle
-    ?.setAttribute(
-      "aria-expanded",
-      "false"
-    );
+  elements.mobileMenuToggle?.setAttribute(
+    "aria-expanded",
+    "false"
+  );
 
-  document.body
-    .classList.remove("menu-is-open");
+  document.body.classList.remove(
+    "menu-is-open"
+  );
 
   if (
     restoreFocus &&
@@ -1753,34 +1705,31 @@ function closeMobileMenu({
 }
 
 function setupMobileMenu() {
-  elements.mobileMenuToggle
-    ?.addEventListener(
-      "click",
-      () => {
-        const isOpen =
-          elements.mobileMenu
-            ?.classList
-            .contains("is-open");
+  elements.mobileMenuToggle?.addEventListener(
+    "click",
+    () => {
+      const isOpen =
+        elements.mobileMenu?.classList.contains(
+          "is-open"
+        );
 
-        if (isOpen) {
-          closeMobileMenu();
-        } else {
-          openMobileMenu();
-        }
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
       }
-    );
+    }
+  );
 
-  elements.mobileMenuClose
-    ?.addEventListener(
-      "click",
-      () => closeMobileMenu()
-    );
+  elements.mobileMenuClose?.addEventListener(
+    "click",
+    () => closeMobileMenu()
+  );
 
-  elements.mobileMenuBackdrop
-    ?.addEventListener(
-      "click",
-      () => closeMobileMenu()
-    );
+  elements.mobileMenuBackdrop?.addEventListener(
+    "click",
+    () => closeMobileMenu()
+  );
 
   elements.mobileMenu
     ?.querySelectorAll("a")
@@ -1799,9 +1748,9 @@ function setupMobileMenu() {
     "keydown",
     (event) => {
       const isOpen =
-        elements.mobileMenu
-          ?.classList
-          .contains("is-open");
+        elements.mobileMenu?.classList.contains(
+          "is-open"
+        );
 
       if (
         event.key === "Escape" &&
@@ -1815,9 +1764,7 @@ function setupMobileMenu() {
   window.addEventListener(
     "resize",
     () => {
-      if (
-        window.innerWidth > 920
-      ) {
+      if (window.innerWidth > 920) {
         closeMobileMenu({
           restoreFocus: false
         });
@@ -1827,137 +1774,418 @@ function setupMobileMenu() {
 }
 
 /* =========================================================
-   CARROSSEL DOS MAIS VENDIDOS
+   CARROSSEL AUTOMÁTICO
 ========================================================= */
 
-function getFeaturedScrollAmount() {
-  const firstCard =
-    elements.featuredTrack
-      ?.querySelector(
-        ".product-card"
-      );
+const carouselState = {
+  timer: null,
+  currentPage: 0,
+  pageCount: 0,
+  isPaused: false
+};
 
-  if (
-    !firstCard ||
-    !elements.featuredTrack
-  ) {
-    return 300;
+function getCardsPerView() {
+  if (window.innerWidth <= 700) {
+    return 1;
   }
 
-  const styles =
-    window.getComputedStyle(
-      elements.featuredTrack
-    );
+  if (window.innerWidth <= 920) {
+    return 2;
+  }
 
-  const gap =
-    Number.parseFloat(
-      styles.columnGap ||
-      styles.gap
-    ) || 24;
+  if (window.innerWidth <= 1180) {
+    return 3;
+  }
+
+  return 4;
+}
+
+function getFeaturedCards() {
+  return [
+    ...(elements.featuredTrack?.querySelectorAll(
+      ".product-card"
+    ) ?? [])
+  ];
+}
+
+function getCarouselGap() {
+  if (!elements.featuredTrack) {
+    return 20;
+  }
+
+  const styles = window.getComputedStyle(
+    elements.featuredTrack
+  );
 
   return (
-    firstCard
-      .getBoundingClientRect()
-      .width +
-    gap
+    Number.parseFloat(
+      styles.columnGap
+    ) ||
+    Number.parseFloat(
+      styles.gap
+    ) ||
+    20
   );
 }
 
-let featuredAutoplayTimer = null;
+function getCarouselPageWidth() {
+  const firstCard =
+    getFeaturedCards()[0];
 
-function moveFeaturedSlider(direction = 1) {
-  const track = elements.featuredTrack;
-
-  if (!track) {
-    return;
+  if (!firstCard) {
+    return 0;
   }
 
-  const maximumScroll =
-    track.scrollWidth - track.clientWidth;
+  const cardsPerView =
+    getCardsPerView();
 
-  const reachedEnd =
-    track.scrollLeft >= maximumScroll - 8;
+  const gap =
+    getCarouselGap();
 
-  const reachedStart =
-    track.scrollLeft <= 8;
-
-  if (direction > 0 && reachedEnd) {
-    track.scrollTo({
-      left: 0,
-      behavior: "smooth"
-    });
-    return;
-  }
-
-  if (direction < 0 && reachedStart) {
-    track.scrollTo({
-      left: maximumScroll,
-      behavior: "smooth"
-    });
-    return;
-  }
-
-  track.scrollBy({
-    left: getFeaturedScrollAmount() * direction,
-    behavior: "smooth"
-  });
+  return (
+    firstCard.getBoundingClientRect().width +
+    gap
+  ) * cardsPerView;
 }
 
-function stopFeaturedAutoplay() {
-  if (featuredAutoplayTimer !== null) {
-    window.clearInterval(featuredAutoplayTimer);
-    featuredAutoplayTimer = null;
-  }
-}
+function calculateCarouselPages() {
+  const totalCards =
+    getFeaturedCards().length;
 
-function startFeaturedAutoplay() {
-  stopFeaturedAutoplay();
+  const cardsPerView =
+    getCardsPerView();
+
+  carouselState.pageCount =
+    Math.max(
+      1,
+      Math.ceil(
+        totalCards / cardsPerView
+      )
+    );
 
   if (
-    !elements.featuredTrack ||
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    carouselState.currentPage >=
+    carouselState.pageCount
+  ) {
+    carouselState.currentPage = 0;
+  }
+}
+
+function renderCarouselPagination() {
+  if (!elements.featuredPagination) {
+    return;
+  }
+
+  calculateCarouselPages();
+
+  elements.featuredPagination.innerHTML =
+    Array.from(
+      {
+        length:
+          carouselState.pageCount
+      },
+      (_, index) => `
+        <button
+          type="button"
+          class="carousel-dot ${
+            index ===
+            carouselState.currentPage
+              ? "is-active"
+              : ""
+          }"
+          data-carousel-page="${index}"
+          aria-label="Ir para o grupo ${
+            index + 1
+          }"
+          aria-current="${
+            index ===
+            carouselState.currentPage
+              ? "true"
+              : "false"
+          }"
+        ></button>
+      `
+    ).join("");
+}
+
+function updateCarouselPagination() {
+  elements.featuredPagination
+    ?.querySelectorAll(
+      "[data-carousel-page]"
+    )
+    .forEach((button) => {
+      const page = Number(
+        button.dataset.carouselPage
+      );
+
+      const isActive =
+        page ===
+        carouselState.currentPage;
+
+      button.classList.toggle(
+        "is-active",
+        isActive
+      );
+
+      button.setAttribute(
+        "aria-current",
+        String(isActive)
+      );
+    });
+}
+
+function goToCarouselPage(
+  page,
+  behavior = "smooth"
+) {
+  if (!elements.featuredTrack) {
+    return;
+  }
+
+  calculateCarouselPages();
+
+  const normalizedPage =
+    (
+      page +
+      carouselState.pageCount
+    ) %
+    carouselState.pageCount;
+
+  carouselState.currentPage =
+    normalizedPage;
+
+  const pageWidth =
+    getCarouselPageWidth();
+
+  elements.featuredTrack.scrollTo({
+    left:
+      normalizedPage *
+      pageWidth,
+    behavior
+  });
+
+  updateCarouselPagination();
+}
+
+function nextCarouselPage() {
+  goToCarouselPage(
+    carouselState.currentPage + 1
+  );
+}
+
+function previousCarouselPage() {
+  goToCarouselPage(
+    carouselState.currentPage - 1
+  );
+}
+
+function stopCarouselAutoplay() {
+  if (carouselState.timer) {
+    window.clearInterval(
+      carouselState.timer
+    );
+
+    carouselState.timer = null;
+  }
+}
+
+function startCarouselAutoplay() {
+  stopCarouselAutoplay();
+
+  if (
+    carouselState.isPaused ||
+    document.hidden ||
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
   ) {
     return;
   }
 
-  featuredAutoplayTimer = window.setInterval(() => {
-    moveFeaturedSlider(1);
-  }, 4500);
+  carouselState.timer =
+    window.setInterval(
+      nextCarouselPage,
+      4500
+    );
 }
 
-function setupFeaturedSlider() {
-  elements.featuredPrev?.addEventListener("click", () => {
-    moveFeaturedSlider(-1);
-    startFeaturedAutoplay();
-  });
+function pauseCarousel() {
+  carouselState.isPaused = true;
+  stopCarouselAutoplay();
+}
 
-  elements.featuredNext?.addEventListener("click", () => {
-    moveFeaturedSlider(1);
-    startFeaturedAutoplay();
-  });
+function resumeCarousel() {
+  carouselState.isPaused = false;
+  startCarouselAutoplay();
+}
 
-  const track = elements.featuredTrack;
-
-  if (!track) {
+function synchronizeCarouselFromScroll() {
+  if (!elements.featuredTrack) {
     return;
   }
 
-  track.addEventListener("mouseenter", stopFeaturedAutoplay);
-  track.addEventListener("mouseleave", startFeaturedAutoplay);
-  track.addEventListener("focusin", stopFeaturedAutoplay);
-  track.addEventListener("focusout", startFeaturedAutoplay);
-  track.addEventListener("touchstart", stopFeaturedAutoplay, { passive: true });
-  track.addEventListener("touchend", startFeaturedAutoplay, { passive: true });
+  const pageWidth =
+    getCarouselPageWidth();
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      stopFeaturedAutoplay();
-    } else {
-      startFeaturedAutoplay();
+  if (pageWidth <= 0) {
+    return;
+  }
+
+  const page = Math.round(
+    elements.featuredTrack.scrollLeft /
+    pageWidth
+  );
+
+  carouselState.currentPage =
+    Math.min(
+      Math.max(page, 0),
+      carouselState.pageCount - 1
+    );
+
+  updateCarouselPagination();
+}
+
+function setupFeaturedSlider() {
+  if (!elements.featuredTrack) {
+    return;
+  }
+
+  renderCarouselPagination();
+
+  elements.featuredPrev?.addEventListener(
+    "click",
+    () => {
+      previousCarouselPage();
+      startCarouselAutoplay();
     }
-  });
+  );
 
-  startFeaturedAutoplay();
+  elements.featuredNext?.addEventListener(
+    "click",
+    () => {
+      nextCarouselPage();
+      startCarouselAutoplay();
+    }
+  );
+
+  elements.featuredPagination?.addEventListener(
+    "click",
+    (event) => {
+      const button = event.target.closest(
+        "[data-carousel-page]"
+      );
+
+      if (!button) {
+        return;
+      }
+
+      goToCarouselPage(
+        Number(
+          button.dataset.carouselPage
+        )
+      );
+
+      startCarouselAutoplay();
+    }
+  );
+
+  let scrollTimer = null;
+
+  elements.featuredTrack.addEventListener(
+    "scroll",
+    () => {
+      window.clearTimeout(
+        scrollTimer
+      );
+
+      scrollTimer =
+        window.setTimeout(
+          synchronizeCarouselFromScroll,
+          100
+        );
+    },
+    {
+      passive: true
+    }
+  );
+
+  elements.featuredCarousel?.addEventListener(
+    "mouseenter",
+    pauseCarousel
+  );
+
+  elements.featuredCarousel?.addEventListener(
+    "mouseleave",
+    resumeCarousel
+  );
+
+  elements.featuredCarousel?.addEventListener(
+    "focusin",
+    pauseCarousel
+  );
+
+  elements.featuredCarousel?.addEventListener(
+    "focusout",
+    resumeCarousel
+  );
+
+  elements.featuredTrack.addEventListener(
+    "touchstart",
+    pauseCarousel,
+    {
+      passive: true
+    }
+  );
+
+  elements.featuredTrack.addEventListener(
+    "touchend",
+    resumeCarousel,
+    {
+      passive: true
+    }
+  );
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) {
+        stopCarouselAutoplay();
+      } else {
+        startCarouselAutoplay();
+      }
+    }
+  );
+
+  let resizeTimer = null;
+
+  window.addEventListener(
+    "resize",
+    () => {
+      window.clearTimeout(
+        resizeTimer
+      );
+
+      resizeTimer =
+        window.setTimeout(
+          () => {
+            carouselState.currentPage =
+              0;
+
+            renderCarouselPagination();
+
+            goToCarouselPage(
+              0,
+              "auto"
+            );
+
+            startCarouselAutoplay();
+          },
+          180
+        );
+    }
+  );
+
+  startCarouselAutoplay();
 }
 
 /* =========================================================
@@ -1966,11 +2194,10 @@ function setupFeaturedSlider() {
 
 function setupStickyHeader() {
   const updateHeader = () => {
-    elements.siteHeader
-      ?.classList.toggle(
-        "is-scrolled",
-        window.scrollY > 16
-      );
+    elements.siteHeader?.classList.toggle(
+      "is-scrolled",
+      window.scrollY > 16
+    );
   };
 
   window.addEventListener(
@@ -2021,7 +2248,10 @@ function setupActiveNavigation() {
                 entry.isIntersecting
             )
             .sort(
-              (entryA, entryB) =>
+              (
+                entryA,
+                entryB
+              ) =>
                 entryB.intersectionRatio -
                 entryA.intersectionRatio
             )[0];
@@ -2034,7 +2264,9 @@ function setupActiveNavigation() {
           (link) => {
             link.classList.toggle(
               "is-active",
-              link.getAttribute("href") ===
+              link.getAttribute(
+                "href"
+              ) ===
                 `#${visibleEntry.target.id}`
             );
           }
@@ -2078,6 +2310,24 @@ function setupGeneralWhatsAppLinks() {
 }
 
 /* =========================================================
+   ANO DO RODAPÉ
+========================================================= */
+
+function setupCurrentYear() {
+  const yearElement =
+    document.getElementById(
+      "currentYear"
+    );
+
+  if (yearElement) {
+    yearElement.textContent =
+      String(
+        new Date().getFullYear()
+      );
+  }
+}
+
+/* =========================================================
    INICIALIZAÇÃO
 ========================================================= */
 
@@ -2094,6 +2344,7 @@ function initializeSite() {
   setupStickyHeader();
   setupActiveNavigation();
   setupGeneralWhatsAppLinks();
+  setupCurrentYear();
 }
 
 document.addEventListener(
