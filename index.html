@@ -2,235 +2,795 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ana Essenci | Perfumes, Cosméticos e Cuidados Pessoais</title>
   <meta
-    name="description"
-    content="Perfumes, hidratantes, cosméticos e cuidados pessoais das melhores marcas. Enviamos para todo o Brasil."
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
   >
 
-  <link rel="icon" href="favicon/favicon.ico">
+  <title>Ana Essenci | Perfumes, Cosméticos e Cuidados Pessoais</title>
+
+  <meta
+    name="description"
+    content="Perfumes, hidratantes, sabonetes e cosméticos das melhores marcas. Atendimento personalizado e envio para todo o Brasil."
+  >
+
+  <meta
+    name="keywords"
+    content="perfumes, cosméticos, hidratantes, sabonetes, O Boticário, Natura, Avon, Eudora, Ana Essenci"
+  >
+
+  <meta name="author" content="Ana Essenci">
+  <meta name="theme-color" content="#6f2448">
+
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="favicon/favicon.ico"
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet"
   >
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="page-glow page-glow--one"></div>
-  <div class="page-glow page-glow--two"></div>
 
-  <header class="header">
+  <!-- Barra de carregamento -->
+  <div class="page-loader" id="pageLoader">
+    <div class="page-loader__content">
+      <img
+        src="logo/logo.jpg"
+        alt="Logo Ana Essenci"
+        class="page-loader__logo"
+      >
+
+      <div class="page-loader__bar">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header class="header" id="header">
     <div class="container header__content">
-      <a class="brand" href="#inicio" aria-label="Ir para o início">
-        <span class="brand__symbol">AE</span>
-        <span class="brand__text">Ana Essenci</span>
+
+      <a
+        href="#inicio"
+        class="header__logo"
+        aria-label="Ir para o início"
+      >
+        <img
+          src="logo/logo.jpg"
+          alt="Ana Essenci"
+        >
       </a>
 
-      <nav class="nav" aria-label="Navegação principal">
+      <nav
+        class="navigation"
+        id="navigation"
+        aria-label="Navegação principal"
+      >
         <a href="#inicio">Início</a>
+        <a href="#mais-vendidos">Mais vendidos</a>
+        <a href="#catalogo">Produtos</a>
         <a href="#marcas">Marcas</a>
         <a href="#atendimento">Atendimento</a>
       </nav>
 
-      <a
-        class="header__button js-whatsapp-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Falar no WhatsApp
-      </a>
+      <div class="header__actions">
+        <a
+          href="#"
+          class="header__whatsapp js-whatsapp-geral"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="icons/whatsapp.png"
+            alt=""
+          >
+
+          <span>WhatsApp</span>
+        </a>
+
+        <button
+          type="button"
+          class="menu-button"
+          id="menuButton"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
     </div>
   </header>
 
   <main>
-    <section class="hero" id="inicio">
-      <div class="container hero__content">
-        <div class="hero__badge reveal">
-          Beleza, cuidado e autenticidade
-        </div>
 
-        <h1 class="hero__title reveal">
-          Perfumes, cosméticos e cuidados que combinam com você.
-        </h1>
+    <!-- Banner principal -->
+    <section
+      class="hero"
+      id="inicio"
+      aria-label="Apresentação da Ana Essenci"
+    >
+      <div class="hero__banner">
 
-        <p class="hero__description reveal">
-          Produtos selecionados das melhores marcas, atendimento personalizado
-          e envio para todo o Brasil.
-        </p>
-
-        <div class="hero__actions reveal">
-          <a
-            class="button button--primary js-whatsapp-link"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
+        <picture>
+          <source
+            media="(max-width: 700px)"
+            srcset="banners/banner-mobile.jpg"
           >
-            <img src="icons/whatsapp.png" alt="">
-            Comprar pelo WhatsApp
-          </a>
 
-          <a class="button button--secondary" href="#marcas">
-            Conhecer as marcas
-          </a>
+          <img
+            src="banners/banner-desktop.jpg"
+            alt="Ana Essenci - perfumes, cosméticos e cuidados pessoais"
+            class="hero__image"
+          >
+        </picture>
+
+        <div class="hero__overlay"></div>
+
+        <div class="container hero__content">
+          <div class="hero__text">
+
+            <span class="hero__eyebrow">
+              Perfumes e cuidados pessoais
+            </span>
+
+            <h1>
+              Beleza, cuidado e fragrâncias para todos os momentos.
+            </h1>
+
+            <p>
+              Encontre perfumes, hidratantes, sabonetes e cosméticos
+              selecionados das marcas que você ama.
+            </p>
+
+            <div class="hero__buttons">
+
+              <a
+                href="#catalogo"
+                class="button button--primary"
+              >
+                Ver produtos
+              </a>
+
+              <a
+                href="#"
+                class="button button--whatsapp js-whatsapp-geral"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="icons/whatsapp.png"
+                  alt=""
+                >
+
+                Comprar pelo WhatsApp
+              </a>
+
+            </div>
+
+            <div class="hero__benefits">
+              <span>Atendimento personalizado</span>
+              <span>Envio para todo o Brasil</span>
+              <span>Produtos selecionados</span>
+            </div>
+
+          </div>
         </div>
 
-        <div class="hero__trust reveal">
-          <span>✓ Atendimento personalizado</span>
-          <span>✓ Envio para todo o Brasil</span>
-          <span>✓ Produtos selecionados</span>
+        <div class="hero__scroll">
+          <span>Descubra mais</span>
+          <div class="hero__scroll-line"></div>
         </div>
+
       </div>
-
-      <div class="hero__decoration hero__decoration--one"></div>
-      <div class="hero__decoration hero__decoration--two"></div>
     </section>
 
-    <section class="brands section" id="marcas">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-heading__eyebrow">Marcas que você ama</span>
-          <h2>Encontre seus produtos favoritos</h2>
+    <!-- Introdução -->
+    <section class="introduction">
+      <div class="container introduction__grid">
+
+        <div class="introduction__content reveal">
+          <span class="section-eyebrow">
+            Conheça a Ana Essenci
+          </span>
+
+          <h2>
+            Produtos escolhidos para valorizar sua beleza e seu cuidado.
+          </h2>
+
           <p>
-            Trabalhamos com perfumes, hidratantes, maquiagem, sabonetes,
-            cuidados pessoais e muito mais.
+            Trabalhamos com perfumes femininos, perfumes masculinos,
+            hidratantes, sabonetes, cosméticos e opções para presentear.
+          </p>
+
+          <p>
+            Consulte a disponibilidade diretamente pelo WhatsApp e receba
+            atendimento personalizado antes de finalizar seu pedido.
+          </p>
+        </div>
+
+        <div class="introduction__numbers reveal">
+
+          <article>
+            <strong>80+</strong>
+            <span>Produtos cadastrados</span>
+          </article>
+
+          <article>
+            <strong>6</strong>
+            <span>Grandes marcas</span>
+          </article>
+
+          <article>
+            <strong>Brasil</strong>
+            <span>Envios para todo o país</span>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Mais vendidos -->
+    <section
+      class="best-sellers section"
+      id="mais-vendidos"
+    >
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-eyebrow">
+              Seleção especial
+            </span>
+
+            <h2>Perfumes mais vendidos</h2>
+
+            <p>
+              Conheça dez fragrâncias que fazem sucesso entre nossos clientes.
+            </p>
+          </div>
+
+          <div class="carousel-controls">
+            <button
+              type="button"
+              class="carousel-button"
+              id="carouselPrevious"
+              aria-label="Ver produtos anteriores"
+            >
+              &#8592;
+            </button>
+
+            <button
+              type="button"
+              class="carousel-button"
+              id="carouselNext"
+              aria-label="Ver próximos produtos"
+            >
+              &#8594;
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel-wrapper reveal">
+
+          <div
+            class="products-carousel"
+            id="productsCarousel"
+            aria-label="Carrossel de perfumes mais vendidos"
+          >
+            <!-- Os 10 produtos serão inseridos pelo script.js -->
+          </div>
+
+          <div
+            class="carousel-indicators"
+            id="carouselIndicators"
+            aria-hidden="true"
+          ></div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Catálogo -->
+    <section
+      class="catalog section"
+      id="catalogo"
+    >
+      <div class="container">
+
+        <div class="section-heading section-heading--center reveal">
+          <span class="section-eyebrow">
+            Nosso catálogo
+          </span>
+
+          <h2>Encontre o produto ideal</h2>
+
+          <p>
+            Pesquise pelo nome, código ou escolha uma categoria.
+          </p>
+        </div>
+
+        <div class="catalog-toolbar reveal">
+
+          <div class="search-box">
+            <span class="search-box__icon" aria-hidden="true">
+              &#128269;
+            </span>
+
+            <input
+              type="search"
+              id="productSearch"
+              placeholder="Pesquisar produto ou código..."
+              autocomplete="off"
+              aria-label="Pesquisar produtos"
+            >
+          </div>
+
+          <div
+            class="category-filters"
+            id="categoryFilters"
+            aria-label="Filtrar produtos por categoria"
+          >
+            <button
+              type="button"
+              class="filter-button is-active"
+              data-category="todos"
+            >
+              Todos
+            </button>
+
+            <button
+              type="button"
+              class="filter-button"
+              data-category="masculino"
+            >
+              Masculinos
+            </button>
+
+            <button
+              type="button"
+              class="filter-button"
+              data-category="feminino"
+            >
+              Femininos
+            </button>
+
+            <button
+              type="button"
+              class="filter-button"
+              data-category="hidratantes"
+            >
+              Hidratantes
+            </button>
+
+            <button
+              type="button"
+              class="filter-button"
+              data-category="sabonetes"
+            >
+              Sabonetes
+            </button>
+          </div>
+
+        </div>
+
+        <div class="catalog-result-info reveal">
+          <p id="catalogResultText">
+            Carregando produtos...
+          </p>
+
+          <select
+            id="productOrder"
+            aria-label="Ordenar produtos"
+          >
+            <option value="padrao">Ordenar por</option>
+            <option value="nome-az">Nome: A–Z</option>
+            <option value="preco-menor">Menor preço</option>
+            <option value="preco-maior">Maior preço</option>
+          </select>
+        </div>
+
+        <div
+          class="products-grid"
+          id="productsGrid"
+        >
+          <!-- Os produtos serão inseridos pelo script.js -->
+        </div>
+
+        <div
+          class="empty-results"
+          id="emptyResults"
+          hidden
+        >
+          <h3>Nenhum produto encontrado</h3>
+
+          <p>
+            Tente pesquisar outro nome, código ou categoria.
+          </p>
+
+          <button
+            type="button"
+            class="button button--secondary"
+            id="clearFilters"
+          >
+            Limpar pesquisa
+          </button>
+        </div>
+
+        <div class="catalog-load-more">
+          <button
+            type="button"
+            class="button button--secondary"
+            id="loadMoreProducts"
+          >
+            Mostrar mais produtos
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Marcas -->
+    <section
+      class="brands section"
+      id="marcas"
+    >
+      <div class="container">
+
+        <div class="section-heading section-heading--center reveal">
+          <span class="section-eyebrow">
+            Marcas
+          </span>
+
+          <h2>Trabalhamos com grandes nomes da beleza</h2>
+
+          <p>
+            Uma seleção multimarcas para você encontrar diferentes
+            fragrâncias e cuidados em um só lugar.
           </p>
         </div>
 
         <div class="brands__grid">
+
           <article class="brand-card reveal">
-            <img src="marcas/boticario.webp" alt="O Boticário">
+            <img
+              src="marcas/boticario.webp"
+              alt="O Boticário"
+              loading="lazy"
+            >
           </article>
 
           <article class="brand-card reveal">
-            <img src="marcas/natura.webp" alt="Natura">
+            <img
+              src="marcas/natura.webp"
+              alt="Natura"
+              loading="lazy"
+            >
           </article>
 
           <article class="brand-card reveal">
-            <img src="marcas/AVON.webp" alt="Avon">
+            <img
+              src="marcas/avon.webp"
+              alt="Avon"
+              loading="lazy"
+            >
           </article>
 
           <article class="brand-card reveal">
-            <img src="marcas/eudora.webp" alt="Eudora">
+            <img
+              src="marcas/eudora.webp"
+              alt="Eudora"
+              loading="lazy"
+            >
           </article>
 
           <article class="brand-card reveal">
-            <img src="marcas/quem-disse-berenice.webp" alt="Quem Disse, Berenice?">
+            <img
+              src="marcas/quem-disse-berenice.webp"
+              alt="Quem Disse, Berenice?"
+              loading="lazy"
+            >
           </article>
 
           <article class="brand-card reveal">
-            <img src="marcas/oui.webp" alt="O.U.i">
+            <img
+              src="marcas/oui.webp"
+              alt="O.U.i"
+              loading="lazy"
+            >
           </article>
+
         </div>
+
       </div>
     </section>
 
-    <section class="service section" id="atendimento">
+    <!-- Atendimento -->
+    <section
+      class="service section"
+      id="atendimento"
+    >
       <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-heading__eyebrow">Atendimento</span>
-          <h2>Escolha como falar com a gente</h2>
+
+        <div class="section-heading section-heading--center reveal">
+          <span class="section-eyebrow">
+            Atendimento
+          </span>
+
+          <h2>Estamos aqui para ajudar</h2>
+
           <p>
-            Tire dúvidas, consulte disponibilidade e faça seu pedido.
+            Consulte produtos, tire dúvidas e solicite suporte.
           </p>
         </div>
 
         <div class="service__grid">
+
           <article class="contact-card reveal">
-            <div class="contact-card__icon">
-              <img src="icons/whatsapp.png" alt="">
+
+            <div class="contact-card__icon contact-card__icon--whatsapp">
+              <img
+                src="icons/whatsapp.png"
+                alt=""
+              >
             </div>
 
             <div class="contact-card__content">
+              <span class="contact-card__label">
+                Compras e atendimento
+              </span>
+
               <h3>WhatsApp</h3>
-              <p>Atendimento rápido e personalizado para suas compras.</p>
+
+              <p>
+                Consulte disponibilidade, preço, formas de pagamento
+                e opções de envio.
+              </p>
 
               <a
-                class="contact-card__link js-whatsapp-link"
                 href="#"
+                class="contact-card__button contact-card__button--whatsapp js-whatsapp-geral"
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <img
+                  src="icons/whatsapp.png"
+                  alt=""
+                >
+
                 Conversar no WhatsApp
-                <span aria-hidden="true">→</span>
               </a>
             </div>
+
           </article>
 
           <article class="contact-card reveal">
-            <div class="contact-card__icon">
-              <img src="icons/gmail.png" alt="">
+
+            <div class="contact-card__icon contact-card__icon--gmail">
+              <img
+                src="icons/gmail.png"
+                alt=""
+              >
             </div>
 
             <div class="contact-card__content">
-              <h3>E-mail</h3>
-              <p>Envie sua dúvida, solicitação de suporte ou proposta.</p>
+              <span class="contact-card__label">
+                Dúvidas e suporte
+              </span>
 
-              <a class="contact-card__link js-email-link" href="#">
+              <h3>E-mail</h3>
+
+              <p>
+                Entre em contato para dúvidas, solicitações ou suporte
+                relacionado ao seu atendimento.
+              </p>
+
+              <a
+                href="#"
+                class="contact-card__button contact-card__button--gmail js-gmail-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="icons/gmail.png"
+                  alt=""
+                >
+
                 Enviar e-mail
-                <span aria-hidden="true">→</span>
               </a>
+
+              <span class="contact-card__email">
+                loja.anaessenci@gmail.com
+              </span>
             </div>
+
           </article>
+
         </div>
 
-        <div class="instagram-box reveal">
+      </div>
+    </section>
+
+    <!-- Chamada final -->
+    <section class="final-call">
+      <div class="container">
+
+        <div class="final-call__content reveal">
+
           <div>
-            <span class="instagram-box__eyebrow">Acompanhe a Ana Essenci</span>
-            <h3>Novidades, ofertas e lançamentos no Instagram.</h3>
+            <span class="section-eyebrow section-eyebrow--light">
+              Ana Essenci
+            </span>
+
+            <h2>
+              Encontrou o produto que combina com você?
+            </h2>
+
+            <p>
+              Fale pelo WhatsApp e confirme disponibilidade,
+              pagamento e entrega.
+            </p>
           </div>
 
           <a
-            class="button button--dark js-instagram-link"
             href="#"
+            class="button button--light js-whatsapp-geral"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Seguir no Instagram
+            <img
+              src="icons/whatsapp.png"
+              alt=""
+            >
+
+            Fazer meu pedido
           </a>
+
         </div>
+
       </div>
     </section>
+
   </main>
 
+  <!-- Rodapé -->
   <footer class="footer">
-    <div class="container footer__content">
+    <div class="container footer__top">
+
       <div class="footer__brand">
-        <span class="brand__symbol brand__symbol--footer">AE</span>
-        <div>
-          <strong>Ana Essenci</strong>
-          <p>Perfumes, cosméticos e cuidados pessoais.</p>
-        </div>
+
+        <img
+          src="logo/logo.jpg"
+          alt="Ana Essenci"
+          class="footer__logo"
+        >
+
+        <p>
+          Perfumes, cosméticos e cuidados pessoais selecionados
+          para diferentes estilos e momentos.
+        </p>
+
       </div>
 
-      <nav class="footer__links" aria-label="Links institucionais">
-        <a href="paginas/privacidade.html">Política de Privacidade</a>
-        <a href="paginas/termos.html">Termos de Uso</a>
-        <a href="paginas/trocas-devolucoes.html">Trocas e Devoluções</a>
-        <a href="paginas/envios.html">Política de Envio</a>
-        <a href="paginas/perguntas-frequentes.html">Perguntas Frequentes</a>
-      </nav>
+      <div class="footer__column">
+        <h3>Navegação</h3>
+
+        <a href="#inicio">Início</a>
+        <a href="#mais-vendidos">Mais vendidos</a>
+        <a href="#catalogo">Produtos</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#atendimento">Atendimento</a>
+      </div>
+
+      <div class="footer__column">
+        <h3>Informações</h3>
+
+        <a href="paginas/termos-de-uso.html">
+          Termos de Uso
+        </a>
+
+        <a href="paginas/politica-de-privacidade.html">
+          Política de Privacidade
+        </a>
+
+        <a href="paginas/trocas-e-devolucoes.html">
+          Trocas e Devoluções
+        </a>
+
+        <a href="paginas/politica-de-envio.html">
+          Política de Envio
+        </a>
+
+        <a href="paginas/perguntas-frequentes.html">
+          Perguntas Frequentes
+        </a>
+      </div>
+
+      <div class="footer__column">
+        <h3>Atendimento</h3>
+
+        <a
+          href="#"
+          class="js-whatsapp-geral"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp
+        </a>
+
+        <a
+          href="#"
+          class="js-gmail-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          loja.anaessenci@gmail.com
+        </a>
+      </div>
+
     </div>
 
     <div class="container footer__bottom">
-      <p>© 2026 Ana Essenci. Todos os direitos reservados.</p>
+
+      <p>
+        © 2026 Ana Essenci. Todos os direitos reservados.
+      </p>
+
+      <p>
+        Revendedora multimarcas independente.
+      </p>
+
     </div>
   </footer>
 
+  <!-- Botão flutuante do WhatsApp -->
   <a
-    class="floating-whatsapp js-whatsapp-link"
     href="#"
+    class="floating-whatsapp js-whatsapp-geral"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Falar com a Ana Essenci pelo WhatsApp"
   >
-    <img src="icons/whatsapp.png" alt="">
+    <img
+      src="icons/whatsapp.png"
+      alt=""
+    >
+
+    <span>Fale conosco</span>
   </a>
+
+  <!-- Aviso de produto adicionado à mensagem -->
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  >
+    <span id="toastMessage"></span>
+  </div>
+
+  <noscript>
+    <div class="noscript-message">
+      Ative o JavaScript no navegador para visualizar os produtos
+      e usar todos os recursos do site.
+    </div>
+  </noscript>
 
   <script src="script.js"></script>
 </body>
