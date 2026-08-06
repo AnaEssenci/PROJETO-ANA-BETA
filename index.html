@@ -15,7 +15,7 @@
     content="Perfumes, hidratantes, sabonetes e produtos de beleza com atendimento personalizado pela Ana Essenci."
   >
 
-  <meta name="theme-color" content="#d92f77">
+  <meta name="theme-color" content="#f8dce8">
 
   <link
     rel="icon"
@@ -32,382 +32,840 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --rosa-fundo: #f8dce8;
+      --rosa-fundo-claro: #fff7fa;
+      --rosa-card: rgba(255, 255, 255, 0.92);
+      --rosa-principal: #d82f75;
+      --rosa-escuro: #a91f59;
+      --vinho: #4f1d31;
+
+      --verde-whatsapp: #22c663;
+      --verde-whatsapp-escuro: #128c4a;
+
+      --texto: #39252e;
+      --texto-suave: #77636c;
+      --texto-claro: #9a858e;
+
+      --branco: #ffffff;
+      --borda: rgba(94, 34, 59, 0.1);
+
+      --sombra-card:
+        0 12px 35px rgba(89, 30, 56, 0.09);
+
+      --sombra-hover:
+        0 18px 45px rgba(89, 30, 56, 0.16);
+
+      --transicao:
+        0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--texto);
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(255, 255, 255, 0.76),
+          transparent 27%
+        ),
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(216, 47, 117, 0.11),
+          transparent 30%
+        ),
+        linear-gradient(
+          160deg,
+          #fdebf2,
+          var(--rosa-fundo)
+        );
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      font: inherit;
+    }
+
+    .page-shell {
+      width: min(100%, 680px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 38px 24px 44px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .profile__logo {
+      display: grid;
+      place-items: center;
+      width: 126px;
+      height: 126px;
+      overflow: hidden;
+      border: 5px solid rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      background: var(--branco);
+      box-shadow:
+        0 16px 38px rgba(103, 31, 64, 0.18);
+    }
+
+    .profile__logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile__eyebrow {
+      margin-top: 20px;
+      color: var(--rosa-escuro);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .profile h1 {
+      margin-top: 7px;
+      color: var(--vinho);
+      font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+      font-size: clamp(42px, 7vw, 56px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    .profile__description {
+      max-width: 500px;
+      margin-top: 14px;
+      color: var(--texto-suave);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .links {
+      display: grid;
+      gap: 13px;
+      margin-top: 31px;
+    }
+
+    .link-card {
+      position: relative;
+      display: grid;
+      grid-template-columns:
+        52px
+        minmax(0, 1fr)
+        32px;
+      align-items: center;
+      min-height: 78px;
+      gap: 14px;
+      padding: 13px 15px;
+      overflow: hidden;
+      border: 1px solid var(--borda);
+      border-radius: 19px;
+      background: var(--rosa-card);
+      box-shadow: var(--sombra-card);
+      backdrop-filter: blur(14px);
+      transition:
+        transform var(--transicao),
+        box-shadow var(--transicao),
+        border-color var(--transicao);
+    }
+
+    .link-card::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4px;
+      border-radius: 20px 0 0 20px;
+      background: var(--rosa-principal);
+      content: "";
+      opacity: 0;
+      transition: opacity var(--transicao);
+    }
+
+    .link-card:hover {
+      border-color: rgba(216, 47, 117, 0.24);
+      box-shadow: var(--sombra-hover);
+      transform: translateY(-3px);
+    }
+
+    .link-card:hover::before {
+      opacity: 1;
+    }
+
+    .link-card:active {
+      transform: scale(0.99);
+    }
+
+    .link-card__icon {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      color: var(--rosa-principal);
+      background:
+        linear-gradient(
+          145deg,
+          #fff7fa,
+          #ffe6ef
+        );
+      box-shadow:
+        inset 0 0 0 1px rgba(216, 47, 117, 0.09);
+    }
+
+    .link-card__icon svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .link-card__content {
+      min-width: 0;
+      text-align: left;
+    }
+
+    .link-card__content strong {
+      display: block;
+      color: var(--texto);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .link-card__content span {
+      display: block;
+      margin-top: 3px;
+      color: var(--texto-suave);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .link-card__arrow {
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      color: var(--rosa-principal);
+      background: #fff0f6;
+      font-size: 23px;
+      line-height: 1;
+      transition:
+        color var(--transicao),
+        background var(--transicao),
+        transform var(--transicao);
+    }
+
+    .link-card:hover .link-card__arrow {
+      color: var(--branco);
+      background: var(--rosa-principal);
+      transform: translateX(2px);
+    }
+
+    .link-card--whatsapp {
+      color: var(--branco);
+      border-color: transparent;
+      background:
+        linear-gradient(
+          135deg,
+          var(--verde-whatsapp),
+          var(--verde-whatsapp-escuro)
+        );
+      box-shadow:
+        0 14px 35px rgba(18, 140, 74, 0.25);
+    }
+
+    .link-card--whatsapp::before {
+      display: none;
+    }
+
+    .link-card--whatsapp:hover {
+      border-color: transparent;
+      box-shadow:
+        0 20px 44px rgba(18, 140, 74, 0.33);
+    }
+
+    .link-card--whatsapp .link-card__icon {
+      color: var(--branco);
+      background: rgba(255, 255, 255, 0.17);
+      box-shadow: none;
+    }
+
+    .link-card--whatsapp .link-card__content strong {
+      color: var(--branco);
+    }
+
+    .link-card--whatsapp .link-card__content span {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .link-card--whatsapp .link-card__arrow {
+      color: var(--branco);
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .link-card--whatsapp:hover .link-card__arrow {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .section-label {
+      margin: 34px 0 13px;
+      color: var(--rosa-escuro);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .brands {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .brand-item {
+      display: grid;
+      place-items: center;
+      min-height: 92px;
+      padding: 15px;
+      border: 1px solid var(--borda);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow:
+        0 9px 25px rgba(89, 30, 56, 0.07);
+      transition:
+        transform var(--transicao),
+        box-shadow var(--transicao);
+    }
+
+    .brand-item:hover {
+      box-shadow:
+        0 15px 35px rgba(89, 30, 56, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .brand-item img {
+      width: 100%;
+      max-width: 110px;
+      max-height: 45px;
+      object-fit: contain;
+    }
+
+    .legal-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      gap: 8px 14px;
+    }
+
+    .legal-links a {
+      color: var(--texto-suave);
+      font-size: 10px;
+      font-weight: 600;
+      transition: color var(--transicao);
+    }
+
+    .legal-links a:hover {
+      color: var(--rosa-escuro);
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: var(--texto-claro);
+      font-size: 10px;
+      text-align: center;
+    }
+
+    .whatsapp-floating {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border: 4px solid rgba(255, 255, 255, 0.94);
+      border-radius: 50%;
+      color: var(--branco);
+      background:
+        linear-gradient(
+          135deg,
+          var(--verde-whatsapp),
+          var(--verde-whatsapp-escuro)
+        );
+      box-shadow:
+        0 16px 34px rgba(18, 140, 74, 0.3);
+      transition:
+        transform var(--transicao),
+        box-shadow var(--transicao);
+    }
+
+    .whatsapp-floating:hover {
+      box-shadow:
+        0 21px 44px rgba(18, 140, 74, 0.39);
+      transform: translateY(-4px);
+    }
+
+    .whatsapp-floating svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    a:focus-visible {
+      outline: 3px solid rgba(216, 47, 117, 0.32);
+      outline-offset: 4px;
+    }
+
+    @media (min-width: 900px) {
+      body {
+        display: flex;
+        justify-content: center;
+        padding: 36px;
+      }
+
+      .page-shell {
+        min-height: auto;
+        padding: 48px 50px 42px;
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        border-radius: 36px;
+        background: rgba(255, 245, 249, 0.57);
+        box-shadow:
+          0 30px 90px rgba(88, 25, 53, 0.17);
+        backdrop-filter: blur(18px);
+      }
+
+      .profile__logo {
+        width: 136px;
+        height: 136px;
+      }
+
+      .links {
+        gap: 15px;
+      }
+
+      .link-card {
+        min-height: 82px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-shell {
+        padding:
+          31px
+          14px
+          35px;
+      }
+
+      .profile__logo {
+        width: 112px;
+        height: 112px;
+      }
+
+      .profile__eyebrow {
+        margin-top: 16px;
+        font-size: 9px;
+      }
+
+      .profile h1 {
+        font-size: 41px;
+      }
+
+      .profile__description {
+        max-width: 360px;
+        margin-top: 11px;
+        font-size: 13px;
+      }
+
+      .links {
+        margin-top: 26px;
+        gap: 11px;
+      }
+
+      .link-card {
+        grid-template-columns:
+          47px
+          minmax(0, 1fr)
+          29px;
+        min-height: 72px;
+        gap: 11px;
+        padding: 11px 12px;
+        border-radius: 17px;
+      }
+
+      .link-card__icon {
+        width: 47px;
+        height: 47px;
+        border-radius: 14px;
+      }
+
+      .link-card__icon svg {
+        width: 23px;
+        height: 23px;
+      }
+
+      .link-card__content strong {
+        font-size: 13px;
+      }
+
+      .link-card__content span {
+        font-size: 10px;
+      }
+
+      .link-card__arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 21px;
+      }
+
+      .section-label {
+        margin-top: 29px;
+      }
+
+      .brands {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .brand-item {
+        min-height: 80px;
+        padding: 13px;
+        border-radius: 15px;
+      }
+
+      .brand-item img {
+        max-width: 96px;
+        max-height: 40px;
+      }
+
+      .whatsapp-floating {
+        right: 13px;
+        bottom: 13px;
+        width: 54px;
+        height: 54px;
+        border-width: 3px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .page-shell {
+        padding-inline: 10px;
+      }
+
+      .profile h1 {
+        font-size: 37px;
+      }
+
+      .link-card {
+        grid-template-columns:
+          43px
+          minmax(0, 1fr)
+          26px;
+        gap: 9px;
+      }
+
+      .link-card__icon {
+        width: 43px;
+        height: 43px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <main class="page">
+  <main class="page-shell">
 
-    <!-- TOPO -->
-    <section class="hero">
+    <header class="profile">
 
-      <div class="hero__glow hero__glow--one"></div>
-      <div class="hero__glow hero__glow--two"></div>
-
-      <div class="container">
-
-        <div class="brand">
-
-          <div class="brand__logo">
-            <img
-              src="logo/logo.jpg"
-              alt="Logo Ana Essenci"
-              width="180"
-              height="180"
-            >
-          </div>
-
-          <span class="brand__tag">
-            Perfumes e cuidados pessoais
-          </span>
-
-          <h1>Ana Essenci</h1>
-
-          <p class="brand__description">
-            Perfumes, hidratantes, sabonetes e produtos de beleza
-            escolhidos para tornar seus momentos ainda mais especiais.
-          </p>
-
-        </div>
-
-        <!-- BOTÃO PRINCIPAL -->
-        <a
-          class="main-contact"
-          href="https://wa.me/5562998390546?text=Olá!%20Vim%20pelo%20site%20da%20Ana%20Essenci%20e%20gostaria%20de%20conhecer%20os%20produtos."
-          target="_blank"
-          rel="noopener noreferrer"
+      <div class="profile__logo">
+        <img
+          src="logo/logo.jpg"
+          alt="Ana Essenci"
+          width="140"
+          height="140"
         >
-
-          <span class="main-contact__icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.44 6.6 2.01 12.05 2.01a9.82 9.82 0 0 1 7.02 2.91 9.83 9.83 0 0 1 2.9 7.03c0 5.45-4.44 9.88-9.92 9.88"
-              />
-            </svg>
-          </span>
-
-          <span class="main-contact__text">
-            <strong>WhatsApp</strong>
-            <small>Atendimento rápido e personalizado</small>
-          </span>
-
-          <span class="main-contact__arrow">
-            ›
-          </span>
-
-        </a>
-
       </div>
+
+      <span class="profile__eyebrow">
+        Perfumes e cuidados pessoais
+      </span>
+
+      <h1>Ana Essenci</h1>
+
+      <p class="profile__description">
+        Perfumes, hidratantes, sabonetes e produtos de beleza
+        para você se cuidar ou presentear alguém especial.
+      </p>
+
+    </header>
+
+    <section class="links" aria-label="Links da Ana Essenci">
+
+      <a
+        class="link-card link-card--whatsapp"
+        href="https://wa.me/5562998390546?text=Olá!%20Vim%20pelo%20site%20da%20Ana%20Essenci%20e%20gostaria%20de%20conhecer%20os%20produtos."
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <span class="link-card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.44 6.6 2.01 12.05 2.01a9.82 9.82 0 0 1 7.02 2.91 9.83 9.83 0 0 1 2.9 7.03c0 5.45-4.44 9.88-9.92 9.88"
+            />
+          </svg>
+        </span>
+
+        <span class="link-card__content">
+          <strong>Fale conosco pelo WhatsApp</strong>
+          <span>Atendimento, pedidos e dúvidas</span>
+        </span>
+
+        <span class="link-card__arrow">›</span>
+
+      </a>
+
+      <a
+        class="link-card"
+        href="mailto:loja.anaessenci@gmail.com?subject=Atendimento%20Ana%20Essenci"
+      >
+
+        <span class="link-card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm9 7L3 7v10h18V7l-9 5Zm0-2 8.4-4H3.6L12 10Z"
+            />
+          </svg>
+        </span>
+
+        <span class="link-card__content">
+          <strong>Enviar e-mail</strong>
+          <span>loja.anaessenci@gmail.com</span>
+        </span>
+
+        <span class="link-card__arrow">›</span>
+
+      </a>
+
+      <a
+        class="link-card"
+        href="paginas/perguntas-frequentes.html"
+      >
+
+        <span class="link-card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-.1-5.4h2v2h-2v-2Zm.1-7.7c-1.2 0-2 .7-2.1 1.9H8c.1-2.3 1.7-3.8 4-3.8 2.4 0 4 1.4 4 3.5 0 1.5-.8 2.4-2.1 3.2-.9.6-1.1.9-1.1 1.8h-1.9c0-1.6.4-2.3 1.8-3.2.9-.6 1.3-1 1.3-1.8 0-1-.8-1.6-2-1.6Z"
+            />
+          </svg>
+        </span>
+
+        <span class="link-card__content">
+          <strong>Perguntas frequentes</strong>
+          <span>Veja as respostas para as principais dúvidas</span>
+        </span>
+
+        <span class="link-card__arrow">›</span>
+
+      </a>
+
+      <a
+        class="link-card"
+        href="paginas/politica-de-envio.html"
+      >
+
+        <span class="link-card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M3 4h11v9h2.5l2.5-3H21l2 3v5h-2a3 3 0 0 1-6 0H9a3 3 0 0 1-6 0H1V6a2 2 0 0 1 2-2Zm1 2v7h8V6H4Zm3 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
+            />
+          </svg>
+        </span>
+
+        <span class="link-card__content">
+          <strong>Entrega e envio</strong>
+          <span>Consulte as condições e prazos</span>
+        </span>
+
+        <span class="link-card__arrow">›</span>
+
+      </a>
+
+      <a
+        class="link-card"
+        href="paginas/trocas-e-devolucoes.html"
+      >
+
+        <span class="link-card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M7 7h10V4l5 5-5 5v-3H7a3 3 0 0 0-3 3v2H2v-2a5 5 0 0 1 5-5Zm10 10H7v3l-5-5 5-5v3h10a3 3 0 0 0 3-3V8h2v2a5 5 0 0 1-5 5Z"
+            />
+          </svg>
+        </span>
+
+        <span class="link-card__content">
+          <strong>Trocas e devoluções</strong>
+          <span>Consulte as regras da loja</span>
+        </span>
+
+        <span class="link-card__arrow">›</span>
+
+      </a>
+
     </section>
 
-    <!-- INFORMAÇÕES -->
-    <section class="content">
-      <div class="container">
+    <p class="section-label">Marcas disponíveis</p>
 
-        <div class="info-list">
+    <section class="brands" aria-label="Marcas">
 
-          <!-- E-MAIL -->
-          <article class="info-card">
-
-            <div class="info-card__icon">
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fill="currentColor"
-                  d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm9 7L3 7v10h18V7l-9 5Zm0-2 8.4-4H3.6L12 10Z"
-                />
-              </svg>
-            </div>
-
-            <div class="info-card__content">
-              <span>Atendimento por e-mail</span>
-
-              <a
-                href="mailto:loja.anaessenci@gmail.com?subject=Atendimento%20Ana%20Essenci"
-              >
-                loja.anaessenci@gmail.com
-              </a>
-            </div>
-
-          </article>
-
-          <!-- PRODUTOS -->
-          <article class="info-card">
-
-            <div class="info-card__icon">
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fill="currentColor"
-                  d="M12 2 4 5v6c0 5.1 3.4 9.8 8 11 4.6-1.2 8-5.9 8-11V5l-8-3Zm0 2.2 6 2.2V11c0 4.1-2.5 7.8-6 8.9-3.5-1.1-6-4.8-6-8.9V6.4l6-2.2Z"
-                />
-              </svg>
-            </div>
-
-            <div class="info-card__content">
-              <span>Produtos selecionados</span>
-
-              <p>
-                Perfumes, hidratantes, sabonetes e opções para presente.
-              </p>
-            </div>
-
-          </article>
-
-          <!-- PEDIDOS -->
-          <article class="info-card">
-
-            <div class="info-card__icon">
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fill="currentColor"
-                  d="M7 4V2h10v2h3a2 2 0 0 1 2 2v14H2V6a2 2 0 0 1 2-2h3Zm2 0h6V3H9v1Zm-5 2v12h16V6H4Zm4 3h8v2H8V9Zm0 4h8v2H8v-2Z"
-                />
-              </svg>
-            </div>
-
-            <div class="info-card__content">
-              <span>Faça seu pedido</span>
-
-              <p>
-                Consulte disponibilidade, pagamento e entrega pelo WhatsApp.
-              </p>
-            </div>
-
-          </article>
-
-        </div>
-                <!-- MARCAS -->
-        <section class="brands-section">
-
-          <div class="section-heading">
-            <span>Nossas marcas</span>
-            <h2>Beleza para todos os estilos</h2>
-            <p>
-              Trabalhamos com marcas conhecidas e produtos escolhidos
-              para uso pessoal e presentes.
-            </p>
-          </div>
-
-          <div class="brands-grid">
-
-            <div class="brand-card">
-              <img
-                src="marcas/avon.webp"
-                alt="Avon"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="brand-card">
-              <img
-                src="marcas/boticario.webp"
-                alt="O Boticário"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="brand-card">
-              <img
-                src="marcas/eudora.webp"
-                alt="Eudora"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="brand-card">
-              <img
-                src="marcas/natura.webp"
-                alt="Natura"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="brand-card">
-              <img
-                src="marcas/oui.webp"
-                alt="O.U.i"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="brand-card">
-              <img
-                src="marcas/quem-disse-berenice.webp"
-                alt="Quem Disse, Berenice?"
-                loading="lazy"
-              >
-            </div>
-
-          </div>
-
-        </section>
-
-        <!-- REDES SOCIAIS -->
-        <section class="social-section">
-
-          <div class="section-heading">
-            <span>Redes sociais</span>
-            <h2>Acompanhe a Ana Essenci</h2>
-            <p>
-              Novidades, produtos, dicas e ofertas especiais.
-            </p>
-          </div>
-
-          <div class="social-grid">
-
-            <a
-              class="social-card"
-              href="#"
-              aria-label="Instagram da Ana Essenci"
-            >
-
-              <span class="social-card__icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
-                  />
-                </svg>
-              </span>
-
-              <span class="social-card__text">
-                <strong>Instagram</strong>
-                <small>Veja novidades e ofertas</small>
-              </span>
-
-              <span class="social-card__arrow">
-                ›
-              </span>
-
-            </a>
-
-            <a
-              class="social-card"
-              href="#"
-              aria-label="Facebook da Ana Essenci"
-            >
-
-              <span class="social-card__icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M14 8h3V4.5A16 16 0 0 0 14.4 4C11.8 4 10 5.6 10 8.6V11H7v4h3v7h4v-7h3.2l.8-4H14V8.7c0-.9.3-.7 0-.7Z"
-                  />
-                </svg>
-              </span>
-
-              <span class="social-card__text">
-                <strong>Facebook</strong>
-                <small>Acompanhe nossas publicações</small>
-              </span>
-
-              <span class="social-card__arrow">
-                ›
-              </span>
-
-            </a>
-
-          </div>
-
-        </section>
-
-        <!-- LINKS ÚTEIS -->
-        <section class="links-section">
-
-          <div class="section-heading">
-            <span>Informações</span>
-            <h2>Links úteis</h2>
-          </div>
-
-          <div class="links-list">
-
-            <a href="paginas/perguntas-frequentes.html">
-              <span>Perguntas frequentes</span>
-              <strong>›</strong>
-            </a>
-
-            <a href="paginas/politica-de-envio.html">
-              <span>Política de envio</span>
-              <strong>›</strong>
-            </a>
-
-            <a href="paginas/trocas-e-devolucoes.html">
-              <span>Trocas e devoluções</span>
-              <strong>›</strong>
-            </a>
-
-            <a href="paginas/politica-de-privacidade.html">
-              <span>Política de privacidade</span>
-              <strong>›</strong>
-            </a>
-
-            <a href="paginas/termos-de-uso.html">
-              <span>Termos de uso</span>
-              <strong>›</strong>
-            </a>
-
-          </div>
-
-        </section>
-
+      <div class="brand-item">
+        <img
+          src="marcas/avon.webp"
+          alt="Avon"
+          loading="lazy"
+        >
       </div>
+
+      <div class="brand-item">
+        <img
+          src="marcas/boticario.webp"
+          alt="O Boticário"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="brand-item">
+        <img
+          src="marcas/eudora.webp"
+          alt="Eudora"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="brand-item">
+        <img
+          src="marcas/natura.webp"
+          alt="Natura"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="brand-item">
+        <img
+          src="marcas/oui.webp"
+          alt="O.U.i"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="brand-item">
+        <img
+          src="marcas/quem-disse-berenice.webp"
+          alt="Quem Disse, Berenice?"
+          loading="lazy"
+        >
+      </div>
+
     </section>
 
-    <!-- RODAPÉ -->
+    <nav class="legal-links" aria-label="Links legais">
+
+      <a href="paginas/politica-de-privacidade.html">
+        Privacidade
+      </a>
+
+      <a href="paginas/termos-de-uso.html">
+        Termos de uso
+      </a>
+
+      <a href="paginas/politica-de-envio.html">
+        Envio
+      </a>
+
+      <a href="paginas/trocas-e-devolucoes.html">
+        Trocas
+      </a>
+
+    </nav>
+
     <footer class="footer">
-
-      <div class="container">
-
-        <p>
-          © <span id="currentYear"></span> Ana Essenci
-        </p>
-
-        <small>
-          Todos os direitos reservados.
-        </small>
-
-      </div>
-
+      © <span id="currentYear"></span> Ana Essenci.
+      Todos os direitos reservados.
     </footer>
 
   </main>
 
-  <!-- WHATSAPP FLUTUANTE -->
   <a
     class="whatsapp-floating"
     href="https://wa.me/5562998390546?text=Olá!%20Vim%20pelo%20site%20da%20Ana%20Essenci."
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Falar com a Ana Essenci pelo WhatsApp"
+    aria-label="Falar pelo WhatsApp"
   >
 
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
       <path
         fill="currentColor"
         d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.44 6.6 2.01 12.05 2.01a9.82 9.82 0 0 1 7.02 2.91 9.83 9.83 0 0 1 2.9 7.03c0 5.45-4.44 9.88-9.92 9.88"
@@ -416,7 +874,19 @@
 
   </a>
 
-  <script src="script.js"></script>
+  <script>
+    "use strict";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const currentYear =
+        document.getElementById("currentYear");
+
+      if (currentYear) {
+        currentYear.textContent =
+          new Date().getFullYear();
+      }
+    });
+  </script>
 
 </body>
 </html>
